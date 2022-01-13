@@ -1,3 +1,5 @@
+//[AP]
+
 #include <avr.h>/io.h>
 #include <util/delay.h>
 #define TCCARA_MASK
@@ -13,7 +15,7 @@ int main(void)
     const uint8_t mask=(1<<6);
     DDRB |= mask;       // configure the pin as output
 
-    
+
     while(1)
     {
 
