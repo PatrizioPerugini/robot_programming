@@ -9,18 +9,18 @@
 
 int main(void)
 {
-    const uint8_t mask=(1<<3);
+    const uint8_t mask=(1<<4);
     int angle;
-    DDRH |= mask;       // configure the pin as output
+    DDRH |= mask;       // configure the 6 pin as output
 
-    TCCR4A= (1<<WGM41)|(1<<COM4A1)|(1<<COM4A0); //conf. bits for fast PWM, 8bit, non invertible (output compare set low)
-    TCCR4B= (1<<WGM43)|(1<<WGM43)| (1<<CS40);   //no prescaling
+    TCCR4A= (1<<WGM41)|(1<<COM4B1)|(1<<COM4B0); //conf. bits for fast PWM, 8bit, inverted
+    TCCR4B= (1<<WGM42)|(1<<WGM43)| (1<<CS40);   //no prescaling
     
-    //ICR4 = 19999;
+    ICR4 = 19999;
     
     angle = 2000;       //range: [2000, 19999] as[0°, 180°]
 
-    OCR4A= angle;
+    OCR4B= angle;
     
     
     while(1)
