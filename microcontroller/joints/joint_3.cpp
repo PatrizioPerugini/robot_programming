@@ -7,7 +7,7 @@
 #include "../avr_common/uart.h"
 
 
-int main(void)
+int joint_3(void)
 {
 const uint8_t mask=(1<<5);      //range: [2000, 19999] as[0°, 180°]
 int angle = 19999;      
