@@ -14,7 +14,7 @@ int main(void)
     DDRH |= 0xFF;       // configure the 6 pin as output
 
     TCCR4A= (1<<WGM41)|(1<<COM4A1)|(1<<COM4A0); //conf. bits for fast PWM, 8bit, TOP ICR, 
-    TCCR4B= (1<<WGM42)|(1<<WGM43)|(1<<CS40);   //invertible (output compare set High), no prescaling
+    TCCR4B= (1<<WGM42)|(1<<WGM43)|(1<<CS41);   //invertible (output compare set High), no prescaling
     
     ICR4 = 19999;
     
