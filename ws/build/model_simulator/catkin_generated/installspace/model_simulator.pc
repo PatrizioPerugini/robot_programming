@@ -1,0 +1,8 @@
+prefix=/home/patrizio/Desktop/robot_programming/ws/install
+
+Name: model_simulator
+Description: Description of model_simulator
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
