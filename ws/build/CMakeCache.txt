@@ -443,6 +443,12 @@ model_simulator_BINARY_DIR:STATIC=/home/patrizio/Desktop/robot_programming/ws/bu
 //Value Computed by CMake
 model_simulator_SOURCE_DIR:STATIC=/home/patrizio/Desktop/robot_programming/ws/src/model_simulator
 
+//Value Computed by CMake
+robot_manipulator_BINARY_DIR:STATIC=/home/patrizio/Desktop/robot_programming/ws/build/robot_manipulator
+
+//Value Computed by CMake
+robot_manipulator_SOURCE_DIR:STATIC=/home/patrizio/Desktop/robot_programming/ws/src/robot_manipulator
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
 
