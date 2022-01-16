@@ -4,12 +4,12 @@
 #include <avr/io.h>
 #include "../avr_common/uart.h"
 
-float deg2set (float deg_angle, int n_joint)
+float deg2set (float* deg_angle, int n_joint)
 {
     float conv_factor[6] = {19000/180, 19000/270, 19000/270, 19000/180, 19000/180, 19000/180} ;
     float angle;
     
-    angle= deg_angle * conv_factor[n_joint-1];
+    angle= deg_angle[n_joint-1] * conv_factor[n_joint-1];
     
     return angle;
 }
@@ -39,13 +39,13 @@ void setting(float * deg_angles_i){      // angles_i is the initial configuratio
     //value in range for J2, J3: [1000, 19999] as [0°, 270°] ==> conversion factor of 1° : 19000/270 (precision 0.3° : 5700/180)
     ICR4 = 19999;
 
-    OCR3A = ICR3 - deg2set(deg_angles_i[0], 1);  //initial position J1
-    OCR3B = ICR3 - deg2set(deg_angles_i[3], 4);  //initial position J4
-    OCR3C = ICR3 - deg2set(deg_angles_i[4], 5);  //intial position J5
+    OCR3A = ICR3 - deg2set(deg_angles_i, 1);  //initial position J1
+    OCR3B = ICR3 - deg2set(deg_angles_i, 4);  //initial position J4
+    OCR3C = ICR3 - deg2set(deg_angles_i, 5);  //intial position J5
         
-    OCR4B = ICR4 - deg2set(deg_angles_i[1], 2);  //intial position J2
-    OCR4C = ICR4 - deg2set(deg_angles_i[2], 3);  //intial position J3
-    OCR4A = ICR4 - deg2set(deg_angles_i[5], 6);  //intial position EE
+    OCR4B = ICR4 - deg2set(deg_angles_i, 2);  //intial position J2
+    OCR4C = ICR4 - deg2set(deg_angles_i, 3);  //intial position J3
+    OCR4A = ICR4 - deg2set(deg_angles_i, 6);  //intial position EE
     
 }
 
