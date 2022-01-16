@@ -4,18 +4,17 @@
 #include <avr/io.h>
 #include "../avr_common/uart.h"
 
-float deg2set (float* deg_angle, int n_joint)
+float deg2set (float deg_angle, int n_joint)
 {
     float conv_factor[6] = {19000/180, 19000/270, 19000/270, 19000/180, 19000/180, 19000/180} ;
-    float angle[6];
-    for(int i =0; i<6; i++){
-
-        angle[i] = deg_angle[i] * conv_factor[i];
-    }
-    return float* angle;
+    float angle;
+    
+    angle= deg_angle * conv_factor[n_joint-1];
+    
+    return angle;
 }
 
-int setting(float * deg_angles_i){      // angles_i is the initial configuration of the joints
+void setting(float * deg_angles_i){      // angles_i is the initial configuration of the joints
     //configuration of timers 3 and 4, conf. 14 (fast PWM, top ICRn), prescaling x8, invertible
     TCCR3A= (1<<WGM31)|(1<<COM3A1)|(1<<COM3A0); 
     TCCR3B= (1<<WGM32)|(1<<WGM33)|(1<<CS31);

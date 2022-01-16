@@ -16,8 +16,9 @@ int main(void)
         // listener part: i receive a message as a list 
         //of the new positions that the joint-i has to reach 
         for(float pos = 0; pos<180; pos++){
-            deg_angles[5] = pos;
             deg_angles[4] = pos;
+            deg_angles[5] = pos;
+           
         
             OCR3A = ICR3 - deg2set(deg_angles[0], 1);  //new position J1
             OCR3B = ICR3 - deg2set(deg_angles[3], 4);  //new position J4

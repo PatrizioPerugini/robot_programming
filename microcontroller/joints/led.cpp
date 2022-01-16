@@ -15,6 +15,7 @@ int main(void){
   OCR1AH=0;
   OCR1BH=0;
   OCR1CH=0;
+
   OCR1CL=1;
 
   // the LED is connected to pin 13
@@ -26,7 +27,8 @@ int main(void){
   uint8_t intensity=0;
   while(1){
     // we write on the output compare register a value
-    // that will be proportional to the opposite of the
+    // that will 
+     proportional to the opposite of the
     // duty_cycle
     OCR1CL=intensity; 
     
