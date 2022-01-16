@@ -15,7 +15,7 @@ public:
 
 }
 
-int setting(int angles_i){
+int setting(int deg_angles_i){      // angles_i is the initial configuration of the joints
     //configuration of timers 3 and 4, conf. 14 (fast PWM, top ICRn), prescaling x8, invertible
     TCCR3A= (1<<WGM31)|(1<<COM3A1)|(1<<COM3A0); 
     TCCR3B= (1<<WGM32)|(1<<WGM33)|(1<<CS31);
@@ -31,6 +31,7 @@ int setting(int angles_i){
     //J3 --> pin 8 (PH5)
     //J4 --> pin 2 (PE4)
     //J5 --> pin 3 (PE5)
+    //EE --> pin 6 (PH3)
     DDRE |= mask;   //pin 
     DDRH |= mask;
 
@@ -38,6 +39,15 @@ int setting(int angles_i){
     ICR3 = 19999;
     //value in range for J2, J3: [1000, 19999] as [0°, 270°] ==> conversion factor of 1° : 19000/270 (precision 0.3° : 5700/180)
     ICR4 = 19999;
+
+    OCR3A = ICR3 - angle_1(deg_angles_i[0], 1);  //initial position J1
+    OCR3A = ICR3 - angle_1(deg_angles_i[3], 4);  //initial position J4
+    OCR3A = ICR3 - angle_1(deg_angles_i[4], 5);  //intial position J5
+        
+    OCR4B = ICR4 - angle_1(deg_angles_i[1], 2);  //intial position J2
+    OCR4C = ICR4 - angle_1(deg_angles_i[2], 3);  //intial position J3
+    OCR4A = ICR4 - angle_1(deg_angles_i[5], 6);  //intial position EE
+    
 }
 
 
