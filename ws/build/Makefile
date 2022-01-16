@@ -294,7 +294,7 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/std_msgs_generate_messages_py.dir/build.make simple_example_description/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -307,7 +307,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make simple_example_description/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -320,7 +320,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make simple_example_description/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -333,7 +333,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/roscpp_generate_messages_eus.dir/build.make simple_example_description/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -346,7 +346,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -359,7 +359,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make simple_example_description/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -372,7 +372,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/roscpp_generate_messages_py.dir/build.make simple_example_description/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -385,7 +385,7 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make simple_example_description/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -398,7 +398,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make simple_example_description/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -411,21 +411,8 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named hello
-
-# Build rule for target.
-hello: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hello
-.PHONY : hello
-
-# fast build rule for target.
-hello/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/hello.dir/build.make simple_example_description/CMakeFiles/hello.dir/build
-.PHONY : hello/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_cpp
@@ -437,7 +424,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make simple_example_description/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -450,7 +437,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -463,7 +450,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -476,7 +463,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make simple_example_description/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -489,7 +476,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make simple_example_description/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 # Help Target
@@ -524,7 +511,6 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... hello"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
