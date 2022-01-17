@@ -2,6 +2,7 @@
 #include "std_msgs/String.h"
 #include <sensor_msgs/JointState.h>
 #include <sstream>
+#include <util/delay.h>
 
 int main(int argc, char **argv)
 {
@@ -27,16 +28,19 @@ int main(int argc, char **argv)
   int count = 0;
   while (ros::ok())
   {
-
-   msg.position={0.2, 0, 0, 0, 0};
+    for(int i=-90; i<90; i++){
+      msg.position={20, 0, 0, 0, 0};
+      _delay_ms(10);
+    }  
+    
   
-    msg.velocity={0.2, 0.0, 0.0, 0.0, 0.0};
+  msg.velocity={0.2, 0.0, 0.0, 0.0, 0.0};
    // msg.velocity[1]=0.0;
    // msg.velocity[2]=0.0;
    // msg.velocity[3]=0.0;
    // msg.velocity[4]=0.0;
 //
-   msg.effort={1.0, 0.0, 0.0, 0.0, 0.0};
+  msg.effort={1.0, 0.0, 0.0, 0.0, 0.0};
    // msg.effort[1]=0.0;
    // msg.effort[2]=0.0;
    // msg.effort[3]=0.0;
