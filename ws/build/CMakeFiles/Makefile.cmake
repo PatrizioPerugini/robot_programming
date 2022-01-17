@@ -17,11 +17,15 @@ set(CMAKE_MAKEFILE_DEPENDS
   "robot-arm-control-ros/catkin_generated/package.cmake"
   "robot_manipulator/catkin_generated/ordered_paths.cmake"
   "robot_manipulator/catkin_generated/package.cmake"
+  "send_position/catkin_generated/ordered_paths.cmake"
+  "send_position/catkin_generated/package.cmake"
   "/home/patrizio/Desktop/robot_programming/ws/src/CMakeLists.txt"
   "/home/patrizio/Desktop/robot_programming/ws/src/robot-arm-control-ros/CMakeLists.txt"
   "/home/patrizio/Desktop/robot_programming/ws/src/robot-arm-control-ros/package.xml"
   "/home/patrizio/Desktop/robot_programming/ws/src/robot_manipulator/CMakeLists.txt"
   "/home/patrizio/Desktop/robot_programming/ws/src/robot_manipulator/package.xml"
+  "/home/patrizio/Desktop/robot_programming/ws/src/send_position/CMakeLists.txt"
+  "/home/patrizio/Desktop/robot_programming/ws/src/send_position/package.xml"
   "/opt/ros/noetic/share/catkin/cmake/all.cmake"
   "/opt/ros/noetic/share/catkin/cmake/assert.cmake"
   "/opt/ros/noetic/share/catkin/cmake/atomic_configure_file.cmake"
@@ -185,6 +189,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "gtest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "robot-arm-control-ros/CMakeFiles/CMakeDirectoryInformation.cmake"
   "robot_manipulator/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "send_position/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -213,4 +218,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/DependInfo.cmake"
   "robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/DependInfo.cmake"
+  "send_position/CMakeFiles/joint_pub.dir/DependInfo.cmake"
   )

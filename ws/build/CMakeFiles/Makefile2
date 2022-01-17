@@ -56,6 +56,7 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 all: gtest/all
 all: robot-arm-control-ros/all
 all: robot_manipulator/all
+all: send_position/all
 
 .PHONY : all
 
@@ -63,6 +64,7 @@ all: robot_manipulator/all
 preinstall: gtest/preinstall
 preinstall: robot-arm-control-ros/preinstall
 preinstall: robot_manipulator/preinstall
+preinstall: send_position/preinstall
 
 .PHONY : preinstall
 
@@ -75,6 +77,7 @@ clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: robot-arm-control-ros/clean
 clean: robot_manipulator/clean
+clean: send_position/clean
 
 .PHONY : clean
 
@@ -184,6 +187,24 @@ robot_manipulator/preinstall:
 robot_manipulator/clean:
 
 .PHONY : robot_manipulator/clean
+
+#=============================================================================
+# Directory level rules for directory send_position
+
+# Recursive "all" directory target.
+send_position/all: send_position/CMakeFiles/joint_pub.dir/all
+
+.PHONY : send_position/all
+
+# Recursive "preinstall" directory target.
+send_position/preinstall:
+
+.PHONY : send_position/preinstall
+
+# Recursive "clean" directory target.
+send_position/clean: send_position/CMakeFiles/joint_pub.dir/clean
+
+.PHONY : send_position/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
@@ -833,6 +854,33 @@ rosgraph_msgs_generate_messages_py: robot-arm-control-ros/CMakeFiles/rosgraph_ms
 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
 	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 .PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target send_position/CMakeFiles/joint_pub.dir
+
+# All Build rule for target.
+send_position/CMakeFiles/joint_pub.dir/all:
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/depend
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=9,10 "Built target joint_pub"
+.PHONY : send_position/CMakeFiles/joint_pub.dir/all
+
+# Build rule for subdir invocation for target.
+send_position/CMakeFiles/joint_pub.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/joint_pub.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
+.PHONY : send_position/CMakeFiles/joint_pub.dir/rule
+
+# Convenience name for target.
+joint_pub: send_position/CMakeFiles/joint_pub.dir/rule
+
+.PHONY : joint_pub
+
+# clean rule for target.
+send_position/CMakeFiles/joint_pub.dir/clean:
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/clean
+.PHONY : send_position/CMakeFiles/joint_pub.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

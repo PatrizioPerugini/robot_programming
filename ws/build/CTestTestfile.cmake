@@ -7,3 +7,4 @@
 subdirs("gtest")
 subdirs("robot-arm-control-ros")
 subdirs("robot_manipulator")
+subdirs("send_position")

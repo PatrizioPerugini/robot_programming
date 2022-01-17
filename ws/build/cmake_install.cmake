@@ -133,6 +133,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/patrizio/Desktop/robot_programming/ws/build/gtest/cmake_install.cmake")
   include("/home/patrizio/Desktop/robot_programming/ws/build/robot-arm-control-ros/cmake_install.cmake")
   include("/home/patrizio/Desktop/robot_programming/ws/build/robot_manipulator/cmake_install.cmake")
+  include("/home/patrizio/Desktop/robot_programming/ws/build/send_position/cmake_install.cmake")
 
 endif()
 

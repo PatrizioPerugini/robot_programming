@@ -6,12 +6,12 @@
 ros::NodeHandle node_handle;
 
 Servo robot_servos[5];
-int servo_pins[6] = {2, 3, 5, 6, 7, 9}; // PWM Pins 
+int servo_pins[6] = {2, 3, 5, 6, 7}; // PWM Pins 
 
-int mid_positions[5] = {90, 0, 0, 160, 180, 150};
+int mid_positions[5] = {90, 0, 0, 160, 180};
 int servo_CURRENT_positions[6];
 
-float servo_TARGET_position[6] = {0,0,0,0,0,0};
+float servo_TARGET_position[6] = {0,0,0,0,0};
 
 // Convert the joint state values to degrees, adjust for the center and write to the servo
 void writeServos() {
@@ -31,7 +31,7 @@ void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg
   servo_TARGET_position[2] = msg.position[2];
   servo_TARGET_position[3] = msg.position[3];
   servo_TARGET_position[4] = msg.position[4];
-  servo_TARGET_position
+  //servo_TARGET_position
   // Call the method to write the joint positions to the servo motors
   writeServos();
 
@@ -49,7 +49,7 @@ void setup() {
   }
 
   // Set the communication BaudRate and start the node
-  node_handle.getHardware()->setBaud(19000);
+  node_handle.getHardware()->setBaud(19000);//not sure maybe lower
   node_handle.initNode();
   node_handle.subscribe(servo_control_subscriber_joint_state);
 }

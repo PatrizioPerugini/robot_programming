@@ -479,6 +479,19 @@ rosgraph_msgs_generate_messages_py/fast:
 	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
+#=============================================================================
+# Target rules for targets named joint_pub
+
+# Build rule for target.
+joint_pub: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joint_pub
+.PHONY : joint_pub
+
+# fast build rule for target.
+joint_pub/fast:
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
+.PHONY : joint_pub/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -516,6 +529,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... joint_pub"
 .PHONY : help
 
 
