@@ -1,6 +1,6 @@
 
 
-BINS =  joint_control.elf
+BINS = led.elf
 
 
 include ../avr_common/avr.mk
