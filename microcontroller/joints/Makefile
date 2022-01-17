@@ -1,7 +1,7 @@
 
 
-BINS =  joint_controller.elf
-
+BINS =  joint_control.elf
 
 
 include ../avr_common/avr.mk
+
