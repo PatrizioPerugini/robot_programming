@@ -54,12 +54,14 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 
 # The main recursive "all" target.
 all: gtest/all
+all: robot-arm-control-ros/all
 all: robot_manipulator/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
+preinstall: robot-arm-control-ros/preinstall
 preinstall: robot_manipulator/preinstall
 
 .PHONY : preinstall
@@ -71,6 +73,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
+clean: robot-arm-control-ros/clean
 clean: robot_manipulator/clean
 
 .PHONY : clean
@@ -133,6 +136,38 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : gtest/googletest/clean
 
 #=============================================================================
+# Directory level rules for directory robot-arm-control-ros
+
+# Recursive "all" directory target.
+robot-arm-control-ros/all:
+
+.PHONY : robot-arm-control-ros/all
+
+# Recursive "preinstall" directory target.
+robot-arm-control-ros/preinstall:
+
+.PHONY : robot-arm-control-ros/preinstall
+
+# Recursive "clean" directory target.
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+robot-arm-control-ros/clean: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+
+.PHONY : robot-arm-control-ros/clean
+
+#=============================================================================
 # Directory level rules for directory robot_manipulator
 
 # Recursive "all" directory target.
@@ -146,21 +181,7 @@ robot_manipulator/preinstall:
 .PHONY : robot_manipulator/preinstall
 
 # Recursive "clean" directory target.
-robot_manipulator/clean: robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-robot_manipulator/clean: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+robot_manipulator/clean:
 
 .PHONY : robot_manipulator/clean
 
@@ -409,409 +430,409 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_py"
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_py: robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+std_msgs_generate_messages_py: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 .PHONY : std_msgs_generate_messages_py
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_nodejs"
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+std_msgs_generate_messages_nodejs: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
 
 .PHONY : std_msgs_generate_messages_nodejs
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_cpp"
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+roscpp_generate_messages_cpp: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 .PHONY : roscpp_generate_messages_cpp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_eus"
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_eus: robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+roscpp_generate_messages_eus: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 .PHONY : roscpp_generate_messages_eus
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_nodejs"
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+rosgraph_msgs_generate_messages_nodejs: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_nodejs
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_lisp"
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+std_msgs_generate_messages_lisp: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 .PHONY : std_msgs_generate_messages_lisp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_py"
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_py: robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/rule
+roscpp_generate_messages_py: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 .PHONY : roscpp_generate_messages_py
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_py.dir/clean
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_py.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_eus"
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_eus: robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+std_msgs_generate_messages_eus: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 
 .PHONY : std_msgs_generate_messages_eus
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_nodejs"
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_nodejs: robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+roscpp_generate_messages_nodejs: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 .PHONY : roscpp_generate_messages_nodejs
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_cpp"
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+rosgraph_msgs_generate_messages_cpp: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_cpp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target std_msgs_generate_messages_cpp"
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+std_msgs_generate_messages_cpp: robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 .PHONY : std_msgs_generate_messages_cpp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_eus"
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_eus: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+rosgraph_msgs_generate_messages_eus: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_eus
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_lisp"
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+rosgraph_msgs_generate_messages_lisp: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_lisp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target roscpp_generate_messages_lisp"
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_lisp: robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+roscpp_generate_messages_lisp: robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 .PHONY : roscpp_generate_messages_lisp
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/roscpp_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+# Target rules for target robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num= "Built target rosgraph_msgs_generate_messages_py"
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+rosgraph_msgs_generate_messages_py: robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 
 .PHONY : rosgraph_msgs_generate_messages_py
 
 # clean rule for target.
-robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
-.PHONY : robot_manipulator/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
+.PHONY : robot-arm-control-ros/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

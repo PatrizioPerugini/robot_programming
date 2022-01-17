@@ -1,0 +1,8 @@
+prefix=/home/patrizio/Desktop/robot_programming/ws/devel
+
+Name: robot-arm-control-ros
+Description: Description of robot-arm-control-ros
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
