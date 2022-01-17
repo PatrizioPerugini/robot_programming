@@ -19,38 +19,38 @@ int main(int argc, char **argv)
   ros::Rate loop_rate(10);
 
    sensor_msgs::JointState msg;
-   msg.position[5];
-   msg.velocity[5];
-   msg.effort[5];
+  // msg.position[5];
+   //msg.velocity[5];
+   //msg.effort[5];
 
 
   int count = 0;
   while (ros::ok())
   {
 
-    msg.position[0]=2.0;
-    msg.position[1]=0.0;
-    msg.position[2]=0.0;
-    msg.position[3]=0.0;
-    msg.position[4]=0.0;
+   msg.position={0.2, 0, 0, 0, 0};
+  
+    msg.velocity={0.2, 0.0, 0.0, 0.0, 0.0};
+   // msg.velocity[1]=0.0;
+   // msg.velocity[2]=0.0;
+   // msg.velocity[3]=0.0;
+   // msg.velocity[4]=0.0;
+//
+   msg.effort={1.0, 0.0, 0.0, 0.0, 0.0};
+   // msg.effort[1]=0.0;
+   // msg.effort[2]=0.0;
+   // msg.effort[3]=0.0;
+   // msg.effort[4]=0.0;
 
-    msg.velocity[0]=1.0;
-    msg.velocity[1]=0.0;
-    msg.velocity[2]=0.0;
-    msg.velocity[3]=0.0;
-    msg.velocity[4]=0.0;
+//  position: [2.0, 0.0, 0.0, 0.0, 0.0]
+//velocity: [10.0, 0.0, 0.0, 0.0, 0.0]
 
-    msg.effort[0]=1.0;
-    msg.effort[1]=0.0;
-    msg.effort[2]=0.0;
-    msg.effort[3]=0.0;
-    msg.effort[4]=0.0;
 
 
  
 
-    std::stringstream ss;
-    ss << "is it publishing? " << count;
+//    std::stringstream ss;
+  //  ss << "is it publishing? " << count;
    
 
    // ROS_INFO("%f", msg.position[0]);
