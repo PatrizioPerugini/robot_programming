@@ -20,12 +20,12 @@ int main(int argc, char **argv)
 
   
   while (ros::ok()){
-    for(int i=-90; i<90; i++){
+    for(int i=-90; i<90; i+=5){
       msg.position={(double)i, 0, 0, 0, 0};
       msg.velocity={0.2, 0.0, 0.0, 0.0, 0.0};
       msg.effort={1.0, 0.0, 0.0, 0.0, 0.0};
 
-      ros::Duration(0.5).sleep();
+      ros::Duration(0.8).sleep();
       pub.publish(msg);
     }
   
