@@ -1,6 +1,13 @@
+#if (ARDUINO >= 100)
+ #include <Arduino.h>
+#else
+ #include <WProgram.h>
+#endif
+
 #include <Servo.h>
 #include <ros.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/Float64MultiArray.h>
 #include <sensor_msgs/JointState.h>
 
 ros::NodeHandle node_handle;
@@ -24,6 +31,7 @@ void writeServos() {
   node_handle.spinOnce();
 }
 
+
 // Subscriber Callback to store the jointstate position values in the global variables
 void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg) {
   servo_TARGET_position[0] = msg.position[0];
@@ -31,6 +39,7 @@ void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg
   servo_TARGET_position[2] = msg.position[2];
   servo_TARGET_position[3] = msg.position[3];
   servo_TARGET_position[4] = msg.position[4];
+
   //servo_TARGET_position
   // Call the method to write the joint positions to the servo motors
   writeServos();
@@ -38,7 +47,6 @@ void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg
 }
 
 ros::Subscriber<sensor_msgs::JointState> servo_control_subscriber_joint_state("joint_states", &servoControlSubscriberCallbackJointState);
-
 
 void setup() {
   // Initial the servo motor connections and initialize them at home position
@@ -49,7 +57,7 @@ void setup() {
   }
 
   // Set the communication BaudRate and start the node
-  node_handle.getHardware()->setBaud(19000);//not sure maybe lower
+  node_handle.getHardware()->setBaud(57600);//not sure maybe lower
   node_handle.initNode();
   node_handle.subscribe(servo_control_subscriber_joint_state);
 }
@@ -59,3 +67,5 @@ void loop() {
   node_handle.spinOnce();
   delay(1);
 }
+
+//rosrun rosserial_python serial_node.py /dev/ttyACM0
