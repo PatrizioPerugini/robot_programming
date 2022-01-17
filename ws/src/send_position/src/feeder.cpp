@@ -25,7 +25,7 @@ int main(int argc, char **argv)
       msg.velocity={0.2, 0.0, 0.0, 0.0, 0.0};
       msg.effort={1.0, 0.0, 0.0, 0.0, 0.0};
 
-      ros::Duration(0.05).sleep();
+      ros::Duration(0.5).sleep();
       pub.publish(msg);
     }
   
