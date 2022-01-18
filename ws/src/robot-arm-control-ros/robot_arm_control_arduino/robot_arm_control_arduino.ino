@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 #include <ros.h>
 #include <ArduinoHardware.h>
 //#include <ArduinoTcpHardware.h>
-=======
+
 #if (ARDUINO >= 100)
  #include <Arduino.h>
 #else
  #include <WProgram.h>
 #endif
->>>>>>> 1cae18470a4ac926f1a4d0f2d2e9e5429d653e3c
 
 #include <Servo.h>
 #include <ros.h>
@@ -45,6 +43,7 @@ void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg
   servo_TARGET_position[2] = msg.position[2];
   servo_TARGET_position[3] = msg.position[3];
   servo_TARGET_position[4] = msg.position[4];
+  digitalWrite(13, HIGH-digitalRead(13));
 
   //servo_TARGET_position
   // Call the method to write the joint positions to the servo motors
@@ -56,6 +55,7 @@ ros::Subscriber<sensor_msgs::JointState> servo_control_subscriber_joint_state("j
 
 void setup() {
   // Initial the servo motor connections and initialize them at home position
+  pinMode(13, OUTPUT);
   for (unsigned int i = 0; i < 5; i++) {
     robot_servos[i].attach(servo_pins[i]);
     robot_servos[i].write(mid_positions[i]);
