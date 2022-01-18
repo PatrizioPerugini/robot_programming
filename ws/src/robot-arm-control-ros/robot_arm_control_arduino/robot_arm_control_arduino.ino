@@ -1,14 +1,14 @@
-<<<<<<< HEAD
+
 #include <ros.h>
 #include <ArduinoHardware.h>
 //#include <ArduinoTcpHardware.h>
-=======
+
 #if (ARDUINO >= 100)
  #include <Arduino.h>
 #else
  #include <WProgram.h>
 #endif
->>>>>>> 1cae18470a4ac926f1a4d0f2d2e9e5429d653e3c
+
 
 #include <Servo.h>
 #include <ros.h>
