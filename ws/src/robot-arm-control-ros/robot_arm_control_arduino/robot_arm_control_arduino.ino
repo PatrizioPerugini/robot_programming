@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> c97507790c36d872b38745f945d6cf3cb2a1f65a
 #include <ros.h>
 #include <ArduinoHardware.h>
 //#include <ArduinoTcpHardware.h>
@@ -11,10 +8,8 @@
 #else
  #include <WProgram.h>
 #endif
-<<<<<<< HEAD
 
-=======
->>>>>>> c97507790c36d872b38745f945d6cf3cb2a1f65a
+
 
 #include <Servo.h>
 #include <ros.h>
@@ -27,7 +22,7 @@ ros::NodeHandle node_handle;
 Servo robot_servos[5];
 int servo_pins[6] = {2, 3, 5, 6, 7}; // PWM Pins 
 
-int mid_positions[5] = {90, 0, 0, 160, 180};
+int mid_positions[5] = {90, 90, 90, 160, 180};//second and third should be 0
 int servo_CURRENT_positions[6];
 
 float servo_TARGET_position[6] = {0,0,0,0,0};
@@ -36,7 +31,7 @@ float servo_TARGET_position[6] = {0,0,0,0,0};
 void writeServos() {
   for (int j = 0; j < 5; j++) {
     int target_angle;
-    target_angle = servo_TARGET_position[j]*(180/3.14) + mid_positions[j];
+    target_angle = servo_TARGET_position[j] + mid_positions[j];
     robot_servos[j].write(target_angle);
     servo_CURRENT_positions[j] = target_angle;
   }
