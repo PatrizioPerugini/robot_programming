@@ -1,0 +1,5 @@
+/home/patrizio/Desktop/IK/02_mat_and_vec/CMakeFiles/rebuild_cache.dir
+/home/patrizio/Desktop/IK/02_mat_and_vec/CMakeFiles/edit_cache.dir
+/home/patrizio/Desktop/IK/02_mat_and_vec/CMakeFiles/my_ik.dir
+/home/patrizio/Desktop/IK/02_mat_and_vec/CMakeFiles/static_mat_test.dir
+/home/patrizio/Desktop/IK/02_mat_and_vec/CMakeFiles/static_vec_test.dir

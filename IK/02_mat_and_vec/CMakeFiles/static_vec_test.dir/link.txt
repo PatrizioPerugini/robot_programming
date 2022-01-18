@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/static_vec_test.dir/static_vec_test.cpp.o  -o static_vec_test 
