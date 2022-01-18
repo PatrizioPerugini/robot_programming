@@ -16,9 +16,82 @@ using Joint_v=Vec_<float, 5>;
 using Joint_v_error=Vec_<float, 6>;
 using Position_v=Vec_<float, 6>;
 
+/*
+DHTABLE =
+ 
+[ pi/2,     0,     0, q_1]
+[    0,  21/2,     0, q_2]
+[    0,    10,     0, q_3]
+[-pi/2, 27/10,     0, q_4]
+[    0,     0, 33/10, q_5]
 
 
-Angle_v get_RPY( Rotation_m& R){
+*/
+
+Homogeneous_m get_DH(Joint_v &q)
+{
+    Homogeneous_m DH;
+    float q_1 = q.at(0);
+    float q_2 = q.at(1);
+    float q_3 = q.at(2);
+    float q_4 = q.at(3);
+    float q_5 = q.at(4);
+    float M[4][4] = 
+    {
+        {cos(q_2 + q_3 + q_4) * cos(q_1) * cos(q_5) - sin(q_1) * sin(q_5), -cos(q_5) * sin(q_1) - cos(q_2 + q_3 + q_4) * cos(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * cos(q_1), (cos(q_1) * (27 * cos(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10 - (33 * sin(q_2 + q_3 + q_4) * cos(q_1)) / 10},
+        {cos(q_1) * sin(q_5) + cos(q_2 + q_3 + q_4) * cos(q_5) * sin(q_1), cos(q_1) * cos(q_5) - cos(q_2 + q_3 + q_4) * sin(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * sin(q_1), (sin(q_1) * (27 * cos(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10 - (33 * sin(q_2 + q_3 + q_4) * sin(q_1)) / 10},
+        {sin(q_2 + q_3 + q_4) * cos(q_5), -sin(q_2 + q_3 + q_4) * sin(q_5), cos(q_2 + q_3 + q_4), (33 * cos(q_2 + q_3 + q_4)) / 10 + (27 * sin(q_2 + q_3 + q_4)) / 10 + 10 * sin(q_2 + q_3) + (21 * sin(q_2)) / 2},
+        {0, 0, 0, 1}
+    };
+
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<4; j++){
+            DH.at(i,j) = M[i][j]; 
+        }
+    };
+    return DH;
+}
+
+Rotation_m get_orientation(Joint_v &q)
+{
+    Rotation_m R;
+    Homogeneous_m DH = get_DH(q);
+    for(int i = 0; i<3; i++){
+        for(int j = 0; j<3; j++){
+            R.at(i,j) = DH.at(i,j);
+        }
+    };
+    return R;
+}
+
+Jacobian_m get_jacobian(Joint_v &q)
+{
+    Jacobian_m J;
+    float q_1 = q.at(0);
+    float q_2 = q.at(1);
+    float q_3 = q.at(2);
+    float q_4 = q.at(3);
+    float q_5 = q.at(4);
+
+    // closed form solution from MATLAB script for geometric jacobian
+    float M[6][5] = {
+        {-(sin(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(cos(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(cos(q_1) * (100.0 * sin(q_2 + q_3) + 3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
+        {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
+        {0, 10 * cos(q_2 + q_3) + (21 * cos(q_2)) / 2 + (3 * 202 ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, (3 * 202.0 ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 0},
+        {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
+        {0, -cos(q_1), -cos(q_1), -cos(q_1), sin(q_4) * (sin(q_1) * sin(q_2) * sin(q_3) - cos(q_2) * cos(q_3) * sin(q_1)) - cos(q_4) * (cos(q_2) * sin(q_1) * sin(q_3) + cos(q_3) * sin(q_1) * sin(q_2))},
+        {1, 0, 0, 0, cos(q_4) * (cos(q_2) * cos(q_3) - sin(q_2) * sin(q_3)) - sin(q_4) * (cos(q_2) * sin(q_3) + cos(q_3) * sin(q_2))}
+    };
+    for(int i = 0; i<6; i++){
+        for(int j = 0; j<5; j++){
+            J.at(i,j) = M[i][j] ;
+        }
+    };
+
+    return J;
+}
+
+Angle_v get_RPY(Rotation_m& R){
     Angle_v RPY;
     float R11=R.at(0,0);
     float R12=R.at(0,1);
@@ -67,34 +140,23 @@ Angle_v get_RPY( Rotation_m& R){
     RPY.at(0)=roll;
     RPY.at(1)=pitch;
     RPY.at(2)=yaw;
+
     return RPY;
-
-
 }
 
-/*
-Position_v get_position(Joint_v &q){
+Position_v get_position(Joint_v &q)
+{
     Position_v p;
-    float q_1 = q.at(0);
-    float q_2 = q.at(1);
-    float q_3 = q.at(2);
-    float q_4 = q.at(3);
-    float q_5 = q.at(4);
-    Homogeneous_m DH = {
-        {cos(q_2 + q_3 + q_4) * cos(q_1) * cos(q_5) - sin(q_1) * sin(q_5), -cos(q_5) * sin(q_1) - cos(q_2 + q_3 + q_4) * cos(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * cos(q_1), (cos(q_1) * (27 * cos(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10 - (33 * sin(q_2 + q_3 + q_4) * cos(q_1)) / 10},
-        {cos(q_1) * sin(q_5) + cos(q_2 + q_3 + q_4) * cos(q_5) * sin(q_1), cos(q_1) * cos(q_5) - cos(q_2 + q_3 + q_4) * sin(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * sin(q_1), (sin(q_1) * (27 * cos(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10 - (33 * sin(q_2 + q_3 + q_4) * sin(q_1)) / 10},
-        {sin(q_2 + q_3 + q_4) * cos(q_5), -sin(q_2 + q_3 + q_4) * sin(q_5), cos(q_2 + q_3 + q_4), (33 * cos(q_2 + q_3 + q_4)) / 10 + (27 * sin(q_2 + q_3 + q_4)) / 10 + 10 * sin(q_2 + q_3) + (21 * sin(q_2)) / 2},
-        {0, 0, 0, 1}
-    };
+    Homogeneous_m DH = get_DH(q);
+
     // p (x,y,z) = f(q) got from the DHmatrix
     p.at(0) = DH.at(0, 3);
     p.at(1) = DH.at(1, 3);
     p.at(2) = DH.at(2, 3);
+
     // fi(a,g,c) = inverse rpy_rotation 'xyz'
     Rotation_m R = get_orientation(q);
-
-    Angle_v RPY=get_RPY(R);
-
+    Angle_v RPY = get_RPY(R);
     p.at(3) = RPY.at(0);
     p.at(4) = RPY.at(1);
     p.at(5) = RPY.at(2);
@@ -102,28 +164,15 @@ Position_v get_position(Joint_v &q){
     return p;
 }
 
-Rotation_m get_orientation(Joint_v &q){
-    float q_1 = q.at(0);
-    float q_2 = q.at(1);
-    float q_3 = q.at(2);
-    float q_4 = q.at(3);
-    float q_5 = q.at(4);
-    Rotation_m R = {
-        {cos(q_2 + q_3 + q_4) * cos(q_1) * cos(q_5) - sin(q_1) * sin(q_5), -cos(q_5) * sin(q_1) - cos(q_2 + q_3 + q_4) * cos(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * cos(q_1)},
-        {cos(q_1) * sin(q_5) + cos(q_2 + q_3 + q_4) * cos(q_5) * sin(q_1), cos(q_1) * cos(q_5) - cos(q_2 + q_3 + q_4) * sin(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * sin(q_1)},
-        {sin(q_2 + q_3 + q_4) * cos(q_5), -sin(q_2 + q_3 + q_4) * sin(q_5), cos(q_2 + q_3 + q_4)}
-    };
-    return R;
-}*/
 
-//NB R_d is the point where to go, q_k is set with the last position (normally the mid_position)
-Joint_v inverse_kinematics(Position_v& R_d, Joint_v& q_k){ 
+//NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
+Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){ 
     
     //instantiate initial error 6 x 1
     Joint_v_error error;
     //general q_k+1, instantiated with zeros
     Joint_v q_k1;
-
+    
     Joint_v tmp;
     
     int i;
@@ -140,12 +189,12 @@ Joint_v inverse_kinematics(Position_v& R_d, Joint_v& q_k){
     //while(i < 100){
     while(error.squaredNorm() > 0.5 && i < 10){
         //compute new error 
-       for(int p=0;p<6;p++){ 
+        for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
           
-           // error.at(p)=R_d.at(p)-get_Position(q_k).at(i);
+           // error.at(p)=r_d.at(p)-get_Position(q_k).at(i);
             
-            error.at(p)=R_d.at(p);//-get_Position(q_k).at(i);
+            error.at(p)=r_d.at(p);//-get_Position(q_k).at(i);
 
         }
 
@@ -176,6 +225,7 @@ Joint_v inverse_kinematics(Position_v& R_d, Joint_v& q_k){
 
 
 int main(){
+    /*
     Position_v R_d;
     R_d.at(0)=23;
     R_d.at(1)=12;
@@ -211,8 +261,18 @@ int main(){
     Angle_v RPY=get_RPY(R);
 
     cout << "orientation issss :  "<< RPY << endl;  
+    */
 
+    Joint_v q_k;
+    q_k.at(0)=90;
+    q_k.at(1)=0;
+    q_k.at(2)=130;
+    q_k.at(3)=90;
+    q_k.at(4)=0;
+    q_k.at(5)=0;
 
+    Homogeneous_m DH = get_DH(q_k);
+    cout << "DHmatrix issss :  "<< DH << endl;  
     return 0;
       
 }
