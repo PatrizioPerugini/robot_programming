@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp
+keyboard.h
+/home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
+
+/home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
+keyboard/Key.h
+-
+SDL.h
+-
+

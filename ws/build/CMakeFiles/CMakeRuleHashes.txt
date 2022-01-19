@@ -1,2 +1,4 @@
 # Hashes of file build rules.
+2f4ee2b4b3cd805caf86748cbf537309 /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/manifest.l
 51ce817ab4d723f11df7c12d1f5c960b CMakeFiles/clean_test_results
+e2ecfd293fdb6820e412221ea6c6ae86 controller/CMakeFiles/controller_generate_messages_eus
