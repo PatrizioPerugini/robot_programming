@@ -6,23 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/home/patrizio/Desktop/IK/02_mat_and_vec/my_ik.cpp
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/my_ik.cpp
 iostream
 -
 static_vec.h
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec.h
 static_mat.h
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_mat.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_mat.h
 cmath
 -
 
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_mat.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_mat.h
 static_vec.h
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec.h
 iostream
 -
 
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec.h
 iostream
 -
 

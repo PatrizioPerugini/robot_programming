@@ -1,4 +1,4 @@
-# Install script for directory: /home/patrizio/Desktop/IK/02_mat_and_vec
+# Install script for directory: /home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/patrizio/Desktop/IK/02_mat_and_vec/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

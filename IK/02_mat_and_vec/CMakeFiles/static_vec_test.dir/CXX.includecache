@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec.h
 iostream
 -
 
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec_test.cpp
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec_test.cpp
 iostream
 -
 static_vec.h
-/home/patrizio/Desktop/IK/02_mat_and_vec/static_vec.h
+/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/static_vec.h
 

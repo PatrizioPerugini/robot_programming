@@ -1,3 +1,5 @@
+project(RP_project)
+
 add_executable(static_vec_test
   static_vec_test.cpp)
 
