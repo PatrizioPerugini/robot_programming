@@ -28,8 +28,9 @@ DHTABLE =
 
 */
 
-Homogeneous_m get_DH(Joint_v &q)
-{
+/*
+
+Homogeneous_m get_DH(Joint_v &q){
     Homogeneous_m DH;
     float q_1 = q.at(0);
     float q_2 = q.at(1);
@@ -52,8 +53,7 @@ Homogeneous_m get_DH(Joint_v &q)
     return DH;
 }
 
-Rotation_m get_orientation(Joint_v &q)
-{
+Rotation_m get_orientation(Joint_v &q){
     Rotation_m R;
     Homogeneous_m DH = get_DH(q);
     for(int i = 0; i<3; i++){
@@ -64,8 +64,7 @@ Rotation_m get_orientation(Joint_v &q)
     return R;
 }
 
-Jacobian_m get_jacobian(Joint_v &q)
-{
+Jacobian_m get_jacobian(Joint_v &q){
     Jacobian_m J;
     float q_1 = q.at(0);
     float q_2 = q.at(1);
@@ -77,7 +76,7 @@ Jacobian_m get_jacobian(Joint_v &q)
     float M[6][5] = {
         {-(sin(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(cos(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(cos(q_1) * (100.0 * sin(q_2 + q_3) + 3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
         {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {0, 10 * cos(q_2 + q_3) + (21 * cos(q_2)) / 2 + (3 * 202 ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, (3 * 202.0 ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 0},
+        {0, 10 * cos(q_2 + q_3) + (21 * cos(q_2)) / 2 + (3 * sqrt(202) ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3 * 202 ^ (1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, (3 * 202.0 ^(1 / 2) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 0},
         {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
         {0, -cos(q_1), -cos(q_1), -cos(q_1), sin(q_4) * (sin(q_1) * sin(q_2) * sin(q_3) - cos(q_2) * cos(q_3) * sin(q_1)) - cos(q_4) * (cos(q_2) * sin(q_1) * sin(q_3) + cos(q_3) * sin(q_1) * sin(q_2))},
         {1, 0, 0, 0, cos(q_4) * (cos(q_2) * cos(q_3) - sin(q_2) * sin(q_3)) - sin(q_4) * (cos(q_2) * sin(q_3) + cos(q_3) * sin(q_2))}
@@ -90,7 +89,7 @@ Jacobian_m get_jacobian(Joint_v &q)
 
     return J;
 }
-
+*/
 Angle_v get_RPY(Rotation_m& R){
     Angle_v RPY;
     float R11=R.at(0,0);
@@ -106,23 +105,35 @@ Angle_v get_RPY(Rotation_m& R){
     float pitch=0.0;
     float yaw=0.0;
     int i=1;
-    //cout << R21 << endl;
-    if (R31 = 1.0 && R31 != -1.0){ 
     
+    cout << R31 << endl;
+    
+    
+
+    if (R31 != 1.0 && R31 != -1.0){ 
+        
+       
+
         
         float pitch_1 = -1*asin(R31);
         float pitch_2 = M_PI - pitch_1;
+        cout << "pitch 1" << endl;
+        cout << pitch_1 << endl;
         float roll_1 = atan2( R32 / cos(pitch_1) , R33 /cos(pitch_1));
         float roll_2 = atan2( R32 / cos(pitch_2) , R33 /cos(pitch_2));
+        cout << "roll_1" << endl;
+        cout << roll_1 << endl;
         float yaw_1 = atan2( R21 / cos(pitch_1) , R11 / cos(pitch_1));
         float yaw_2 = atan2( R21 / cos(pitch_2) , R11 / cos(pitch_2));
         //MORE THEN ONE SOLUTION, CHOOSE THE MORE SUITABLE ONE
-        float pitch = pitch_1;
-        float roll = roll_1;
-        float yaw = yaw_1 ;
+        pitch = pitch_1;
+        roll = roll_1;
+        yaw = yaw_1 ;
+        cout << "pitch " << endl;
+        cout << pitch << endl;
     }
     else{ 
-       
+   
      float yaw = 0 ;// anything (we default this to zero)
         if (R31 == -1){ 
             float pitch = M_PI/2 ;
@@ -143,7 +154,7 @@ Angle_v get_RPY(Rotation_m& R){
 
     return RPY;
 }
-
+/*
 Position_v get_position(Joint_v &q)
 {
     Position_v p;
@@ -163,7 +174,7 @@ Position_v get_position(Joint_v &q)
 
     return p;
 }
-
+*/
 
 //NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
 Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){ 
@@ -225,7 +236,7 @@ Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){
 
 
 int main(){
-    /*
+    
     Position_v R_d;
     R_d.at(0)=23;
     R_d.at(1)=12;
@@ -248,20 +259,22 @@ int main(){
     //cout << ris << endl;
 
     Rotation_m R;
-    R.at(0,0)=0;
+    R.at(0,0)=1;
     R.at(0,1)=0;
-    R.at(0,2)=1;
+    R.at(0,2)=0;
     R.at(1,0)=0;
     R.at(1,1)=1;
     R.at(1,2)=0;
-    R.at(2,0)=-1;
+    R.at(2,0)=-0.7;
     R.at(2,1)=0;
     R.at(2,2)=0;
+
+    cout << "ROTATION MATRIX IS: \n"<< R << endl;  
 
     Angle_v RPY=get_RPY(R);
 
     cout << "orientation issss :  "<< RPY << endl;  
-    */
+    /*
 
     Joint_v q_k;
     q_k.at(0)=90;
@@ -270,9 +283,10 @@ int main(){
     q_k.at(3)=90;
     q_k.at(4)=0;
     q_k.at(5)=0;
-
-    Homogeneous_m DH = get_DH(q_k);
-    cout << "DHmatrix issss :  "<< DH << endl;  
+    */
+   // Homogeneous_m DH = get_DH(q_k);
+   // cout << "DHmatrix issss :  "<< DH << endl;  
     return 0;
       
 }
+
