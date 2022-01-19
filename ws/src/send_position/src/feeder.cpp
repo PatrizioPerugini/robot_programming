@@ -21,12 +21,13 @@ using DH_row = float[4];
 using DH_table = float[5][4];
 using Error_v =Vec_<float,6>;
 
+void desired_positionCallback(const send_position::Position& msg){
+  
+}
 
+int main(int argc, char **argv){
 
-int main(int argc, char **argv)
-{
   int i = 0;
-  //Current position (p = [px, py, px, alfa, beta, gamma]) initilaized to the setup values of the robot
   
   //initial configuaration (setup values)
   Joint_v q;
@@ -36,7 +37,7 @@ int main(int argc, char **argv)
   q.at(3) = 150.0;
   q.at(4) = 180.0; 
   
-  Position_v p = get_position(q_0);  //initial position
+  Position_v p = get_position(q_0);   //Current position (p = [px, py, px, a, b, g]) initilaized to the setup values
   Position_v p_d; //desired position
   Joint_v q_d; //desired joint conf
   Joint_v_error q_e;  //error: qd - q
@@ -48,17 +49,17 @@ int main(int argc, char **argv)
 
   ros::Publisher pub=n.advertise<sensor_msgs::JointState>("joint_states",1000);
 
+  ros::Subscriber sub= n.subscribe<send_position::Position>("desired_position",1000,desired_positionCallback);
+
   ros::Rate loop_rate(10);
 
   sensor_msgs::JointState msg;
 
-  //int cnt =1;
- 
   
   while (ros::ok()){
     
     //receive the desired new position p_d
-  //if message received
+    if //message received
       p_d = ;
       q_d = inverse_kinematics(p_d);    //calculate the dsired new jont values q_d
       q_e = qd - q;
@@ -67,22 +68,37 @@ int main(int argc, char **argv)
       //feed gradually the change
       while(position_achieved==0){
         
-        if(abs(error.at(0)<=0.09&&
-          abs(error.at(1))<=0.09 && 
-          abs(error.at(2))<=0.09 && 
-          abs(error.at(3))<=0.09 && 
-          abs(error.at(4))<=0.09){ 
+        //increase the joint values (when out of the accuracy range)
+        for(int i = 0; i<5; i++){
+          if(abs(error.at(0)<1.0){
+            q.at(i)++;
+          }
+        }
+        
+        //send new increased positions of the joints and add a delay
+        msg.position={(double)q.at(0), (double)q.at(1), (double)q.at(2), (double)q.at(3), (double)q.at(4)};
+        ros::Duration(0.01).sleep();
+        pub.publish(msg);
+
+        //check if all the values of the joints are now inside the accuracy of servos (0.3°) 
+        if(abs(error.at(0)<=0.30 &&
+          abs(error.at(1))<=0.30 && 
+          abs(error.at(2))<=0.30 && 
+          abs(error.at(3))<=0.30 && 
+          abs(error.at(4))<=0.30){ 
             position_achieved == 1;
         }
+      }
 
-        if(abs(error.at(0)<=0.09){
-          
-        }
+    else{
+      msg.position={(double)q.at(0), (double)q.at(1), (double)q.at(2), (double)q.at(3), (double)q.at(4)};
+      ros::Duration(0.01).sleep();
+      pub.publish(msg);
+    }
 
-      for(int i = 0; i<4; i++){
-      
-      msg.position={(double)i, (double)(i/2), double(i-50), 0, 0};
-      
+    ros::spinOnce();
+    
+  }
 
 
 
@@ -114,7 +130,7 @@ int main(int argc, char **argv)
 
     //loop_rate.sleep();
 
-  }
+  
 
   return 0;
 }
