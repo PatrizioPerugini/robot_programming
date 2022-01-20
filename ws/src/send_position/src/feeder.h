@@ -6,12 +6,12 @@
 
 
 
-float move2 (float q, float dq, float time){
+float move2 (float q, float dq, float duration){
     if(abs(dq <= 0.30)){
         return q;
     }
     else{
-        q += dq/time;
+        q += dq/duration;
         return q;
     }
 
@@ -29,4 +29,31 @@ float pinch(float EE, float dEE){
         EE -=0.3;
     }
      return EE;
+}
+
+float maxx(Joint_v_error& e){
+  float ris = -10000;
+  for(int i=0;i<5;i++){
+    if (e.at(i)> ris){
+      ris=e.at(i);
+    }
+  }
+  return ris;
+}
+
+
+bool check_for_pose(float& q_d, float& q){
+    if(
+        abs(dq) <= 0.3 &&
+        abs(dq) <= 0.3 &&
+        abs(dq) <= 0.3 &&
+        abs(dq) <= 0.3 &&
+        abs(dq) <= 0.3 &&
+        abs(dq) <= 0.3
+    ){
+        return true
+    }
+    else{
+        return false;
+    } 
 }

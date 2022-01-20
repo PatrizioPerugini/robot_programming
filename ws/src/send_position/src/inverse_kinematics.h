@@ -12,11 +12,11 @@ using Rotation_m = Mat_<float, 3, 3>;
 using Homogeneous_m = Mat_<float, 4, 4>;
 using Jacobian_m = Mat_<float, 6, 5>;
 using Joint_v=Vec_<float, 5>;
+using Joint_v_error=Vec_<float, 5>;
 using Pose_v=Vec_<float, 6>;
 using DH_row = float[4];
 using DH_table = float[5][4];
 using Error_v =Vec_<float,6>;
-using Joint_v_error=Vec_<float, 5>;
 
 
 Homogeneous_m DH_matrix(DH_row& T){
@@ -258,6 +258,4 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     }
     return q_k;
 }
-
-
 
