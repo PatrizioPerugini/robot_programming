@@ -19,23 +19,13 @@ float EE_d;
 float EE;
 float dEE;
 
+Pose_v p; //pose of ee, initially with initial conf 
+Joint_v q; //joint conf, initially with initial conf 
 Joint_v q_init;
-///////////////
-//pose of ee, initially with initial conf 
-Pose_v p;
-//joint conf, initially with initial conf 
-Joint_v q;
-
-
-
-float EE_init = 120.0;
 Joint_v q_act;
 
-float EE_act = 90;
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
-
-//const float max_velocity = 0.15;
 float max_velocity = 357.7;
 const float velocity = 100.7;
 float delay = 0.01;    // frequence of the messages to arduino 
@@ -83,7 +73,6 @@ void move_joints(){
      (double)q.at(3), (double)q.at(4), (double)EE};
     ros::Duration(delay).sleep();
     pub.publish(msg);
- //   ros::spinOnce();
 
     pose_achieved = check_for_pose(dq,dEE);
   }
@@ -107,13 +96,13 @@ void plan_motion(){
 
   //q_d = inverse_kinematics(r_d,q);
 
-  q_d.at(0) = 90.0;
-  q_d.at(1) = 50.0;
-  q_d.at(2) = 115.0;
-  q_d.at(3) = 50.0;
-  q_d.at(4) = 90.0; 
-  dEE = 90;
-
+  q_act.at(0) = 90.0;
+  q_act.at(1) = 50.0;
+  q_act.at(2) = 115.0;
+  q_act.at(3) = 50.0;
+  q_act.at(4) = 90.0; 
+  float EE_act = 90;
+  
   cout << "I found some inverse solution, values: \n" << endl;
   cout << q_d << endl;
   //vector of single joints difference
@@ -181,7 +170,8 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
 
 
 int main(int argc, char **argv){
-
+  
+  //Initial Setup
   pose_achieved = 1;
   EE = EE_init;
   q_init.at(0) = 90.0;
@@ -189,11 +179,10 @@ int main(int argc, char **argv){
   q_init.at(2) = 0.0;
   q_init.at(3) = 160.0;
   q_init.at(4) = 180.0;
+  float EE_init = 120.0;
   
   q = q_init;
-
   p=get_pose(q_init);
-
   
   //init nodes and topics
   ros::init(argc, argv, "joint_pub");
@@ -202,22 +191,19 @@ int main(int argc, char **argv){
   ros::Subscriber sub= n.subscribe("/keyboard/desired_pose",1000,desired_positionCallback);
   ros::Rate loop_rate(10);
 
-  //Setup
 
-
- 
-
-/*
+  /*
+  //get to the best position to start the motion ==> activation
   q_act.at(0) = 90.0;
   q_act.at(1) = 50.0;
   q_act.at(2) = 115.0;
   q_act.at(3) = 50.0;
   q_act.at(4) = 90.0; 
+  float EE_act = 90;
   //activation procedure
   activation();
   */
   
- 
 
   while (ros::ok()){
       ros::spinOnce();
