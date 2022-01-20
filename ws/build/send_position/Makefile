@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -123,18 +135,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/progress.marks
@@ -166,21 +166,6 @@ preinstall/fast:
 depend:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-send_position/CMakeFiles/joint_pub.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/joint_pub.dir/rule
-.PHONY : send_position/CMakeFiles/joint_pub.dir/rule
-
-# Convenience name for target.
-joint_pub: send_position/CMakeFiles/joint_pub.dir/rule
-
-.PHONY : joint_pub
-
-# fast build rule for target.
-joint_pub/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
-.PHONY : joint_pub/fast
 
 # Convenience name for target.
 send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
@@ -257,55 +242,24 @@ geometry_msgs_generate_messages_cpp/fast:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
-src/feeder.o: src/feeder.cpp.o
-
-.PHONY : src/feeder.o
-
-# target to build an object file
-src/feeder.cpp.o:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/src/feeder.cpp.o
-.PHONY : src/feeder.cpp.o
-
-src/feeder.i: src/feeder.cpp.i
-
-.PHONY : src/feeder.i
-
-# target to preprocess a source file
-src/feeder.cpp.i:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/src/feeder.cpp.i
-.PHONY : src/feeder.cpp.i
-
-src/feeder.s: src/feeder.cpp.s
-
-.PHONY : src/feeder.s
-
-# target to generate assembly for a file
-src/feeder.cpp.s:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/src/feeder.cpp.s
-.PHONY : src/feeder.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... install/strip"
-	@echo "... joint_pub"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... src/feeder.o"
-	@echo "... src/feeder.i"
-	@echo "... src/feeder.s"
 .PHONY : help
 
 

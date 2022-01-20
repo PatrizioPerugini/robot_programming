@@ -649,19 +649,6 @@ controller_generate_messages_nodejs/fast:
 .PHONY : controller_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named joint_pub
-
-# Build rule for target.
-joint_pub: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_pub
-.PHONY : joint_pub
-
-# fast build rule for target.
-joint_pub/fast:
-	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
-.PHONY : joint_pub/fast
-
-#=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -776,7 +763,6 @@ help:
 	@echo "... controller_genlisp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... controller_generate_messages_nodejs"
-	@echo "... joint_pub"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_lisp"
