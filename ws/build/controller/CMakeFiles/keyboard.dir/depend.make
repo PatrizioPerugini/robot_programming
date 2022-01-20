@@ -4,6 +4,9 @@
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/geometry_msgs/Point.h
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/geometry_msgs/Pose.h
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h
 controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /opt/ros/noetic/include/ros/assert.h
