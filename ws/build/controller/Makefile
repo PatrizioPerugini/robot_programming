@@ -113,17 +113,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -134,6 +123,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,81 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-controller/CMakeFiles/controller_genpy.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_genpy.dir/rule
-.PHONY : controller/CMakeFiles/controller_genpy.dir/rule
-
-# Convenience name for target.
-controller_genpy: controller/CMakeFiles/controller_genpy.dir/rule
-
-.PHONY : controller_genpy
-
-# fast build rule for target.
-controller_genpy/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_genpy.dir/build.make controller/CMakeFiles/controller_genpy.dir/build
-.PHONY : controller_genpy/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller_generate_messages_py.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_py.dir/rule
-.PHONY : controller/CMakeFiles/controller_generate_messages_py.dir/rule
-
-# Convenience name for target.
-controller_generate_messages_py: controller/CMakeFiles/controller_generate_messages_py.dir/rule
-
-.PHONY : controller_generate_messages_py
-
-# fast build rule for target.
-controller_generate_messages_py/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_py.dir/build.make controller/CMakeFiles/controller_generate_messages_py.dir/build
-.PHONY : controller_generate_messages_py/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
-.PHONY : controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-controller_generate_messages_nodejs: controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
-
-.PHONY : controller_generate_messages_nodejs
-
-# fast build rule for target.
-controller_generate_messages_nodejs/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_nodejs.dir/build.make controller/CMakeFiles/controller_generate_messages_nodejs.dir/build
-.PHONY : controller_generate_messages_nodejs/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller_genlisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_genlisp.dir/rule
-.PHONY : controller/CMakeFiles/controller_genlisp.dir/rule
-
-# Convenience name for target.
-controller_genlisp: controller/CMakeFiles/controller_genlisp.dir/rule
-
-.PHONY : controller_genlisp
-
-# fast build rule for target.
-controller_genlisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_genlisp.dir/build.make controller/CMakeFiles/controller_genlisp.dir/build
-.PHONY : controller_genlisp/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller_generate_messages_eus.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_eus.dir/rule
-.PHONY : controller/CMakeFiles/controller_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-controller_generate_messages_eus: controller/CMakeFiles/controller_generate_messages_eus.dir/rule
-
-.PHONY : controller_generate_messages_eus
-
-# fast build rule for target.
-controller_generate_messages_eus/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_eus.dir/build.make controller/CMakeFiles/controller_generate_messages_eus.dir/build
-.PHONY : controller_generate_messages_eus/fast
-
-# Convenience name for target.
 controller/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
 .PHONY : controller/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
@@ -273,64 +198,19 @@ roscpp_generate_messages_lisp/fast:
 .PHONY : roscpp_generate_messages_lisp/fast
 
 # Convenience name for target.
-controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+controller/CMakeFiles/controller_genpy.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_genpy.dir/rule
+.PHONY : controller/CMakeFiles/controller_genpy.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_cpp: controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+controller_genpy: controller/CMakeFiles/controller_genpy.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_cpp
+.PHONY : controller_genpy
 
 # fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make controller/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make controller/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller_gennodejs.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_gennodejs.dir/rule
-.PHONY : controller/CMakeFiles/controller_gennodejs.dir/rule
-
-# Convenience name for target.
-controller_gennodejs: controller/CMakeFiles/controller_gennodejs.dir/rule
-
-.PHONY : controller_gennodejs
-
-# fast build rule for target.
-controller_gennodejs/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_gennodejs.dir/build.make controller/CMakeFiles/controller_gennodejs.dir/build
-.PHONY : controller_gennodejs/fast
-
-# Convenience name for target.
-controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+controller_genpy/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_genpy.dir/build.make controller/CMakeFiles/controller_genpy.dir/build
+.PHONY : controller_genpy/fast
 
 # Convenience name for target.
 controller/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
@@ -363,36 +243,6 @@ std_msgs_generate_messages_cpp/fast:
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
 controller/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
 .PHONY : controller/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
@@ -408,19 +258,19 @@ std_msgs_generate_messages_eus/fast:
 .PHONY : std_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+controller/CMakeFiles/controller_generate_messages_eus.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_eus.dir/rule
+.PHONY : controller/CMakeFiles/controller_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_lisp: controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+controller_generate_messages_eus: controller/CMakeFiles/controller_generate_messages_eus.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_lisp
+.PHONY : controller_generate_messages_eus
 
 # fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
+controller_generate_messages_eus/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_eus.dir/build.make controller/CMakeFiles/controller_generate_messages_eus.dir/build
+.PHONY : controller_generate_messages_eus/fast
 
 # Convenience name for target.
 controller/CMakeFiles/roscpp_generate_messages_py.dir/rule:
@@ -438,34 +288,49 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
-controller/CMakeFiles/controller_generate_messages_lisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
-.PHONY : controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
+controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-controller_generate_messages_lisp: controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
+rosgraph_msgs_generate_messages_lisp: controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : controller_generate_messages_lisp
+.PHONY : rosgraph_msgs_generate_messages_lisp
 
 # fast build rule for target.
-controller_generate_messages_lisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_lisp.dir/build.make controller/CMakeFiles/controller_generate_messages_lisp.dir/build
-.PHONY : controller_generate_messages_lisp/fast
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+controller/CMakeFiles/controller_gennodejs.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_gennodejs.dir/rule
+.PHONY : controller/CMakeFiles/controller_gennodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+controller_gennodejs: controller/CMakeFiles/controller_gennodejs.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
+.PHONY : controller_gennodejs
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+controller_gennodejs/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_gennodejs.dir/build.make controller/CMakeFiles/controller_gennodejs.dir/build
+.PHONY : controller_gennodejs/fast
+
+# Convenience name for target.
+controller/CMakeFiles/controller_generate_messages_py.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_py.dir/rule
+.PHONY : controller/CMakeFiles/controller_generate_messages_py.dir/rule
+
+# Convenience name for target.
+controller_generate_messages_py: controller/CMakeFiles/controller_generate_messages_py.dir/rule
+
+.PHONY : controller_generate_messages_py
+
+# fast build rule for target.
+controller_generate_messages_py/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_py.dir/build.make controller/CMakeFiles/controller_generate_messages_py.dir/build
+.PHONY : controller_generate_messages_py/fast
 
 # Convenience name for target.
 controller/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
@@ -483,6 +348,36 @@ rosgraph_msgs_generate_messages_nodejs/fast:
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
+controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+controller/CMakeFiles/controller_generate_messages_lisp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
+.PHONY : controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+controller_generate_messages_lisp: controller/CMakeFiles/controller_generate_messages_lisp.dir/rule
+
+.PHONY : controller_generate_messages_lisp
+
+# fast build rule for target.
+controller_generate_messages_lisp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_lisp.dir/build.make controller/CMakeFiles/controller_generate_messages_lisp.dir/build
+.PHONY : controller_generate_messages_lisp/fast
+
+# Convenience name for target.
 controller/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 .PHONY : controller/CMakeFiles/roscpp_generate_messages_eus.dir/rule
@@ -498,109 +393,34 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
-controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_lisp: controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+roscpp_generate_messages_nodejs: controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_lisp
+.PHONY : roscpp_generate_messages_nodejs
 
 # fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make controller/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
+roscpp_generate_messages_nodejs/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
 
 # Convenience name for target.
-controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+controller/CMakeFiles/keyboard.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/keyboard.dir/rule
+.PHONY : controller/CMakeFiles/keyboard.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_nodejs: controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+keyboard: controller/CMakeFiles/keyboard.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_nodejs
+.PHONY : keyboard
 
 # fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make controller/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make controller/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make controller/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-controller/CMakeFiles/controller.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller.dir/rule
-.PHONY : controller/CMakeFiles/controller.dir/rule
-
-# Convenience name for target.
-controller: controller/CMakeFiles/controller.dir/rule
-
-.PHONY : controller
-
-# fast build rule for target.
-controller/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/build
-.PHONY : controller/fast
-
-# Convenience name for target.
-controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/std_msgs_generate_messages_py.dir/build.make controller/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make controller/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
+keyboard/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/build
+.PHONY : keyboard/fast
 
 # Convenience name for target.
 controller/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
@@ -618,19 +438,19 @@ std_msgs_generate_messages_nodejs/fast:
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_eus: controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+std_msgs_generate_messages_py: controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 
-.PHONY : geometry_msgs_generate_messages_eus
+.PHONY : std_msgs_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make controller/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
+std_msgs_generate_messages_py/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/std_msgs_generate_messages_py.dir/build.make controller/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 controller/CMakeFiles/controller_generate_messages.dir/rule:
@@ -646,21 +466,6 @@ controller_generate_messages: controller/CMakeFiles/controller_generate_messages
 controller_generate_messages/fast:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages.dir/build.make controller/CMakeFiles/controller_generate_messages.dir/build
 .PHONY : controller_generate_messages/fast
-
-# Convenience name for target.
-controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_eus: controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make controller/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 controller/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
@@ -737,13 +542,58 @@ controller_gencpp/fast:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_gencpp.dir/build.make controller/CMakeFiles/controller_gencpp.dir/build
 .PHONY : controller_gencpp/fast
 
+# Convenience name for target.
+controller/CMakeFiles/controller_genlisp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_genlisp.dir/rule
+.PHONY : controller/CMakeFiles/controller_genlisp.dir/rule
+
+# Convenience name for target.
+controller_genlisp: controller/CMakeFiles/controller_genlisp.dir/rule
+
+.PHONY : controller_genlisp
+
+# fast build rule for target.
+controller_genlisp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_genlisp.dir/build.make controller/CMakeFiles/controller_genlisp.dir/build
+.PHONY : controller_genlisp/fast
+
+# Convenience name for target.
+controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make controller/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
+.PHONY : controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+controller_generate_messages_nodejs: controller/CMakeFiles/controller_generate_messages_nodejs.dir/rule
+
+.PHONY : controller_generate_messages_nodejs
+
+# fast build rule for target.
+controller_generate_messages_nodejs/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_generate_messages_nodejs.dir/build.make controller/CMakeFiles/controller_generate_messages_nodejs.dir/build
+.PHONY : controller_generate_messages_nodejs/fast
+
 src/controller.o: src/controller.cpp.o
 
 .PHONY : src/controller.o
 
 # target to build an object file
 src/controller.cpp.o:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.o
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/controller.cpp.o
 .PHONY : src/controller.cpp.o
 
 src/controller.i: src/controller.cpp.i
@@ -752,7 +602,7 @@ src/controller.i: src/controller.cpp.i
 
 # target to preprocess a source file
 src/controller.cpp.i:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.i
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/controller.cpp.i
 .PHONY : src/controller.cpp.i
 
 src/controller.s: src/controller.cpp.s
@@ -761,7 +611,7 @@ src/controller.s: src/controller.cpp.s
 
 # target to generate assembly for a file
 src/controller.cpp.s:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.s
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/controller.cpp.s
 .PHONY : src/controller.cpp.s
 
 src/keyboard.o: src/keyboard.cpp.o
@@ -770,7 +620,7 @@ src/keyboard.o: src/keyboard.cpp.o
 
 # target to build an object file
 src/keyboard.cpp.o:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.o
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o
 .PHONY : src/keyboard.cpp.o
 
 src/keyboard.i: src/keyboard.cpp.i
@@ -779,7 +629,7 @@ src/keyboard.i: src/keyboard.cpp.i
 
 # target to preprocess a source file
 src/keyboard.cpp.i:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.i
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.i
 .PHONY : src/keyboard.cpp.i
 
 src/keyboard.s: src/keyboard.cpp.s
@@ -788,7 +638,7 @@ src/keyboard.s: src/keyboard.cpp.s
 
 # target to generate assembly for a file
 src/keyboard.cpp.s:
-	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.s
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.s
 .PHONY : src/keyboard.cpp.s
 
 # Help Target
@@ -801,47 +651,37 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... edit_cache"
-	@echo "... controller_genpy"
-	@echo "... controller_generate_messages_py"
-	@echo "... controller_generate_messages_nodejs"
-	@echo "... controller_genlisp"
-	@echo "... controller_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... controller_gennodejs"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... controller_genpy"
 	@echo "... install/local"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... test"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_eus"
-	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... controller_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
-	@echo "... controller_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... controller_gennodejs"
+	@echo "... controller_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... controller_generate_messages_lisp"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... controller"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... keyboard"
 	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_py"
 	@echo "... controller_generate_messages"
-	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... _controller_generate_messages_check_deps_Key"
 	@echo "... controller_geneus"
 	@echo "... controller_generate_messages_cpp"
 	@echo "... controller_gencpp"
+	@echo "... controller_genlisp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... controller_generate_messages_nodejs"
 	@echo "... src/controller.o"
 	@echo "... src/controller.i"
 	@echo "... src/controller.s"

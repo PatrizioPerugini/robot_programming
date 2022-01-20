@@ -8,8 +8,8 @@ int main(int argc, char** argv)
   ros::init(argc, argv, "keyboard");
   ros::NodeHandle n("~");
 
-  ros::Publisher pub_down = n.advertise<keyboard::Key>("keydown", 10);
-  ros::Publisher pub_up = n.advertise<keyboard::Key>("keyup", 10);
+  ros::Publisher pub_down = n.advertise<controller::Key>("keydown", 10);
+  ros::Publisher pub_up = n.advertise<controller::Key>("keyup", 10);
 
   bool allow_repeat=false;
   int repeat_delay, repeat_interval;
@@ -22,8 +22,35 @@ int main(int argc, char** argv)
   keyboard::Keyboard kbd( repeat_delay, repeat_interval );
   
   ros::Rate r(50);
-  
-  keyboard::Key k;
+  /*
+  TASTO   CODICE  TRAD
+  up      273     +z
+  down    274     -z
+  right   275     +x
+  left    276     -x
+  pagup   280     +y
+  pagdow  281     -y
+  p       112     +w
+  o       111     -w
+  w       119     +a
+  a       97      -a
+  e       101     +b
+  s       115     -b
+  r       114     +g
+  d       100     -g
+
+*/
+
+
+
+
+
+
+
+
+
+
+  controller::Key k;
   bool pressed, new_event;
   while (ros::ok() && kbd.get_key(new_event, pressed, k.code, k.modifiers)) {
     if (new_event) {

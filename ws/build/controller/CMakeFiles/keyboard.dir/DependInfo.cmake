@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp" "/home/patrizio/Desktop/robot_programming/ws/build/controller/CMakeFiles/keyboard.dir/src/controller.cpp.o"
   "/home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp" "/home/patrizio/Desktop/robot_programming/ws/build/controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
@@ -17,8 +18,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/patrizio/Desktop/robot_programming/ws/devel/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/usr/include/SDL"
   )
 
 # Targets to which this target links.

@@ -182,6 +182,81 @@ joint_pub/fast:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
 .PHONY : joint_pub/fast
 
+# Convenience name for target.
+send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_cpp: send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_cpp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make send_position/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
+
 src/feeder.o: src/feeder.cpp.o
 
 .PHONY : src/feeder.o
@@ -223,6 +298,11 @@ help:
 	@echo "... test"
 	@echo "... install/strip"
 	@echo "... joint_pub"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... src/feeder.o"
 	@echo "... src/feeder.i"
 	@echo "... src/feeder.s"

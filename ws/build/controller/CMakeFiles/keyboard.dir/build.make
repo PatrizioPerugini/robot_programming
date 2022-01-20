@@ -57,9 +57,22 @@ include controller/CMakeFiles/keyboard.dir/progress.make
 # Include the compile flags for this target's objects.
 include controller/CMakeFiles/keyboard.dir/flags.make
 
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: controller/CMakeFiles/keyboard.dir/flags.make
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object controller/CMakeFiles/keyboard.dir/src/controller.cpp.o"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/keyboard.dir/src/controller.cpp.o -c /home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp
+
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/keyboard.dir/src/controller.cpp.i"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp > CMakeFiles/keyboard.dir/src/controller.cpp.i
+
+controller/CMakeFiles/keyboard.dir/src/controller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/keyboard.dir/src/controller.cpp.s"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/patrizio/Desktop/robot_programming/ws/src/controller/src/controller.cpp -o CMakeFiles/keyboard.dir/src/controller.cpp.s
+
 controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o: controller/CMakeFiles/keyboard.dir/flags.make
 controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o"
 	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/keyboard.dir/src/keyboard.cpp.o -c /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp
 
 controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.i: cmake_force
@@ -72,15 +85,36 @@ controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.s: cmake_force
 
 # Object files for target keyboard
 keyboard_OBJECTS = \
+"CMakeFiles/keyboard.dir/src/controller.cpp.o" \
 "CMakeFiles/keyboard.dir/src/keyboard.cpp.o"
 
 # External object files for target keyboard
 keyboard_EXTERNAL_OBJECTS =
 
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: controller/CMakeFiles/keyboard.dir/src/controller.cpp.o
 /home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: controller/CMakeFiles/keyboard.dir/src/keyboard.cpp.o
 /home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: controller/CMakeFiles/keyboard.dir/build.make
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libSDLmain.a
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libSDL.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/libroscpp.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/librosconsole.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/librosconsole_log4cxx.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/librosconsole_backend_interface.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/libxmlrpcpp.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/libroscpp_serialization.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/librostime.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /opt/ros/noetic/lib/libcpp_common.so
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard: controller/CMakeFiles/keyboard.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/patrizio/Desktop/robot_programming/ws/devel/lib/controller/keyboard"
 	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/keyboard.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
