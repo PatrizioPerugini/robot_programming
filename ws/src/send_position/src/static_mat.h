@@ -3,6 +3,7 @@
 #include <iostream>
 // untested
 
+
 namespace rp {
   template <typename Scalar_, int Rows_, int Cols_>
   class Mat_ {
@@ -15,6 +16,8 @@ namespace rp {
     using ThisTypeTransposed=Mat_<Scalar, Cols_,Rows_>;
     using ColVecType=Vec_<Scalar, Rows_>;
     using RowVecType=Vec_<Scalar, Cols_>;
+
+
 
     ThisType& operator+=(const ThisType& other) {
       for (int i=0; i<Dimension; ++i)

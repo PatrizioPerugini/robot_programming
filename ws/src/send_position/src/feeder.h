@@ -31,15 +31,6 @@ float pinch(float EE, float dEE){
      return EE;
 }
 
-float maxx(Joint_v_error& e){
-  float ris = -10000;
-  for(int i=0;i<5;i++){
-    if (e.at(i)> ris){
-      ris=e.at(i);
-    }
-  }
-  return ris;
-}
 
 
 bool check_for_pose(float& q_d, float& q){

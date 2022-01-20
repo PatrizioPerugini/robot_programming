@@ -28,11 +28,11 @@ q_init.at(3) = 150.0;
 q_init.at(4) = 180.0; 
 float EE_init = 120.0;
 Joint_v q_act;
-q.at(0) = 90.0;
-q.at(1) = 50.0;
-q.at(2) = 115.0;
-q.at(3) = 50.0;
-q.at(4) = 90.0; 
+q_act.at(0) = 90.0;
+q_act.at(1) = 50.0;
+q_act.at(2) = 115.0;
+q_act.at(3) = 50.0;
+q_act.at(4) = 90.0; 
 float EE_act = 90;
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 0.15°/s as max speed
@@ -142,7 +142,7 @@ int main(int argc, char **argv){
   EE = EE_init;
   
   //activation procedure
-  actiation();
+  activation();
   
   
   bool pose_achieved = 1;
