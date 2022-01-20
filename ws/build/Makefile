@@ -623,6 +623,19 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named controller
+
+# Build rule for target.
+controller: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controller
+.PHONY : controller
+
+# fast build rule for target.
+controller/fast:
+	$(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/build
+.PHONY : controller/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -826,6 +839,7 @@ help:
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... controller"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_nodejs"

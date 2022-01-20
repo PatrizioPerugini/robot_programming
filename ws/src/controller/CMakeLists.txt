@@ -108,7 +108,7 @@ catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES controller
   CATKIN_DEPENDS roscpp std_msgs message_runtime
- DEPENDS SDL
+  DEPENDS SDL
 )
 
 ###########
@@ -120,13 +120,26 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
-  ${SDL_INCLUDE_DIR}
+  ${SDL_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/controller.cpp
 # )
+
+
+#######################################
+#ADDED BY ME
+
+#target_link_libraries(keyboard
+#  ${LIBS}
+#  ${catkin_LIBRARIES}
+#)
+
+
+
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -210,13 +223,14 @@ include_directories(
 
 #commenting just to finish the first main
 
-#add_executable(controller src/controller.cpp src/keyboard.cpp)
-#target_link_libraries(controller ${catkin_LIBRARIES})
-#add_dependencies(controller controller_generate_messages_cpp)
-
+add_executable(controller src/controller.cpp src/keyboard.cpp)
+target_link_libraries(controller ${catkin_LIBRARIES})
+add_dependencies(controller controller_generate_messages_cpp)
+#bohh
+#add_dependencies(keyboard keyboard_gencpp)
 
 #install(TARGETS keyboard
- # ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  #LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  #RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- #)
+#  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )

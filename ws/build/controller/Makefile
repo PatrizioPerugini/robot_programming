@@ -558,6 +558,21 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+controller/CMakeFiles/controller.dir/rule:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller.dir/rule
+.PHONY : controller/CMakeFiles/controller.dir/rule
+
+# Convenience name for target.
+controller: controller/CMakeFiles/controller.dir/rule
+
+.PHONY : controller
+
+# fast build rule for target.
+controller/fast:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/build
+.PHONY : controller/fast
+
+# Convenience name for target.
 controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : controller/CMakeFiles/std_msgs_generate_messages_py.dir/rule
@@ -722,6 +737,60 @@ controller_gencpp/fast:
 	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller_gencpp.dir/build.make controller/CMakeFiles/controller_gencpp.dir/build
 .PHONY : controller_gencpp/fast
 
+src/controller.o: src/controller.cpp.o
+
+.PHONY : src/controller.o
+
+# target to build an object file
+src/controller.cpp.o:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.o
+.PHONY : src/controller.cpp.o
+
+src/controller.i: src/controller.cpp.i
+
+.PHONY : src/controller.i
+
+# target to preprocess a source file
+src/controller.cpp.i:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.i
+.PHONY : src/controller.cpp.i
+
+src/controller.s: src/controller.cpp.s
+
+.PHONY : src/controller.s
+
+# target to generate assembly for a file
+src/controller.cpp.s:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/controller.cpp.s
+.PHONY : src/controller.cpp.s
+
+src/keyboard.o: src/keyboard.cpp.o
+
+.PHONY : src/keyboard.o
+
+# target to build an object file
+src/keyboard.cpp.o:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.o
+.PHONY : src/keyboard.cpp.o
+
+src/keyboard.i: src/keyboard.cpp.i
+
+.PHONY : src/keyboard.i
+
+# target to preprocess a source file
+src/keyboard.cpp.i:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.i
+.PHONY : src/keyboard.cpp.i
+
+src/keyboard.s: src/keyboard.cpp.s
+
+.PHONY : src/keyboard.s
+
+# target to generate assembly for a file
+src/keyboard.cpp.s:
+	cd /home/patrizio/Desktop/robot_programming/ws/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/keyboard.cpp.s
+.PHONY : src/keyboard.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -761,6 +830,7 @@ help:
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... controller"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_nodejs"
@@ -772,6 +842,12 @@ help:
 	@echo "... controller_geneus"
 	@echo "... controller_generate_messages_cpp"
 	@echo "... controller_gencpp"
+	@echo "... src/controller.o"
+	@echo "... src/controller.i"
+	@echo "... src/controller.s"
+	@echo "... src/keyboard.o"
+	@echo "... src/keyboard.i"
+	@echo "... src/keyboard.s"
 .PHONY : help
 
 

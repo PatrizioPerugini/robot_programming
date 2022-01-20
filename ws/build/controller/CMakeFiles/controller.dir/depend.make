@@ -60,6 +60,23 @@ controller/CMakeFiles/controller.dir/src/controller.cpp.o: /opt/ros/noetic/inclu
 controller/CMakeFiles/controller.dir/src/controller.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
 controller/CMakeFiles/controller.dir/src/controller.cpp.o: /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
 
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h
 controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp
 controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/builtin_message_traits.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/datatypes.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/duration.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/exception.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/macros.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/message_forward.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/message_operations.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/message_traits.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/platform.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/roscpp_serialization_macros.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/rostime_decl.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/serialization.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/serialized_message.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/time.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/ros/types.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o: /opt/ros/noetic/include/std_msgs/Header.h
 
