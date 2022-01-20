@@ -20,7 +20,7 @@ ros::NodeHandle node_handle;
 Servo robot_servos[5];
 int servo_pins[6] = {2, 3, 5, 6, 7,9}; // PWM Pins 
 
-int mid_positions[5] = {90, 0, 0, 160, 180, 130};//second and third should be 0
+int mid_positions[5] = {90, 0, 0, 160, 180, 130};
 int servo_CURRENT_positions[6];
 
 float servo_TARGET_position[6] = {0,0,0,0,0,0};
