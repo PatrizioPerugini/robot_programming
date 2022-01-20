@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 
         switch (pressed_code){
           case(273):
-              msg.position.z=1;
+              msg.position.z=10;
           break;
           case(274):
               msg.position.z=-1;
