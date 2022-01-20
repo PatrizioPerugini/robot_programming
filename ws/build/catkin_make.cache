@@ -1,2 +1,2 @@
 controller:robot-arm-control-ros:robot_manipulator:send_position
--DCATKIN_DEVEL_PREFIX=/home/patrizio/Desktop/robot_programming/ws/devel -DCMAKE_INSTALL_PREFIX=/home/patrizio/Desktop/robot_programming/ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/adriano/Desktop/Robot_programming_project/robot_programming/ws/devel -DCMAKE_INSTALL_PREFIX=/home/adriano/Desktop/Robot_programming_project/robot_programming/ws/install -G Unix Makefiles

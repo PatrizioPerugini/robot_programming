@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "chrono": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
     }
 }
