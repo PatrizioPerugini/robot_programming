@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   message_generation
+  sensor_msgs
+  
 )
 
 ## System dependencies are found with CMake's conventions
@@ -47,12 +49,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
 
+add_message_files(
+  FILES
+  Key.msg
+)
 ## Generate services in the 'srv' folder
 # add_service_files(
 #   FILES
@@ -106,8 +107,8 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES controller
-#  CATKIN_DEPENDS roscpp std_msgs
-#  DEPENDS system_lib
+  CATKIN_DEPENDS roscpp std_msgs message_runtime
+ DEPENDS SDL
 )
 
 ###########
@@ -119,6 +120,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${SDL_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
@@ -205,7 +207,13 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(controller src/controller.cpp)
-add_executable(keyboard src/keyboard.cpp)
+add_executable(controller src/controller.cpp src/keyboard.cpp)
 target_link_libraries(controller ${catkin_LIBRARIES})
 add_dependencies(controller controller_generate_messages_cpp)
+
+
+install(TARGETS keyboard
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)

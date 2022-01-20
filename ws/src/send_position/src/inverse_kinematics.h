@@ -180,7 +180,7 @@ Angle_v get_RPY(Rotation_m& R){
     return RPY;
 }
 
-Position_v get_position(Joint_v &q)
+Position_v get_pose(Joint_v &q)
 {
     Position_v p;
     Homogeneous_m DH = get_DH(q);
@@ -202,7 +202,7 @@ Position_v get_position(Joint_v &q)
 
 
 //NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
-Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){ 
+Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
     
     //instantiate initial error 6 x 1
     Error_v error;
@@ -210,7 +210,7 @@ Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){
     Joint_v q_k1;
     int i;
     for(i=0;i<6;i++){
-        error.at(i)=r_d.at(i)-get_position(q_k).at(i);
+        error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
     }
     
 
@@ -259,5 +259,13 @@ Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){
     return q_k;
 }
 
+float move2 (float& q, float& dq, float& time){
+    if(abs(dq <= 0.30)){
+        return q;
+    }
+    else{
+        q += dq/time;
+        return q;
+    }
 
-bool error
+}

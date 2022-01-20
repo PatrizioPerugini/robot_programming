@@ -13,29 +13,27 @@
 
 #include <Servo.h>
 #include <ros.h>
-#include <std_msgs/Int32.h>
-#include <std_msgs/Float64MultiArray.h>
 #include <sensor_msgs/JointState.h>
 
 ros::NodeHandle node_handle;
 
 Servo robot_servos[5];
-int servo_pins[6] = {2, 3, 5, 6, 7}; // PWM Pins 
+int servo_pins[6] = {2, 3, 5, 6, 7,9}; // PWM Pins 
 
-int mid_positions[5] = {90, 90, 90, 160, 180};//second and third should be 0
+int mid_positions[5] = {90, 0, 0, 160, 180, 130};//second and third should be 0
 int servo_CURRENT_positions[6];
 
-float servo_TARGET_position[6] = {0,0,0,0,0};
+float servo_TARGET_position[6] = {0,0,0,0,0,0};
 
 // Convert the joint state values to degrees, adjust for the center and write to the servo
 void writeServos() {
-  for (int j = 0; j < 5; j++) {
+  for (int j = 0; j < 6; j++) {
     int target_angle;
     target_angle = servo_TARGET_position[j] + mid_positions[j];
     robot_servos[j].write(target_angle);
     servo_CURRENT_positions[j] = target_angle;
   }
-  node_handle.spinOnce();
+  
 }
 
 
@@ -46,6 +44,7 @@ void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg
   servo_TARGET_position[2] = msg.position[2];
   servo_TARGET_position[3] = msg.position[3];
   servo_TARGET_position[4] = msg.position[4];
+  servo_TARGET_position[5] = msg.position[5];
   digitalWrite(13, HIGH-digitalRead(13));
 
   //servo_TARGET_position
@@ -59,7 +58,7 @@ ros::Subscriber<sensor_msgs::JointState> servo_control_subscriber_joint_state("j
 void setup() {
   // Initial the servo motor connections and initialize them at home position
   pinMode(13, OUTPUT);
-  for (unsigned int i = 0; i < 5; i++) {
+  for (unsigned int i = 0; i < 6; i++) {
     robot_servos[i].attach(servo_pins[i]);
     robot_servos[i].write(mid_positions[i]);
     servo_CURRENT_positions[i] = mid_positions[i];
