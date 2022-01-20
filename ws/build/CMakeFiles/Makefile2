@@ -227,7 +227,7 @@ robot_manipulator/clean:
 # Directory level rules for directory send_position
 
 # Recursive "all" directory target.
-send_position/all:
+send_position/all: send_position/CMakeFiles/joint_pub.dir/all
 
 .PHONY : send_position/all
 
@@ -237,6 +237,7 @@ send_position/preinstall:
 .PHONY : send_position/preinstall
 
 # Recursive "clean" directory target.
+send_position/clean: send_position/CMakeFiles/joint_pub.dir/clean
 send_position/clean: send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 send_position/clean: send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir/clean
 send_position/clean: send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
@@ -931,7 +932,7 @@ controller/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean:
 controller/CMakeFiles/keyboard.dir/all:
 	$(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/depend
 	$(MAKE) -f controller/CMakeFiles/keyboard.dir/build.make controller/CMakeFiles/keyboard.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=16,17,18 "Built target keyboard"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=18,19,20 "Built target keyboard"
 .PHONY : controller/CMakeFiles/keyboard.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1253,6 +1254,33 @@ controller_generate_messages_nodejs: controller/CMakeFiles/controller_generate_m
 controller/CMakeFiles/controller_generate_messages_nodejs.dir/clean:
 	$(MAKE) -f controller/CMakeFiles/controller_generate_messages_nodejs.dir/build.make controller/CMakeFiles/controller_generate_messages_nodejs.dir/clean
 .PHONY : controller/CMakeFiles/controller_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target send_position/CMakeFiles/joint_pub.dir
+
+# All Build rule for target.
+send_position/CMakeFiles/joint_pub.dir/all:
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/depend
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=16,17 "Built target joint_pub"
+.PHONY : send_position/CMakeFiles/joint_pub.dir/all
+
+# Build rule for subdir invocation for target.
+send_position/CMakeFiles/joint_pub.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 send_position/CMakeFiles/joint_pub.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles 0
+.PHONY : send_position/CMakeFiles/joint_pub.dir/rule
+
+# Convenience name for target.
+joint_pub: send_position/CMakeFiles/joint_pub.dir/rule
+
+.PHONY : joint_pub
+
+# clean rule for target.
+send_position/CMakeFiles/joint_pub.dir/clean:
+	$(MAKE) -f send_position/CMakeFiles/joint_pub.dir/build.make send_position/CMakeFiles/joint_pub.dir/clean
+.PHONY : send_position/CMakeFiles/joint_pub.dir/clean
 
 #=============================================================================
 # Target rules for target send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir

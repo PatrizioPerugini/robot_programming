@@ -8,3 +8,4 @@
 
 # modified environment variables
 export PWD='/home/patrizio/Desktop/robot_programming/ws/build'
+export PYTHONPATH="/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages:$PYTHONPATH"

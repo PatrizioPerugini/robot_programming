@@ -5,17 +5,19 @@
 #include "static_vec.h"
 
 
-
 float move2 (float q, float dq, float duration){
     if(abs(dq <= 0.30)){
         return q;
     }
     else{
-        q += dq/duration;
+        float ddq =dq/duration;
+        q += ddq;
+        dq -=ddq;
+
         return q;
     }
-
 }
+
 
 float pinch(float EE, float dEE){
     
@@ -33,18 +35,3 @@ float pinch(float EE, float dEE){
 
 
 
-bool check_for_pose(float& q_d, float& q){
-    if(
-        abs(dq) <= 0.3 &&
-        abs(dq) <= 0.3 &&
-        abs(dq) <= 0.3 &&
-        abs(dq) <= 0.3 &&
-        abs(dq) <= 0.3 &&
-        abs(dq) <= 0.3
-    ){
-        return true
-    }
-    else{
-        return false;
-    } 
-}

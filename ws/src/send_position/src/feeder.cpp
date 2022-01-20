@@ -21,29 +21,38 @@ float dEE;
 Pose_v p;
 Joint_v q;
 Joint_v q_init;
-q_init.at(0) = 90.0;
-q_init.at(1) = 0.0;
-q_init.at(2) = 0.0;
-q_init.at(3) = 150.0;
-q_init.at(4) = 180.0; 
+
 float EE_init = 120.0;
 Joint_v q_act;
-q_act.at(0) = 90.0;
-q_act.at(1) = 50.0;
-q_act.at(2) = 115.0;
-q_act.at(3) = 50.0;
-q_act.at(4) = 90.0; 
+
 float EE_act = 90;
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 0.15°/s as max speed
 const float max_velocity = 0.15;
 float delay = 0.01;    // frequence of the messages to arduino 
 float duration;
-bool pose_achieved;
+int pose_achieved;
 ros::Publisher pub;
-ros::NodeHandle n;
+
 int i = 0;
 
+
+
+int check_for_pose(Joint_v& dq, float dEE){
+    if(
+        abs(dq.at(0)) <= 0.3 &&
+        abs(dq.at(1)) <= 0.3 &&
+        abs(dq.at(2)) <= 0.3 &&
+        abs(dq.at(3)) <= 0.3 &&
+        abs(dq.at(4)) <= 0.3 &&
+        abs(dEE) <= 0.3
+    ){
+        return 1;
+    }
+    else{
+        return 0;
+    } 
+}
 
 void move_joints(){
   while(pose_achieved == 0){
@@ -58,7 +67,7 @@ void move_joints(){
     pub.publish(msg);
     ros::spinOnce();
 
-    pose_achieved = check_for_pose(q_d,q);
+    pose_achieved = check_for_pose(dq,dEE);
   }
     
     
@@ -133,14 +142,26 @@ int main(int argc, char **argv){
   
   //init nodes and topics
   ros::init(argc, argv, "joint_pub");
+  ros::NodeHandle n;
   pub=n.advertise<sensor_msgs::JointState>("joint_states",1000);
-  ros::Subscriber sub= n.subscribe("desired_pose",1000,desired_positionCallback);
+  ros::Subscriber sub= n.subscribe("/keyboard/desired_pose",1000,desired_positionCallback);
   ros::Rate loop_rate(10);
 
   //Setup
   q = q_init;
   EE = EE_init;
+  q_init.at(0) = 90.0;
+  q_init.at(1) = 0.0;
+  q_init.at(2) = 0.0;
+  q_init.at(3) = 150.0;
+  q_init.at(4) = 180.0; 
   
+
+  q_act.at(0) = 90.0;
+  q_act.at(1) = 50.0;
+  q_act.at(2) = 115.0;
+  q_act.at(3) = 50.0;
+  q_act.at(4) = 90.0; 
   //activation procedure
   activation();
   

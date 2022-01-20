@@ -206,7 +206,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-#add_executable(joint_pub src/feeder.cpp)
-#target_link_libraries(joint_pub ${catkin_LIBRARIES})
+add_executable(joint_pub src/feeder.cpp)
+target_link_libraries(joint_pub ${catkin_LIBRARIES})
 #check what changed??? do not know
 #add_dependencies(joint_pub send_position_generate_messages_cpp)

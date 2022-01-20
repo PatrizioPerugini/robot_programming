@@ -84,13 +84,14 @@
 /home/patrizio/Desktop/robot_programming/ws/build/robot_manipulator/CMakeFiles/rebuild_cache.dir
 /home/patrizio/Desktop/robot_programming/ws/build/robot_manipulator/CMakeFiles/edit_cache.dir
 /home/patrizio/Desktop/robot_programming/ws/build/robot_manipulator/CMakeFiles/test.dir
-/home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/install/strip.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/install/local.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/install.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/list_install_components.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/rebuild_cache.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/edit_cache.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/test.dir
+/home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/install/strip.dir
+/home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/joint_pub.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/geometry_msgs_generate_messages_py.dir
 /home/patrizio/Desktop/robot_programming/ws/build/send_position/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
