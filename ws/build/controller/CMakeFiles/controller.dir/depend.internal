@@ -60,3 +60,6 @@ controller/CMakeFiles/controller.dir/src/controller.cpp.o
  /opt/ros/noetic/include/rosconsole/macros_generated.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
+controller/CMakeFiles/controller.dir/src/keyboard.cpp.o
+ /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.cpp
+ /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h

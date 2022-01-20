@@ -53,6 +53,24 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 # Include the progress variables for this target.
 include controller/CMakeFiles/controller_generate_messages_py.dir/progress.make
 
+controller/CMakeFiles/controller_generate_messages_py: /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py
+controller/CMakeFiles/controller_generate_messages_py: /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/__init__.py
+
+
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py: /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG controller/Key"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg -Icontroller:/home/patrizio/Desktop/robot_programming/ws/src/controller/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p controller -o /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg
+
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/__init__.py: /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for controller"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg --initpy
+
+controller_generate_messages_py: controller/CMakeFiles/controller_generate_messages_py
+controller_generate_messages_py: /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/_Key.py
+controller_generate_messages_py: /home/patrizio/Desktop/robot_programming/ws/devel/lib/python3/dist-packages/controller/msg/__init__.py
 controller_generate_messages_py: controller/CMakeFiles/controller_generate_messages_py.dir/build.make
 
 .PHONY : controller_generate_messages_py

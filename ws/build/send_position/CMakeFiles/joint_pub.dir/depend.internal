@@ -3,6 +3,13 @@
 
 send_position/CMakeFiles/joint_pub.dir/src/feeder.cpp.o
  /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/feeder.cpp
+ /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/feeder.h
+ /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/inverse_kinematics.h
+ /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/static_mat.h
+ /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/static_vec.h
+ /opt/ros/noetic/include/geometry_msgs/Point.h
+ /opt/ros/noetic/include/geometry_msgs/Pose.h
+ /opt/ros/noetic/include/geometry_msgs/Quaternion.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h

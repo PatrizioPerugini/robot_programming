@@ -12,11 +12,11 @@ using Rotation_m = Mat_<float, 3, 3>;
 using Homogeneous_m = Mat_<float, 4, 4>;
 using Jacobian_m = Mat_<float, 6, 5>;
 using Joint_v=Vec_<float, 5>;
-using Joint_v_error=Vec_<float, 6>;
-using Position_v=Vec_<float, 6>;
+using Pose_v=Vec_<float, 6>;
 using DH_row = float[4];
 using DH_table = float[5][4];
 using Error_v =Vec_<float,6>;
+using Joint_v_error=Vec_<float, 5>;
 
 
 Homogeneous_m DH_matrix(DH_row& T){
@@ -180,9 +180,9 @@ Angle_v get_RPY(Rotation_m& R){
     return RPY;
 }
 
-Position_v get_pose(Joint_v &q)
+Pose_v get_pose(Joint_v &q)
 {
-    Position_v p;
+    Pose_v p;
     Homogeneous_m DH = get_DH(q);
 
     // p (x,y,z) = f(q) got from the DHmatrix
@@ -229,7 +229,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
         for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
             
-            error.at(p)=r_d.at(p)-get_position(q_k).at(p);
+            error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
        
         }
         cout<< "iteration " << i << " values for previous error :"<< endl;
@@ -259,13 +259,5 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     return q_k;
 }
 
-float move2 (float& q, float& dq, float& time){
-    if(abs(dq <= 0.30)){
-        return q;
-    }
-    else{
-        q += dq/time;
-        return q;
-    }
 
-}
+

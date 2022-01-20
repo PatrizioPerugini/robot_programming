@@ -53,6 +53,18 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 # Include the progress variables for this target.
 include controller/CMakeFiles/controller_generate_messages_cpp.dir/progress.make
 
+controller/CMakeFiles/controller_generate_messages_cpp: /home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h
+
+
+/home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h: /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg
+/home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from controller/Key.msg"
+	cd /home/patrizio/Desktop/robot_programming/ws/src/controller && /home/patrizio/Desktop/robot_programming/ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg -Icontroller:/home/patrizio/Desktop/robot_programming/ws/src/controller/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p controller -o /home/patrizio/Desktop/robot_programming/ws/devel/include/controller -e /opt/ros/noetic/share/gencpp/cmake/..
+
+controller_generate_messages_cpp: controller/CMakeFiles/controller_generate_messages_cpp
+controller_generate_messages_cpp: /home/patrizio/Desktop/robot_programming/ws/devel/include/controller/Key.h
 controller_generate_messages_cpp: controller/CMakeFiles/controller_generate_messages_cpp.dir/build.make
 
 .PHONY : controller_generate_messages_cpp

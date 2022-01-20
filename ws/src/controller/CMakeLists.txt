@@ -207,13 +207,16 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(controller src/controller.cpp src/keyboard.cpp)
-target_link_libraries(controller ${catkin_LIBRARIES})
-add_dependencies(controller controller_generate_messages_cpp)
+
+#commenting just to finish the first main
+
+#add_executable(controller src/controller.cpp src/keyboard.cpp)
+#target_link_libraries(controller ${catkin_LIBRARIES})
+#add_dependencies(controller controller_generate_messages_cpp)
 
 
-install(TARGETS keyboard
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+#install(TARGETS keyboard
+ # ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  #LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  #RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+ #)

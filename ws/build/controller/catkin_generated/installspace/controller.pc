@@ -3,6 +3,6 @@ prefix=/home/patrizio/Desktop/robot_programming/ws/install
 Name: controller
 Description: Description of controller
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: roscpp std_msgs message_runtime

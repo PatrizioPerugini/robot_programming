@@ -53,6 +53,17 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 # Include the progress variables for this target.
 include controller/CMakeFiles/controller_generate_messages_lisp.dir/progress.make
 
+controller/CMakeFiles/controller_generate_messages_lisp: /home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg/Key.lisp
+
+
+/home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg/Key.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg/Key.lisp: /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg
+/home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg/Key.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from controller/Key.msg"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg -Icontroller:/home/patrizio/Desktop/robot_programming/ws/src/controller/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p controller -o /home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg
+
+controller_generate_messages_lisp: controller/CMakeFiles/controller_generate_messages_lisp
+controller_generate_messages_lisp: /home/patrizio/Desktop/robot_programming/ws/devel/share/common-lisp/ros/controller/msg/Key.lisp
 controller_generate_messages_lisp: controller/CMakeFiles/controller_generate_messages_lisp.dir/build.make
 
 .PHONY : controller_generate_messages_lisp

@@ -53,14 +53,22 @@ CMAKE_BINARY_DIR = /home/patrizio/Desktop/robot_programming/ws/build
 # Include the progress variables for this target.
 include controller/CMakeFiles/controller_generate_messages_eus.dir/progress.make
 
+controller/CMakeFiles/controller_generate_messages_eus: /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg/Key.l
 controller/CMakeFiles/controller_generate_messages_eus: /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/manifest.l
 
 
+/home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg/Key.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg/Key.l: /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg
+/home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg/Key.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from controller/Key.msg"
+	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/patrizio/Desktop/robot_programming/ws/src/controller/msg/Key.msg -Icontroller:/home/patrizio/Desktop/robot_programming/ws/src/controller/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p controller -o /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg
+
 /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp manifest code for controller"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/patrizio/Desktop/robot_programming/ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for controller"
 	cd /home/patrizio/Desktop/robot_programming/ws/build/controller && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller controller std_msgs
 
 controller_generate_messages_eus: controller/CMakeFiles/controller_generate_messages_eus
+controller_generate_messages_eus: /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/msg/Key.l
 controller_generate_messages_eus: /home/patrizio/Desktop/robot_programming/ws/devel/share/roseus/ros/controller/manifest.l
 controller_generate_messages_eus: controller/CMakeFiles/controller_generate_messages_eus.dir/build.make
 
