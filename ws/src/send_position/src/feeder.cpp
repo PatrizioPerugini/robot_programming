@@ -10,6 +10,17 @@
 #include "static_vec.h"
 #include <geometry_msgs/Pose.h>
 
+using Angle_v = Vec_<float, 3>;
+using Error_v =Vec_<float,6>;
+using Joint_v=Vec_<float, 5>;
+using Joint_v_error=Vec_<float, 5>;
+using Pose_v=Vec_<float, 6>;
+using Rotation_m = Mat_<float, 3, 3>;
+using Homogeneous_m = Mat_<float, 4, 4>;
+using Jacobian_m = Mat_<float, 6, 5>;
+
+using DH_row = float[4];
+using DH_table = float[5][4];
 
 sensor_msgs::JointState msg;
 Pose_v r_d; //desired position
@@ -21,18 +32,10 @@ float dEE;
 Pose_v p;
 Joint_v q;
 Joint_v q_init;
-q_init.at(0) = 90.0;
-q_init.at(1) = 0.0;
-q_init.at(2) = 0.0;
-q_init.at(3) = 150.0;
-q_init.at(4) = 180.0; 
+
 float EE_init = 120.0;
 Joint_v q_act;
-q_act.at(0) = 90.0;
-q_act.at(1) = 50.0;
-q_act.at(2) = 115.0;
-q_act.at(3) = 50.0;
-q_act.at(4) = 90.0; 
+
 float EE_act = 90;
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 0.15°/s as max speed
@@ -140,7 +143,19 @@ int main(int argc, char **argv){
   //Setup
   q = q_init;
   EE = EE_init;
-  
+  q_init.at(0) = 90.0;
+  q_init.at(1) = 0.0;
+  q_init.at(2) = 0.0;
+  q_init.at(3) = 150.0;
+  q_init.at(4) = 180.0; 
+
+  q_act.at(0) = 90.0;
+  q_act.at(1) = 50.0;
+  q_act.at(2) = 115.0;
+  q_act.at(3) = 50.0;
+  q_act.at(4) = 90.0; 
+
+
   //activation procedure
   activation();
   

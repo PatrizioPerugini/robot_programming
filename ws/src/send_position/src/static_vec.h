@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
 
-
-
 namespace rp {
   template<typename Scalar_, int Dim_>
   class Vec_ {
