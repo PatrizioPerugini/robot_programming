@@ -210,7 +210,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     //instantiate initial error 6 x 1
     Error_v error;
     //general q_k+1, instantiated with zeros
-    Joint_v q_k1;
+    //Joint_v q_k1;
     int i;
     for(i=0;i<6;i++){
         error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
@@ -241,9 +241,9 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
         cout<< "and the value of q_k is:" << endl;
        
         
-        q_k1= q_k + (get_jacobian(q_k).transpose())*error*alpha;
+        q_k= q_k + (get_jacobian(q_k).transpose())*error*alpha;
 
-        cout << q_k1 <<"\n"<< endl;
+        cout << q_k <<"\n"<< endl;
         //just printing some stuff
 
        // cout<< "iteration " << i << " values for previous : "<< endl;
@@ -254,7 +254,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
        // cout<< "iteration " << i << " values for actual : "<< endl;
        // cout << q_k1 << endl;
 
-        q_k=q_k1;
+        //q_k=q_k1;
 
         i++;
          

@@ -29,7 +29,8 @@ float servo_TARGET_position[6] = {0,0,0,0,0,0};
 void writeServos() {
   for (int j = 0; j < 6; j++) {
     int target_angle;
-    target_angle = servo_TARGET_position[j] + mid_positions[j];
+    target_angle = servo_TARGET_position[j]; 
+    //+ mid_positions[j];
     robot_servos[j].write(target_angle);
     servo_CURRENT_positions[j] = target_angle;
   }
@@ -76,4 +77,4 @@ void loop() {
   delay(1);
 }
 
-//rosrun rosserial_python serial_node.py /dev/ttyACM0
+//rosrun rosserial_python serial_node.py /dev/ttyACM1

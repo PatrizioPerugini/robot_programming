@@ -1,34 +1,24 @@
-//#include "ros/ros.h"
 #include <iostream>
 #include "static_vec.h"
 #include "static_mat.h"
 #include <cmath>
-//#include "ad.h"
 using namespace rp;
 using namespace std;
 
 #define _USE_MATH_DEFINES
 
+
 using Angle_v = Vec_<float, 3>;
+using Error_v =Vec_<float,6>;
+using Joint_v=Vec_<float, 5>;
+using Joint_v_error=Vec_<float, 5>;
+using Pose_v=Vec_<float, 6>;
 using Rotation_m = Mat_<float, 3, 3>;
 using Homogeneous_m = Mat_<float, 4, 4>;
 using Jacobian_m = Mat_<float, 6, 5>;
-using Joint_v=Vec_<float, 5>;
-using Joint_v_error=Vec_<float, 6>;
-using Position_v=Vec_<float, 6>;
+
 using DH_row = float[4];
 using DH_table = float[5][4];
-using Error_v =Vec_<float,6>;
-/*
-using Angle_v = Vec_<double, 3>;
-using Rotation_m = Mat_<double, 3, 3>;
-using Homogeneous_m = Mat_<double, 4, 4>;
-using Jacobian_m = Mat_<double, 6, 5>;
-using Joint_v=Vec_<double, 5>;
-using Joint_v_error=Vec_<double, 6>;
-using Position_v=Vec_<double, 6>;
-*/
-
 
 
 
@@ -63,14 +53,6 @@ Homogeneous_m DH_matrix(DH_row& T){
 
 Homogeneous_m get_DH(Joint_v &q){
 
-    /*
-    fill(DH,(float)0);
-    DH.at(0,0)=1;
-    DH.at(1,1)=1;
-    DH.at(2,2)=1;
-    DH.at(3,3)=1;
-    */
-
     Homogeneous_m DH_i;
     int n = 5;
     float q_1 = q.at(0);
@@ -86,8 +68,6 @@ Homogeneous_m get_DH(Joint_v &q){
     {-M_PI/2, 27/10,     0, q_4},
     {    0,     0, 33/10, q_5}
     };
-
-    //int n = sizeof(DHTABLE[0]);
     
     Homogeneous_m DH = DH_matrix(DHTABLE[0]);
 
@@ -95,32 +75,8 @@ Homogeneous_m get_DH(Joint_v &q){
        DH_i = DH_matrix(DHTABLE[i]);
        DH = DH*DH_i;
     };
-
-
-    /*
-    double M[4][4] = 
-    {
-        {cos(q_2 + q_3 + q_4) * cos(q_1) * cos(q_5) - sin(q_1) * sin(q_5), -cos(q_5) * sin(q_1) - cos(q_2 + q_3 + q_4) * cos(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * cosf(q_1), (cos(q_1) * (2.7 * cos(q_2 + q_3 + q_4) + 10.0 * cos(q_2 + q_3) + 10.5 * cos(q_2))) - (3.3 * sin(q_2 + q_3 + q_4) * cos(q_1))},
-        {cos(q_1) * sin(q_5) + cos(q_2 + q_3 + q_4) * cos(q_5) * sin(q_1), cos(q_1) * cos(q_5) - cos(q_2 + q_3 + q_4) * sin(q_1) * sin(q_5), -sin(q_2 + q_3 + q_4) * sin(q_1), (sin(q_1) * (2.7 * cos(q_2 + q_3 + q_4) + 10.0 * cos(q_2 + q_3) + 10.5 * cos(q_2))) - (3.3 * sin(q_2 + q_3 + q_4) * sin(q_1))},
-        {sin(q_2 + q_3 + q_4) * cos(q_5), -sin(q_2 + q_3 + q_4) * sin(q_5), cos(q_2 + q_3 + q_4), (3.3 * cos(q_2 + q_3 + q_4)) + (2.7 * sin(q_2 + q_3 + q_4)) + 10 * sin(q_2 + q_3) + (10.5 * sin(q_2))},
-        {0, 0, 0, 1}
-    };
-
-    for(int i = 0; i<4; i++){
-        for(int j = 0; j<4; j++){
-            DH.at(i,j) = M[i][j];
-            
-           
-        }
-    };
-    */
-
-    
     return DH;
 }
-
-
-
 
 
 Rotation_m get_orientation(Joint_v &q)
@@ -150,7 +106,7 @@ Jacobian_m get_jacobian(Joint_v &q)
     float M[6][5] = {
         {-(sin(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(cos(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(cos(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
         {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {0, 10 * cos(q_2 + q_3) + (21 * cos(q_2)) / 2 + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, (3 * sqrt(202) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 0},
+        {0, 10 * cos(q_2 + q_3) + (10.5 * cos(q_2)) + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3.0 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) , (3 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))), 0},
         {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
         {0, -cos(q_1), -cos(q_1), -cos(q_1), sin(q_4) * (sin(q_1) * sin(q_2) * sin(q_3) - cos(q_2) * cos(q_3) * sin(q_1)) - cos(q_4) * (cos(q_2) * sin(q_1) * sin(q_3) + cos(q_3) * sin(q_1) * sin(q_2))},
         {1, 0, 0, 0, cos(q_4) * (cos(q_2) * cos(q_3) - sin(q_2) * sin(q_3)) - sin(q_4) * (cos(q_2) * sin(q_3) + cos(q_3) * sin(q_2))}
@@ -184,10 +140,6 @@ Angle_v get_RPY(Rotation_m& R){
     float pitch=0.0;
     float yaw=0.0;
     int i=1;
-    
-   
-    
-    
 
     if (R31 != 1.0 && R31 != -1.0){ 
         
@@ -200,8 +152,8 @@ Angle_v get_RPY(Rotation_m& R){
         float yaw_1 = atan2( R21 / cos(pitch_1) , R11 / cos(pitch_1));
         float yaw_2 = atan2( R21 / cos(pitch_2) , R11 / cos(pitch_2));
         //MORE THEN ONE SOLUTION, CHOOSE THE MORE SUITABLE ONE
-       // pitch = pitch_1;
-       // roll = roll_1;
+       //pitch = pitch_1;
+       //roll = roll_1;
        // yaw = yaw_1 ;
         pitch = pitch_2;
         roll = roll_2;
@@ -221,9 +173,9 @@ Angle_v get_RPY(Rotation_m& R){
         }
     }
     //convert from radians to degrees
-   // roll = roll*180/M_PI;
-   // pitch = pitch*180/M_PI;
-   // yaw = yaw*180/M_PI ;
+    roll = roll*180/M_PI;
+    pitch = pitch*180/M_PI;
+    yaw = yaw*180/M_PI ;
     RPY.at(0)=roll;
     RPY.at(1)=pitch;
     RPY.at(2)=yaw;
@@ -231,9 +183,9 @@ Angle_v get_RPY(Rotation_m& R){
     return RPY;
 }
 
-Position_v get_position(Joint_v &q)
+Pose_v get_pose(Joint_v &q)
 {
-    Position_v p;
+    Pose_v p;
     Homogeneous_m DH = get_DH(q);
 
     // p (x,y,z) = f(q) got from the DHmatrix
@@ -250,123 +202,134 @@ Position_v get_position(Joint_v &q)
 
     return p;
 }
-
-
-//NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
-Joint_v inverse_kinematics(Position_v& r_d, Joint_v& q_k){ 
+/*
+Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
     
+    float alpha = 0.05;
+    int count_steps = 0;
+    int max_iter = 10000;
+    float e_pos_tol = 1e-12;
+    float e_or_tol = 1e-12;
+    int i = 0;
+    int ik_iter = 0;
     //instantiate initial error 6 x 1
     Error_v error;
+    Vec_<float,3> e_pos;
+    Vec_<float,3> e_or;
     //general q_k+1, instantiated with zeros
-    Joint_v q_k1;
-    int i;
+    Joint_v q_res = q_k;
+    Jacobian_m J;
+    Pose_v p_res;
+    Joint_v delta_theta;
+    Mat_<float,6,6> JJTe_lambda2_I;
+    
     for(i=0;i<6;i++){
-        error.at(i)=r_d.at(i)-get_position(q_k).at(i);
+        error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
     }
-    
-
-    float alpha=0.1;
-    i = 0;
-    
-    while (//abs(error.at(0))>=0.1 &&
-     //abs(error.at(1))>=0.1 && 
-     //abs(error.at(2))>=0.1 && 
-     //abs(error.at(3))>=0.3*(M_PI/180) && 
-     //abs(error.at(4))>=0.3*(M_PI/180) && 
-     //abs(error.at(5))>=0.3*(M_PI/180) && 
-     i < 50){
+    for(ik_iter = 0; ik_iter<max_iter; ik_iter++){
+        J = get_jacobian(q_res);
+        p_res = get_pose(q_res);
+        error = r_d - p_res;
+        //cout<< "At the (previous) iteration " << ik_iter << " the values for the error are :"<< endl;
+        //cout << error << endl;
+        e_pos.at(0) = error.at(0);
+        e_pos.at(1) = error.at(1);
+        e_pos.at(2) = error.at(2);
+         e_or.at(0) = error.at(3);
+         e_or.at(1) = error.at(4);
+         e_or.at(2) = error.at(5);
+        if(sqrt(e_pos.squaredNorm()) < e_pos_tol && sqrt(e_or.squaredNorm()) < e_or_tol){
+            cout << "Reached target close enough after " << ik_iter << " steps" << endl;
+            return q_res;
+        }
        
         //compute new error 
         for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
             
-            error.at(p)=r_d.at(p)-get_position(q_k).at(p);
+            error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
        
         }
-        cout<< "iteration " << i << " values for previous error :"<< endl;
-        cout << error << endl;
-        //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
-        cout<< "and the value of q_k is:" << endl;
-       
         
-        q_k1= q_k + (get_jacobian(q_k).transpose())*error*alpha;
-
-        cout << q_k1 <<"\n"<< endl;
-        //just printing some stuff
-
-       // cout<< "iteration " << i << " values for previous : "<< endl;
-       // cout << q_k << endl;
-       // 
-       // cout << "the error is " << sqrt(q_k.squaredNorm()) << endl;
-//
-       // cout<< "iteration " << i << " values for actual : "<< endl;
-       // cout << q_k1 << endl;
-
-        q_k=q_k1;
-
-        i++;
+        q_res = q_res + delta_theta = (J.transpose() * error)* alpha ;
+        //cout<< "and the value of q_res is:" << endl;
+        //cout << q_res <<"\n"<< endl;
          
+    }
+    cout<<"The final error norm for position is "<< sqrt(e_pos.squaredNorm())<< endl;
+    cout<<"The final error norm for orientation is "<< sqrt(e_or.squaredNorm())<< endl;
+    return q_res;
+}
+*/
+
+//NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
+
+Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
+    
+    //instantiate initial error 6 x 1
+    Error_v error;
+    float alpha=0.00001;
+    int i;
+    for(i=0;i<6;i++){
+        error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
+    }
+    i = 0;
+    while (i < 50000){/*abs(error.at(0))>=0.01 &&
+    abs(error.at(1))>=0.01 && 
+    abs(error.at(2))>=0.01 && 
+    abs(error.at(3))>=0.003*(M_PI/180) && 
+    abs(error.at(4))>=0.003*(M_PI/180) && 
+    abs(error.at(5))>=0.003*(M_PI/180) && */
+ 
+       
+        //compute new error 
+        for(int p=0;p<6;p++){ 
+            //f_r(q_k) returns a 6 x 1 vector
+            error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
+        }
+        Joint_v delta=get_jacobian(q_k).transpose()*error*alpha;
+         q_k= q_k + delta;
+        if(i%100==0){ 
+            cout << delta <<"\n"<< endl;
+        }
+        i++;
     }
     return q_k;
 }
 
-
-
 int main(){
     
-    
-    Position_v R_d;
-    //R_d.at(0)=0;
-    //R_d.at(1)=13.3;
-    //R_d.at(2)=6.647;
-    //R_d.at(3)=M_PI/2;
-    //R_d.at(4)=0;
-    //R_d.at(5)=M_PI;
-    Joint_v q_k1;
-    q_k1.at(0)=90 * (M_PI/180);
-    q_k1.at(1)=0 * (M_PI/180);
-    q_k1.at(2)=45 * (M_PI/180);
-    q_k1.at(3)=90 * (M_PI/180);
-    q_k1.at(4)=0 * (M_PI/180);
-    R_d=get_position(q_k1);
+    Pose_v r_d;
+    r_d.at(0)=0.34327;
+    r_d.at(1)=3.09069;
+    r_d.at(2)=2.56042;
+    r_d.at(3)=94.2511;
+    r_d.at(4)=153.443;
+    r_d.at(5)=175.566 ;
    
     Joint_v q_k;
-    q_k.at(0)=90*(M_PI/180);
-    q_k.at(1)=35*(M_PI/180);
-    q_k.at(2)=70*(M_PI/180);
-    q_k.at(3)=135*(M_PI/180);
-    q_k.at(4)=20*(M_PI/180);
-   
+    q_k.at(0)=83;
+    q_k.at(1)=3;
+    q_k.at(2)=107;
+    q_k.at(3)=72;
+    q_k.at(4)=87;
+    q_k.at(5)=41;
+    Joint_v q_desired;
+    q_desired.at(0)=80;
+    q_desired.at(1)=10;
+    q_desired.at(2)=110;
+    q_desired.at(3)=70;
+    q_desired.at(4)=90;
+    q_desired.at(5)=40;
 
-    Joint_v ris=inverse_kinematics(R_d,q_k);
-    cout << "final value for the IK"<<endl;
-    cout << ris << endl;
- /*
-    Rotation_m R;
-    R.at(0,0)=-1;
-    R.at(0,1)=0;
-    R.at(0,2)=0;
-    R.at(1,0)=0;
-    R.at(1,1)=0;
-    R.at(1,2)=1;
-    R.at(2,0)=-0;
-    R.at(2,1)=1;
-    R.at(2,2)=0;
+      
+    Joint_v q_ris=inverse_kinematics(r_d,q_k);
+    cout<<"the result is: "<<endl;
+    cout << q_ris << endl;
+    cout<<"the result should have been: "<<endl;
+    Pose_v where =get_pose(q_desired);
+    cout << q_desired <<endl;
 
-   // cout << "ROTATION MATRIX IS: \n"<< R << endl;  
-
-  //  Angle_v RPY=get_RPY(R);
-
-   // cout << "orientation issss :  "<< RPY << endl;  
-*/
-   //Homogeneous_m DH = get_DH(q_k1);
-   //Jacobian_m J = get_jacobian(q_k1);
-   // cout << "DHmatrix is :  \n"<< DH << endl;  
-    //cout << "Jacobian is :  \n"<< J.transpose()*R_d << endl; 
-    cout << "Position is : \n "<< R_d << endl; 
-   
-    
     return 0;
       
 }
-

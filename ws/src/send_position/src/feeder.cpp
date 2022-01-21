@@ -26,9 +26,9 @@ Joint_v q_act;
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
-float max_velocity = 357.7;
-const float velocity = 100.7;
-float delay = 0.01;    // frequence of the messages to arduino 
+const float max_velocity = 357.7;
+const float velocity = 200.7;
+const float delay = 0.05;    // frequence of the messages to arduino 
 float duration;
 int pose_achieved;
 ros::Publisher pub;
@@ -57,25 +57,47 @@ int check_for_pose(Joint_v& dq, float dEE){
 
 void move_joints(){
   cout << "pose achieved in move_joints: "<< pose_achieved  << endl;
+  int cnt=0;
   while(pose_achieved == 0){
     for(int i = 0; i<5; i++){
       if(abs(dq.at(i))>0.3){
         float ddq_i =(dq.at(i)*delay)/duration;
         q.at(i) += ddq_i;
-        dq.at(i)-=ddq_i;
+        dq.at(i)-=ddq_i; 
        // cout << "variazione joint " << i << "is " << dq.at(i) << endl;
       }
+      
     }
-    cout << "I'm going to go to these values: \n" << endl;
+    if(abs(dEE)>=0.3){
+      if(dEE>0){
+        EE += 1;
+        dEE -= 1;
+      }
+      else{
+        EE -=1;
+        dEE += 1;
+      }
+    }
+    cout << "I'm going to go to these values: dq is " << endl;
+    cout << dq << endl;
+    cout << "I'm going to go to these values: q is " << endl;
     cout << q << endl;
-    EE = pinch(EE, EE_d);
+    cout << "I'm going to go to these values: EE is " << endl;
+    cout << EE << endl;
+    cout<<"\n"<<endl;
+
+    
     msg.position={(double)q.at(0), (double)q.at(1), (double)q.at(2),
      (double)q.at(3), (double)q.at(4), (double)EE};
     ros::Duration(delay).sleep();
     pub.publish(msg);
+    cnt++;
+    
 
     pose_achieved = check_for_pose(dq,dEE);
   }
+    cout << "number of messages: "<< cnt << endl;
+
     
     
 }
@@ -96,13 +118,7 @@ void plan_motion(){
 
   //q_d = inverse_kinematics(r_d,q);
 
-  q_act.at(0) = 90.0;
-  q_act.at(1) = 50.0;
-  q_act.at(2) = 115.0;
-  q_act.at(3) = 50.0;
-  q_act.at(4) = 90.0; 
-  float EE_act = 90;
-  
+  q_d=q_act;
   cout << "I found some inverse solution, values: \n" << endl;
   cout << q_d << endl;
   //vector of single joints difference
@@ -173,7 +189,7 @@ int main(int argc, char **argv){
   
   //Initial Setup
   pose_achieved = 1;
-  EE = EE_init;
+  
   q_init.at(0) = 90.0;
   q_init.at(1) = 0.0;
   q_init.at(2) = 0.0;
@@ -182,6 +198,7 @@ int main(int argc, char **argv){
   float EE_init = 120.0;
   
   q = q_init;
+  EE = EE_init;
   p=get_pose(q_init);
   
   //init nodes and topics
@@ -192,7 +209,7 @@ int main(int argc, char **argv){
   ros::Rate loop_rate(10);
 
 
-  /*
+  
   //get to the best position to start the motion ==> activation
   q_act.at(0) = 90.0;
   q_act.at(1) = 50.0;
@@ -200,6 +217,7 @@ int main(int argc, char **argv){
   q_act.at(3) = 50.0;
   q_act.at(4) = 90.0; 
   float EE_act = 90;
+  /*
   //activation procedure
   activation();
   */
