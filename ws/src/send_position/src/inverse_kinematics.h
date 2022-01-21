@@ -53,6 +53,8 @@ Homogeneous_m DH_matrix(DH_row& T){
 
 Homogeneous_m get_DH(Joint_v &q){
 
+    Homogeneous_m DH;
+    
     Homogeneous_m DH_i;
     int n = 5;
     float q_1 = q.at(0);
@@ -60,7 +62,19 @@ Homogeneous_m get_DH(Joint_v &q){
     float q_3 = q.at(2);
     float q_4 = q.at(3);
     float q_5 = q.at(4);
-    
+
+    float M[4][4] = {
+    {cos(q_2 + q_3 + q_4)*cos(q_1), -sin(q_1), -sin(q_2 + q_3 + q_4)*cos(q_1), (cos(q_1)*(27*cos(q_2 + q_3 + q_4) + 100*cos(q_2 + q_3) + 105*cos(q_2)))/10},
+
+    { cos(q_2 + q_3 + q_4)*sin(q_1),  cos(q_1), -sin(q_2 + q_3 + q_4)*sin(q_1), (sin(q_1)*(27*cos(q_2 + q_3 + q_4) + 100*cos(q_2 + q_3) + 105*cos(q_2)))/10},
+
+    {          sin(q_2 + q_3 + q_4),         0,           cos(q_2 + q_3 + q_4),          (27*sin(q_2 + q_3 + q_4))/10 + 10*sin(q_2 + q_3) + (21*sin(q_2))/2},
+
+    {                             0,         0,                              0,                                                                           1}
+    };
+
+
+    /*
     DH_table DHTABLE ={
     { M_PI/2,     0,     0, q_1},
     {    0,  21/2,     0, q_2},
@@ -68,16 +82,44 @@ Homogeneous_m get_DH(Joint_v &q){
     {-M_PI/2, 27/10,     0, q_4},
     {    0,     0, 33/10, q_5}
     };
-    
-    Homogeneous_m DH = DH_matrix(DHTABLE[0]);
-
     for(int i = 1; i<n; i++){
        DH_i = DH_matrix(DHTABLE[i]);
        DH = DH*DH_i;
     };
+    */
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<4; j++){
+            if (abs(M[i][j]) < 0.0001){
+                DH.at(i,j)=0;
+            }
+            else{ 
+            DH.at(i,j) = M[i][j] ;
+            }
+        }
+    }
+
+
     return DH;
 }
 
+/*
+q_1 = M_PI/2;
+q_2 = M_PI/3;
+q_3 = 0;
+q_4 = M_PI;
+q_5 = 0;
+
+ans =
+
+[          0, -1,         0,               0]
+
+[       -1/2,  0, 3^(1/2)/2,           89/10]
+
+[ -3^(1/2)/2,  0,      -1/2, (89*3^(1/2))/10]
+
+[          0,  0,         0,               1]
+
+*/
 
 Rotation_m get_orientation(Joint_v &q)
 {
@@ -104,7 +146,7 @@ Jacobian_m get_jacobian(Joint_v &q)
 
     // closed form solution from MATLAB script for geometric jacobian
     float M[6][5] = {
-        {-(sin(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(cos(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(cos(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
+        {-(sin(q_1) * (2.7 * cos(q_2 + q_3 + q_4) - 3.3 * sin(q_2 + q_3 + q_4) + 10 * cos(q_2 + q_3) + 10.5 * cos(q_2))), -(cos(q_1) * (3.3 * cos(q_2 + q_3 + q_4) + 2.7 * sin(q_2 + q_3 + q_4) + 10.0 * sin(q_2 + q_3) + 10.5 * sin(q_2))), -(cos(q_1) * (10.0 * sin(q_2 + q_3) + 0.3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))), -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
         {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
         {0, 10 * cos(q_2 + q_3) + (10.5 * cos(q_2)) + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3.0 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) , (3 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))), 0},
         {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
@@ -124,6 +166,7 @@ Jacobian_m get_jacobian(Joint_v &q)
 
     return J;
 }
+
 //this works
 Angle_v get_RPY(Rotation_m& R){
     Angle_v RPY;
