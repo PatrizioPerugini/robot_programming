@@ -62,17 +62,17 @@ Homogeneous_m get_DH(Joint_v &q){
     float q_3 = q.at(2);
     float q_4 = q.at(3);
     float q_5 = q.at(4);
+    float a_2 = 10.5;
+    float a_3= 10;  
+    float a_4 = 2.7;  
+    float d_5 = 3.3;
 
     float M[4][4] = {
-    {cos(q_2 + q_3 + q_4)*cos(q_1), -sin(q_1), -sin(q_2 + q_3 + q_4)*cos(q_1), (cos(q_1)*(27*cos(q_2 + q_3 + q_4) + 100*cos(q_2 + q_3) + 105*cos(q_2)))/10},
-
-    { cos(q_2 + q_3 + q_4)*sin(q_1),  cos(q_1), -sin(q_2 + q_3 + q_4)*sin(q_1), (sin(q_1)*(27*cos(q_2 + q_3 + q_4) + 100*cos(q_2 + q_3) + 105*cos(q_2)))/10},
-
-    {          sin(q_2 + q_3 + q_4),         0,           cos(q_2 + q_3 + q_4),          (27*sin(q_2 + q_3 + q_4))/10 + 10*sin(q_2 + q_3) + (21*sin(q_2))/2},
-
-    {                             0,         0,                              0,                                                                           1}
+    {cos(q_2 + q_3 + q_4)*cos(q_1)*cos(q_5) - sin(q_1)*sin(q_5), - cos(q_5)*sin(q_1) - cos(q_2 + q_3 + q_4)*cos(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*cos(q_1), cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1)},
+    {cos(q_1)*sin(q_5) + cos(q_2 + q_3 + q_4)*cos(q_5)*sin(q_1),   cos(q_1)*cos(q_5) - cos(q_2 + q_3 + q_4)*sin(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*sin(q_1), sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*sin(q_1)},
+    {                             sin(q_2 + q_3 + q_4)*cos(q_5),                               -sin(q_2 + q_3 + q_4)*sin(q_5),           cos(q_2 + q_3 + q_4),                     a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)},
+    {                                                         0,                                                            0,                              0,                                                                                                           1}
     };
-
 
     /*
     DH_table DHTABLE ={
@@ -143,16 +143,21 @@ Jacobian_m get_jacobian(Joint_v &q)
     float q_3 = q.at(2);
     float q_4 = q.at(3);
     float q_5 = q.at(4);
+    float a_2 = 10.5;
+    float a_3= 10;  
+    float a_4 = 2.7;  
+    float d_5 = 3.3;
 
     // closed form solution from MATLAB script for geometric jacobian
     float M[6][5] = {
-        {-(sin(q_1) * (2.7 * cos(q_2 + q_3 + q_4) - 3.3 * sin(q_2 + q_3 + q_4) + 10 * cos(q_2 + q_3) + 10.5 * cos(q_2))), -(cos(q_1) * (3.3 * cos(q_2 + q_3 + q_4) + 2.7 * sin(q_2 + q_3 + q_4) + 10.0 * sin(q_2 + q_3) + 10.5 * sin(q_2))), -(cos(q_1) * (10.0 * sin(q_2 + q_3) + 0.3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))), -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {0, 10 * cos(q_2 + q_3) + (10.5 * cos(q_2)) + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3.0 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) , (3 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))), 0},
-        {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
-        {0, -cos(q_1), -cos(q_1), -cos(q_1), sin(q_4) * (sin(q_1) * sin(q_2) * sin(q_3) - cos(q_2) * cos(q_3) * sin(q_1)) - cos(q_4) * (cos(q_2) * sin(q_1) * sin(q_3) + cos(q_3) * sin(q_1) * sin(q_2))},
-        {1, 0, 0, 0, cos(q_4) * (cos(q_2) * cos(q_3) - sin(q_2) * sin(q_3)) - sin(q_4) * (cos(q_2) * sin(q_3) + cos(q_3) * sin(q_2))}
-    };
+        {-sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)), -cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -cos(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),                                                                                                                                         0}, 
+        { cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)), -sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -sin(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),                                                                                                                                         0}, 
+        {                                                                                                  0,             a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),             a_3*cos(q_2 + q_3) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),             a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),                                                                                                                                         0}, 
+        {                                                                                                  0,                                                                                            sin(q_1),                                                                             sin(q_1),                                                        sin(q_1), - cos(q_4)*(cos(q_1)*cos(q_2)*sin(q_3) + cos(q_1)*cos(q_3)*sin(q_2)) - sin(q_4)*(cos(q_1)*cos(q_2)*cos(q_3) - cos(q_1)*sin(q_2)*sin(q_3))}, 
+        {                                                                                                  0,                                                                                           -cos(q_1),                                                                            -cos(q_1),                                                       -cos(q_1),   sin(q_4)*(sin(q_1)*sin(q_2)*sin(q_3) - cos(q_2)*cos(q_3)*sin(q_1)) - cos(q_4)*(cos(q_2)*sin(q_1)*sin(q_3) + cos(q_3)*sin(q_1)*sin(q_2))}, 
+        {                                                                                                  1,                                                                                                   0,                                                                                    0,                                                               0,                                       cos(q_4)*(cos(q_2)*cos(q_3) - sin(q_2)*sin(q_3)) - sin(q_4)*(cos(q_2)*sin(q_3) + cos(q_3)*sin(q_2))}    
+        };
+    
     for(int i = 0; i<6; i++){
         for(int j = 0; j<5; j++){
             if (abs(M[i][j]) < 0.0001){
@@ -162,7 +167,7 @@ Jacobian_m get_jacobian(Joint_v &q)
             J.at(i,j) = M[i][j] ;
             }
         }
-    };
+    }
 
     return J;
 }
@@ -195,12 +200,17 @@ Angle_v get_RPY(Rotation_m& R){
         float yaw_1 = atan2( R21 / cos(pitch_1) , R11 / cos(pitch_1));
         float yaw_2 = atan2( R21 / cos(pitch_2) , R11 / cos(pitch_2));
         //MORE THEN ONE SOLUTION, CHOOSE THE MORE SUITABLE ONE
-       //pitch = pitch_1;
-       //roll = roll_1;
-       // yaw = yaw_1 ;
-        pitch = pitch_2;
-        roll = roll_2;
-        yaw = yaw_2 ;
+
+        if(pitch_1 + roll_1 + yaw_1 > pitch_2 + roll_2 + yaw_2){
+            pitch = pitch_2;
+            roll = roll_2;
+            yaw = yaw_2 ;
+        }
+        else{
+            pitch = pitch_1;
+            roll = roll_1;
+             yaw = yaw_1 ;
+        }
        
     }
     else{ 
@@ -243,13 +253,23 @@ Pose_v get_pose(Joint_v &q)
     p.at(4) = RPY.at(1);
     p.at(5) = RPY.at(2);
 
+    for(int i=0; i<6; i++){
+     
+        for(int j = 0; j<5; j++){
+            if (abs(p.at(i)) < 0.0001){
+                p.at(i)=0;
+            }
+        }
+    
+    }
+
     return p;
 }
 
 
 //NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
 Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
-    
+    cout<< "Entered inside the function" << endl;
     //instantiate initial error 6 x 1
     Error_v error;
     //general q_k+1, instantiated with zeros
@@ -260,17 +280,18 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     }
     
 
-    float alpha=0.1;
+    float alpha=0.000001;
     i = 0;
     
-    while (abs(error.at(0))>=0.1 &&
-    abs(error.at(1))>=0.1 && 
-    abs(error.at(2))>=0.1 && 
-    abs(error.at(3))>=0.3*(M_PI/180) && 
-    abs(error.at(4))>=0.3*(M_PI/180) && 
-    abs(error.at(5))>=0.3*(M_PI/180) && 
-    i < 50){
-       
+    while (
+    //abs(error.at(0))>=0.01 &&
+    //abs(error.at(1))>=0.01 && 
+    //abs(error.at(2))>=0.01 && 
+    //abs(error.at(3))>=0.3*(M_PI/180) && 
+    //abs(error.at(4))>=0.3*(M_PI/180) && 
+    //abs(error.at(5))>=0.3*(M_PI/180) && 
+    i < 100000){
+       cout<< "Entered inside while \n" << endl;
         //compute new error 
         for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
