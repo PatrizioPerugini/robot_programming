@@ -150,12 +150,36 @@ Jacobian_m get_jacobian(Joint_v &q)
 
     // closed form solution from MATLAB script for geometric jacobian
     float M[6][5] = {
-        {-sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)), -cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -cos(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),                                                                                                                                         0}, 
-        { cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)), -sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -sin(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),                                                                                                                                         0}, 
-        {                                                                                                  0,             a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),             a_3*cos(q_2 + q_3) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),             a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),                                                                                                                                         0}, 
-        {                                                                                                  0,                                                                                            sin(q_1),                                                                             sin(q_1),                                                        sin(q_1), - cos(q_4)*(cos(q_1)*cos(q_2)*sin(q_3) + cos(q_1)*cos(q_3)*sin(q_2)) - sin(q_4)*(cos(q_1)*cos(q_2)*cos(q_3) - cos(q_1)*sin(q_2)*sin(q_3))}, 
-        {                                                                                                  0,                                                                                           -cos(q_1),                                                                            -cos(q_1),                                                       -cos(q_1),   sin(q_4)*(sin(q_1)*sin(q_2)*sin(q_3) - cos(q_2)*cos(q_3)*sin(q_1)) - cos(q_4)*(cos(q_2)*sin(q_1)*sin(q_3) + cos(q_3)*sin(q_1)*sin(q_2))}, 
-        {                                                                                                  1,                                                                                                   0,                                                                                    0,                                                               0,                                       cos(q_4)*(cos(q_2)*cos(q_3) - sin(q_2)*sin(q_3)) - sin(q_4)*(cos(q_2)*sin(q_3) + cos(q_3)*sin(q_2))}    
+        {-sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)),
+         -cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                        -cos(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                                             -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                                                                                                         0}, 
+        { cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)),
+         -sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                        -sin(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                                             -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
+                                                                                                         0}, 
+        {                                                                                                  0,
+                     a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
+                                     a_3*cos(q_2 + q_3) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
+                                                         a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
+                                                                                                          0}, 
+        {                                                                                                  0,
+                                                                                                    sin(q_1),
+                                                                                                    sin(q_1),
+                                                                                                    sin(q_1),
+          - cos(q_4)*(cos(q_1)*cos(q_2)*sin(q_3) + cos(q_1)*cos(q_3)*sin(q_2)) - sin(q_4)*(cos(q_1)*cos(q_2)*cos(q_3) - cos(q_1)*sin(q_2)*sin(q_3))}, 
+        {                                                                                                  0,
+                                                                                                   -cos(q_1),
+                                                                                                  -cos(q_1),
+                                                                                                  -cos(q_1),
+             sin(q_4)*(sin(q_1)*sin(q_2)*sin(q_3) - cos(q_2)*cos(q_3)*sin(q_1)) - cos(q_4)*(cos(q_2)*sin(q_1)*sin(q_3) + cos(q_3)*sin(q_1)*sin(q_2))},
+        {                                                                                                  1,
+                                                                                                           0,
+                                                                                                            0,
+                                                                                                           0,
+          cos(q_4)*(cos(q_2)*cos(q_3) - sin(q_2)*sin(q_3)) - sin(q_4)*(cos(q_2)*sin(q_3) + cos(q_3)*sin(q_2))}
         };
     
     for(int i = 0; i<6; i++){

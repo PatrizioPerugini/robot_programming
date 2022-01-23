@@ -18,11 +18,13 @@ Joint_v_error dq;  //error: qd - q
 float EE_d;
 float EE;
 float dEE;
+float EE_constaints[2] ={80,130};
 
 Pose_v p; //pose of ee, initially with initial conf 
 Joint_v q; //joint conf, initially with initial conf 
 Joint_v q_init;
 Joint_v q_act;
+float q_constaints[5][2] = {{10,170},{0,90},{0,180},{0,160},{0,180}} 
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
@@ -91,15 +93,14 @@ void move_joints(){
      (double)q.at(3), (double)q.at(4), (double)EE};
     ros::Duration(delay).sleep();
     pub.publish(msg);
+
+    p = get_pose(q);
     cnt++;
-    
 
     pose_achieved = check_for_pose(dq,dEE);
   }
-    cout << "number of messages: "<< cnt << endl;
-
-    
-    
+  cout << "number of messages: "<< cnt << endl;
+   
 }
 
 
@@ -114,13 +115,24 @@ float maxx(Joint_v_error& e){
 }
 
 void plan_motion(){
-
-
-  //q_d = inverse_kinematics(r_d,q);
-
-  q_d=q_act;
+  q_d = inverse_kinematics(r_d,q);
+  //q_d=q_act;
   cout << "I found some inverse solution, values: \n" << endl;
   cout << q_d << endl;
+
+  for(int i=0; i<6;i++){
+    if(i==0){
+      if(q.at(0)<q_constaints[i][0]){      //CHECK low constraint
+          q.at(0)=q_constaints[i][0];
+      }
+      else if(q.at(0)>q_constaints[i][1]){  //CHECK high constarint
+          q.at(0)=q_constaints[i][1];
+      }
+      else{
+        continue;
+      }
+  }
+  
   //vector of single joints difference
   dq = q_d - q;
 
@@ -176,7 +188,17 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
     r_d.at(3) = msg.orientation.x + p.at(3);
     r_d.at(4) = msg.orientation.y + p.at(4);
     r_d.at(5) = msg.orientation.z + p.at(5);
+    
     EE_d = msg.orientation.w + EE;    //I know that it should be the forth coordinate of the quaternion, but doesn't matter.
+    if(EE_d < EE_constaints[0]){      //CHECK low constraint of EE
+        EE_d=EE_constaints[0];
+    }
+    else if(EE_d>EE_constaints[1]){  //CHECK high constarint of EE
+        EE_d=EE_constaints[1];
+    }else{
+        continue;
+    }
+    
     pose_achieved = 0;
     plan_motion();
 
