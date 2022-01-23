@@ -89,8 +89,8 @@ void move_joints(){
     cout<<"\n"<<endl;
 
     
-    msg.position={(double)q.at(0), (double)q.at(1), (double)q.at(2),
-     (double)q.at(3), (double)q.at(4), (double)EE};
+    msg.position={(double)q.at(0) * (180/M_PI), (double)q.at(1)* (180/M_PI), (double)q.at(2)* (180/M_PI),
+     (double)q.at(3) * (180/M_PI), (double)q.at(4) * (180/M_PI), (double)EE} * (180/M_PI);
     ros::Duration(delay).sleep();
     pub.publish(msg);
 
@@ -185,9 +185,9 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
     r_d.at(0) = msg.position.x    + p.at(0);
     r_d.at(1) = msg.position.y    + p.at(1);
     r_d.at(2) = msg.position.z    + p.at(2);
-    r_d.at(3) = msg.orientation.x + p.at(3);
-    r_d.at(4) = msg.orientation.y + p.at(4);
-    r_d.at(5) = msg.orientation.z + p.at(5);
+    r_d.at(3) = msg.orientation.x * (M_PI/180) + p.at(3);
+    r_d.at(4) = msg.orientation.y * (M_PI/180)+ p.at(4);
+    r_d.at(5) = msg.orientation.z * (M_PI/180)+ p.at(5);
     
     EE_d = msg.orientation.w + EE;    //I know that it should be the forth coordinate of the quaternion, but doesn't matter.
     if(EE_d < EE_constaints[0]){      //CHECK low constraint of EE
@@ -212,12 +212,12 @@ int main(int argc, char **argv){
   //Initial Setup
   pose_achieved = 1;
   
-  q_init.at(0) = 90.0;
-  q_init.at(1) = 0.0;
-  q_init.at(2) = 0.0;
-  q_init.at(3) = 160.0;
-  q_init.at(4) = 180.0;
-  float EE_init = 120.0;
+  q_init.at(0) = 90.0 * (180/M_PI);
+  q_init.at(1) = 0.0* (180/M_PI)
+  q_init.at(2) = 0.0 * (180/M_PI);
+  q_init.at(3) = 160.0 * (180/M_PI);
+  q_init.at(4) = 180.0 * (180/M_PI);
+  float EE_init = 120.0 * (180/M_PI);
   
   q = q_init;
   EE = EE_init;
@@ -233,12 +233,12 @@ int main(int argc, char **argv){
 
   
   //get to the best position to start the motion ==> activation
-  q_act.at(0) = 90.0;
-  q_act.at(1) = 50.0;
-  q_act.at(2) = 115.0;
-  q_act.at(3) = 50.0;
-  q_act.at(4) = 90.0; 
-  float EE_act = 90;
+  q_act.at(0) = 90.0 * (180/M_PI);
+  q_act.at(1) = 75.0 * (180/M_PI);
+  q_act.at(2) = 172.0 * (180/M_PI);
+  q_act.at(3) = 50.0 * (180/M_PI);
+  q_act.at(4) = 90.0 * (180/M_PI); 
+  float EE_act = 90 * (180/M_PI);
   /*
   //activation procedure
   activation();

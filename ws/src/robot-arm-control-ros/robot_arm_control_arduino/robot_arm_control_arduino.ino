@@ -41,8 +41,8 @@ void writeServos() {
 // Subscriber Callback to store the jointstate position values in the global variables
 void servoControlSubscriberCallbackJointState(const sensor_msgs::JointState& msg) {
   servo_TARGET_position[0] = msg.position[0];
-  servo_TARGET_position[1] = msg.position[1];
-  servo_TARGET_position[2] = msg.position[2];
+  servo_TARGET_position[1] = msg.position[1] * 180/270;
+  servo_TARGET_position[2] = msg.position[2] * 180/270;
   servo_TARGET_position[3] = msg.position[3];
   servo_TARGET_position[4] = msg.position[4];
   servo_TARGET_position[5] = msg.position[5];

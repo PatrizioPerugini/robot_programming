@@ -197,7 +197,7 @@ Jacobian_m get_jacobian(Joint_v &q)
 }
 
 //this works
-Angle_v get_RPY(Rotation_m& R){
+Angle_v get_RPY(Rotation_m& R, Pose_v p){
     Angle_v RPY;
     float R11=R.at(0,0);
     float R12=R.at(0,1);
@@ -224,7 +224,7 @@ Angle_v get_RPY(Rotation_m& R){
         float yaw_1 = atan2( R21 / cos(pitch_1) , R11 / cos(pitch_1));
         float yaw_2 = atan2( R21 / cos(pitch_2) , R11 / cos(pitch_2));
         //MORE THEN ONE SOLUTION, CHOOSE THE MORE SUITABLE ONE
-
+        /*
         if(pitch_1 + roll_1 + yaw_1 > pitch_2 + roll_2 + yaw_2){
             pitch = pitch_2;
             roll = roll_2;
@@ -235,7 +235,27 @@ Angle_v get_RPY(Rotation_m& R){
             roll = roll_1;
              yaw = yaw_1 ;
         }
-       
+       */
+        Angle_v dRPY_1;
+        dRPY_1.at(0) = abs(p.at(3)*180/M_PI - roll_1);
+        dRPY_1.at(1) = abs(p.at(4)*180/M_PI - pitch_1);
+        dRPY_1.at(2) = abs(p.at(5)*180/M_PI - yaw_1);
+        Angle_v dRPY_2;
+        dRPY_2.at(0) = abs(p.at(3)*180/M_PI - roll_2);
+        dRPY_2.at(1) = abs(p.at(4)*180/M_PI - pitch_2);
+        dRPY_2.at(2) = abs(p.at(5)*180/M_PI - yaw_2);
+
+        if(dRPY_1.at(0) + dRPY_1.at(1) + dRPY_1.at(2) > dRPY_1.at(0) + dRPY_1.at(1) + dRPY_1.at(2)){
+            pitch = pitch_2;
+            roll = roll_2;
+            yaw = yaw_2 ;
+        }
+        else{
+            pitch = pitch_1;
+            roll = roll_1;
+             yaw = yaw_1 ;
+        }
+
     }
     else{ 
    

@@ -4,6 +4,7 @@
         "complex": "cpp",
         "array": "cpp",
         "string_view": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "cmath": "cpp"
     }
 }
