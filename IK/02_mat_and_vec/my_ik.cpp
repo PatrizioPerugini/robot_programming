@@ -53,6 +53,8 @@ Homogeneous_m DH_matrix(DH_row& T){
 
 Homogeneous_m get_DH(Joint_v &q){
 
+    Homogeneous_m DH;
+    
     Homogeneous_m DH_i;
     int n = 5;
     float q_1 = q.at(0);
@@ -60,7 +62,19 @@ Homogeneous_m get_DH(Joint_v &q){
     float q_3 = q.at(2);
     float q_4 = q.at(3);
     float q_5 = q.at(4);
-    
+    float a_2 = 10.5;
+    float a_3= 10;  
+    float a_4 = 2.7;  
+    float d_5 = 3.3;
+
+    float M[4][4] = {
+    {cos(q_2 + q_3 + q_4)*cos(q_1)*cos(q_5) - sin(q_1)*sin(q_5), - cos(q_5)*sin(q_1) - cos(q_2 + q_3 + q_4)*cos(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*cos(q_1), cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1)},
+    {cos(q_1)*sin(q_5) + cos(q_2 + q_3 + q_4)*cos(q_5)*sin(q_1),   cos(q_1)*cos(q_5) - cos(q_2 + q_3 + q_4)*sin(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*sin(q_1), sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*sin(q_1)},
+    {                             sin(q_2 + q_3 + q_4)*cos(q_5),                               -sin(q_2 + q_3 + q_4)*sin(q_5),           cos(q_2 + q_3 + q_4),                     a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)},
+    {                                                         0,                                                            0,                              0,                                                                                                           1}
+    };
+
+    /*
     DH_table DHTABLE ={
     { M_PI/2,     0,     0, q_1},
     {    0,  21/2,     0, q_2},
@@ -68,17 +82,47 @@ Homogeneous_m get_DH(Joint_v &q){
     {-M_PI/2, 27/10,     0, q_4},
     {    0,     0, 33/10, q_5}
     };
-    
-    Homogeneous_m DH = DH_matrix(DHTABLE[0]);
-
     for(int i = 1; i<n; i++){
        DH_i = DH_matrix(DHTABLE[i]);
        DH = DH*DH_i;
     };
+    */
+    for(int i = 0; i<4; i++){
+        for(int j = 0; j<4; j++){
+            if (abs(M[i][j]) < 0.0001){
+                DH.at(i,j)=0;
+            }
+            else{ 
+            DH.at(i,j) = M[i][j] ;
+            }
+        }
+    }
+
+
     return DH;
 }
 
+/*
+q_1 = M_PI/2;
+q_2 = M_PI/3;
+q_3 = 0;
+q_4 = M_PI;
+q_5 = 0;
 
+ans =
+
+[          0, -1,         0,               0]
+
+[       -1/2,  0, 3^(1/2)/2,           89/10]
+
+[ -3^(1/2)/2,  0,      -1/2, (89*3^(1/2))/10]
+
+[          0,  0,         0,               1]
+
+*/
+
+//input q: in radiants 
+//outpu R: rotation matrix
 Rotation_m get_orientation(Joint_v &q)
 {
     Rotation_m R;
@@ -92,7 +136,8 @@ Rotation_m get_orientation(Joint_v &q)
     return R;
 }
 
-
+//input q: in radiants 
+//outpu J: anal Jacobian matrix
 Jacobian_m get_jacobian(Joint_v &q)
 {
     Jacobian_m J;
@@ -101,16 +146,20 @@ Jacobian_m get_jacobian(Joint_v &q)
     float q_3 = q.at(2);
     float q_4 = q.at(3);
     float q_5 = q.at(4);
+    float a_2 = 10.5;
+    float a_3= 10;  
+    float a_4 = 2.7;  
+    float d_5 = 3.3;
 
-    // closed form solution from MATLAB script for geometric jacobian
-    float M[6][5] = {
-        {-(sin(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(cos(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(cos(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * cos(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {(cos(q_1) * (27 * cos(q_2 + q_3 + q_4) - 33 * sin(q_2 + q_3 + q_4) + 100 * cos(q_2 + q_3) + 105 * cos(q_2))) / 10, -(sin(q_1) * (33 * cos(q_2 + q_3 + q_4) + 27 * sin(q_2 + q_3 + q_4) + 100 * sin(q_2 + q_3) + 105 * sin(q_2))) / 10, -(sin(q_1) * (100 * sin(q_2 + q_3) + 3 * sqrt(202) * cos(q_2 + q_3 + q_4 - atan(9 / 11)))) / 10, -(3 * sin(q_1) * (11 * cos(q_2 + q_3 + q_4) + 9 * sin(q_2 + q_3 + q_4))) / 10, 0},
-        {0, 10 * cos(q_2 + q_3) + (10.5 * cos(q_2)) + (3.0 * sqrt(202.0) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) / 10, 10 * cos(q_2 + q_3) + (3.0 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))) , (3 * sqrt(2.02) * cos(q_2 + q_3 + q_4 + atan(11 / 9))), 0},
-        {0, sin(q_1), sin(q_1), sin(q_1), -cos(q_4) * (cos(q_1) * cos(q_2) * sin(q_3) + cos(q_1) * cos(q_3) * sin(q_2)) - sin(q_4) * (cos(q_1) * cos(q_2) * cos(q_3) - cos(q_1) * sin(q_2) * sin(q_3))},
-        {0, -cos(q_1), -cos(q_1), -cos(q_1), sin(q_4) * (sin(q_1) * sin(q_2) * sin(q_3) - cos(q_2) * cos(q_3) * sin(q_1)) - cos(q_4) * (cos(q_2) * sin(q_1) * sin(q_3) + cos(q_3) * sin(q_1) * sin(q_2))},
-        {1, 0, 0, 0, cos(q_4) * (cos(q_2) * cos(q_3) - sin(q_2) * sin(q_3)) - sin(q_4) * (cos(q_2) * sin(q_3) + cos(q_3) * sin(q_2))}
-    };
+    // closed form solution from MATLAB script for geometric jacobian*(M_PI/180)
+    float M[6][5] = {{d_5*sin(q_2 + q_3 + q_4)*sin(q_1) - sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)), - cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*cos(q_1), - cos(q_1)*(a_3*sin(q_2 + q_3) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*cos(q_1), -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), 0}, 
+{cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1), - sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*sin(q_1), - sin(q_1)*(a_3*sin(q_2 + q_3) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*sin(q_1), -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), 0}, 
+{                                                                                                          0,                       a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),                       a_3*cos(q_2 + q_3) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),             a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4), 0}, 
+{                                                                                                          0,                                                                                                             0,                                                                                              0,                                                               0, 1}, 
+{                                                                                                          0,                                                                                                             1,                                                                                              1,                                                               1, 0}, 
+{                                                                                                          1,                                                                                                             0,                                                                                              0,                                                               0, 0}};
+
+    
     for(int i = 0; i<6; i++){
         for(int j = 0; j<5; j++){
             if (abs(M[i][j]) < 0.0001){
@@ -120,11 +169,13 @@ Jacobian_m get_jacobian(Joint_v &q)
             J.at(i,j) = M[i][j] ;
             }
         }
-    };
+    }
 
     return J;
 }
-//this works
+
+//input        R : rotation matrix 
+//output [a,b,g] : radiants
 Angle_v get_RPY(Rotation_m& R){
     Angle_v RPY;
     float R11=R.at(0,0);
@@ -173,9 +224,9 @@ Angle_v get_RPY(Rotation_m& R){
         }
     }
     //convert from radians to degrees
-    roll = roll*180/M_PI;
-    pitch = pitch*180/M_PI;
-    yaw = yaw*180/M_PI ;
+   // roll = roll*180/M_PI;
+   // pitch = pitch*180/M_PI;
+   // yaw = yaw*180/M_PI ;
     RPY.at(0)=roll;
     RPY.at(1)=pitch;
     RPY.at(2)=yaw;
@@ -183,6 +234,8 @@ Angle_v get_RPY(Rotation_m& R){
     return RPY;
 }
 
+//input              q : rad
+//output [x,y,z,a,b,g] : [cm,cm,cm,rad,rad,rad]
 Pose_v get_pose(Joint_v &q)
 {
     Pose_v p;
@@ -200,49 +253,54 @@ Pose_v get_pose(Joint_v &q)
     p.at(4) = RPY.at(1);
     p.at(5) = RPY.at(2);
 
+    for(int i=0; i<6; i++){
+     
+        for(int j = 0; j<5; j++){
+            if (abs(p.at(i)) < 0.0001){
+                p.at(i)=0;
+            }
+        }
+    
+    }
+
     return p;
 }
-/*
+
+
+//NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
+
+//input        r_d :  [cm,cm,cm,rad,rad,rad]
+//input        q_k : rad
+//output q_desired : rad
+
 Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
-    
-    float alpha = 0.05;
-    int count_steps = 0;
-    int max_iter = 10000;
-    float e_pos_tol = 1e-12;
-    float e_or_tol = 1e-12;
-    int i = 0;
-    int ik_iter = 0;
+    cout<< "Entered inside the function" << endl;
     //instantiate initial error 6 x 1
     Error_v error;
-    Vec_<float,3> e_pos;
-    Vec_<float,3> e_or;
     //general q_k+1, instantiated with zeros
-    Joint_v q_res = q_k;
-    Jacobian_m J;
-    Pose_v p_res;
-    Joint_v delta_theta;
-    Mat_<float,6,6> JJTe_lambda2_I;
-    
+    //Joint_v q_k1;
+    int i;
     for(i=0;i<6;i++){
         error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
     }
-    for(ik_iter = 0; ik_iter<max_iter; ik_iter++){
-        J = get_jacobian(q_res);
-        p_res = get_pose(q_res);
-        error = r_d - p_res;
-        //cout<< "At the (previous) iteration " << ik_iter << " the values for the error are :"<< endl;
-        //cout << error << endl;
-        e_pos.at(0) = error.at(0);
-        e_pos.at(1) = error.at(1);
-        e_pos.at(2) = error.at(2);
-         e_or.at(0) = error.at(3);
-         e_or.at(1) = error.at(4);
-         e_or.at(2) = error.at(5);
-        if(sqrt(e_pos.squaredNorm()) < e_pos_tol && sqrt(e_or.squaredNorm()) < e_or_tol){
-            cout << "Reached target close enough after " << ik_iter << " steps" << endl;
-            return q_res;
-        }
-       
+    
+    cout << error <<endl;
+    float alpha=0.0000001;
+    i = 0;
+    float norm_cm=sqrt((error.at(0)*error.at(0))+(error.at(1)*error.at(1))+(error.at(2)*error.at(2)));
+    float norm_rad=sqrt((error.at(3)*error.at(3)) +(error.at(4)*error.at(4))+(error.at(5)*error.at(5)));
+    cout << "norm cm " << norm_cm <<endl;
+    cout << "norm rad " << norm_rad <<endl;
+    while (
+   /* (abs(error.at(0))>=0.3 ||
+    abs(error.at(1))>=0.3  ||
+    abs(error.at(2))>=0.3  ||
+    abs(error.at(3))>=3*(M_PI/180) ||
+    abs(error.at(4))>=3*(M_PI/180) ||
+    abs(error.at(5))>=3*(M_PI/180))*/
+    (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
+    i < 100000){
+       cout<< "Entered inside while because value of error is: "<< error << "\n" << endl;
         //compute new error 
         for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
@@ -250,52 +308,34 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
             error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
        
         }
-        
-        q_res = q_res + delta_theta = (J.transpose() * error)* alpha ;
-        //cout<< "and the value of q_res is:" << endl;
-        //cout << q_res <<"\n"<< endl;
-         
-    }
-    cout<<"The final error norm for position is "<< sqrt(e_pos.squaredNorm())<< endl;
-    cout<<"The final error norm for orientation is "<< sqrt(e_or.squaredNorm())<< endl;
-    return q_res;
-}
-*/
-
-//NB r_d is the point where to go, q_k is set with the last position (normally the mid_position)
-
-Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){ 
-    
-    //instantiate initial error 6 x 1
-    Error_v error;
-    float alpha=0.00001;
-    int i;
-    for(i=0;i<6;i++){
-        error.at(i)=r_d.at(i)-get_pose(q_k).at(i);
-    }
-    i = 0;
-    while (i < 50000){/*abs(error.at(0))>=0.01 &&
-    abs(error.at(1))>=0.01 && 
-    abs(error.at(2))>=0.01 && 
-    abs(error.at(3))>=0.003*(M_PI/180) && 
-    abs(error.at(4))>=0.003*(M_PI/180) && 
-    abs(error.at(5))>=0.003*(M_PI/180) && */
- 
+        cout<< "iteration " << i << " values for previous error :"<< endl;
+        cout << error << endl;
+        //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
+        cout<< "and the value of q_k is:" << endl;
        
-        //compute new error 
-        for(int p=0;p<6;p++){ 
-            //f_r(q_k) returns a 6 x 1 vector
-            error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
-        }
-        Joint_v delta=get_jacobian(q_k).transpose()*error*alpha;
-         q_k= q_k + delta;
-        if(i%100==0){ 
-            cout << delta <<"\n"<< endl;
-        }
+        
+        q_k= q_k + (get_jacobian(q_k).transpose())*error*alpha;
+
+        cout << q_k <<"\n"<< endl;
+        //just printing some stuff
+
+       // cout<< "iteration " << i << " values for previous : "<< endl;
+       // cout << q_k << endl;
+       // 
+       // cout << "the error is " << sqrt(q_k.squaredNorm()) << endl;
+//
+       // cout<< "iteration " << i << " values for actual : "<< endl;
+       // cout << q_k1 << endl;
+
+        //q_k=q_k1;
+
         i++;
+         
     }
     return q_k;
 }
+
+
 
 int main(){
     
@@ -303,26 +343,28 @@ int main(){
     r_d.at(0)=0.34327;
     r_d.at(1)=3.09069;
     r_d.at(2)=2.56042;
-    r_d.at(3)=94.2511;
-    r_d.at(4)=153.443;
-    r_d.at(5)=175.566 ;
+    r_d.at(3)=94.2511*M_PI/180;
+    r_d.at(4)=153.443*M_PI/180;
+    r_d.at(5)=175.566*M_PI/180 ;
    
     Joint_v q_k;
-    q_k.at(0)=83;
-    q_k.at(1)=3;
-    q_k.at(2)=107;
-    q_k.at(3)=72;
-    q_k.at(4)=87;
-    q_k.at(5)=41;
+    q_k.at(0)=83*M_PI/180;
+    q_k.at(1)=3*M_PI/180;
+    q_k.at(2)=107*M_PI/180;
+    q_k.at(3)=72*M_PI/180;
+    q_k.at(4)=87*M_PI/180;
+    q_k.at(5)=41*M_PI/180;
     Joint_v q_desired;
-    q_desired.at(0)=80;
-    q_desired.at(1)=10;
-    q_desired.at(2)=110;
-    q_desired.at(3)=70;
-    q_desired.at(4)=90;
-    q_desired.at(5)=40;
+    q_desired.at(0)= 80*M_PI/180;
+    q_desired.at(1)= 10*M_PI/180;
+    q_desired.at(2)=110*M_PI/180;
+    q_desired.at(3)= 70*M_PI/180;
+    q_desired.at(4)= 90*M_PI/180;
+    q_desired.at(5)= 40*M_PI/180;
 
-      
+    //cout<<"jacobiano per q_desired is " << endl;
+    //cout<<get_jacobian(q_desired)<<endl;
+     
     Joint_v q_ris=inverse_kinematics(r_d,q_k);
     cout<<"the result is: "<<endl;
     cout << q_ris << endl;

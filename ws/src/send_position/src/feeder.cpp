@@ -21,10 +21,11 @@ float dEE;
 float EE_constaints[2] ={80,130};
 
 Pose_v p; //pose of ee, initially with initial conf 
+Pose_v p_init; //initial pose, calculated the first time with matlab 
 Joint_v q; //joint conf, initially with initial conf 
 Joint_v q_init;
 Joint_v q_act;
-float q_constaints[5][2] = {{10,170},{0,90},{0,180},{0,160},{0,180}} 
+float q_constraints[5][2] = {{10,170},{0,90},{0,180},{0,160},{0,180}} ;
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
@@ -90,11 +91,11 @@ void move_joints(){
 
     
     msg.position={(double)q.at(0) * (180/M_PI), (double)q.at(1)* (180/M_PI), (double)q.at(2)* (180/M_PI),
-     (double)q.at(3) * (180/M_PI), (double)q.at(4) * (180/M_PI), (double)EE} * (180/M_PI);
+     (double)q.at(3) * (180/M_PI), (double)q.at(4) * (180/M_PI), (double)EE};
     ros::Duration(delay).sleep();
     pub.publish(msg);
 
-    p = get_pose(q);
+    p = get_pose(q); //here we pass p in order for the RPY to choose the best sol
     cnt++;
 
     pose_achieved = check_for_pose(dq,dEE);
@@ -121,15 +122,11 @@ void plan_motion(){
   cout << q_d << endl;
 
   for(int i=0; i<6;i++){
-    if(i==0){
-      if(q.at(0)<q_constaints[i][0]){      //CHECK low constraint
-          q.at(0)=q_constaints[i][0];
+      if(q.at(0)<q_constraints[i][0]){      //CHECK low constraint
+          q.at(0)=q_constraints[i][0];
       }
-      else if(q.at(0)>q_constaints[i][1]){  //CHECK high constarint
-          q.at(0)=q_constaints[i][1];
-      }
-      else{
-        continue;
+      if(q.at(0)>q_constraints[i][1]){  //CHECK high constarint
+          q.at(0)=q_constraints[i][1];
       }
   }
   
@@ -146,6 +143,7 @@ void plan_motion(){
   
   move_joints();
 }
+
 /*
 void activation(){
   q_d = q_act;
@@ -178,7 +176,6 @@ void deactivation(){
 
 void desired_positionCallback(const geometry_msgs::Pose& msg){
 
- 
   cout << pose_achieved << endl;
   if(pose_achieved == 1){
     cout << "hey I heard something" << endl;    
@@ -193,12 +190,9 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
     if(EE_d < EE_constaints[0]){      //CHECK low constraint of EE
         EE_d=EE_constaints[0];
     }
-    else if(EE_d>EE_constaints[1]){  //CHECK high constarint of EE
+    if(EE_d>EE_constaints[1]){  //CHECK high constarint of EE
         EE_d=EE_constaints[1];
-    }else{
-        continue;
     }
-    
     pose_achieved = 0;
     plan_motion();
 
@@ -213,12 +207,13 @@ int main(int argc, char **argv){
   pose_achieved = 1;
   
   q_init.at(0) = 90.0 * (180/M_PI);
-  q_init.at(1) = 0.0* (180/M_PI)
+  q_init.at(1) = 0.0* (180/M_PI);
   q_init.at(2) = 0.0 * (180/M_PI);
   q_init.at(3) = 160.0 * (180/M_PI);
   q_init.at(4) = 180.0 * (180/M_PI);
   float EE_init = 120.0 * (180/M_PI);
-  
+
+
   q = q_init;
   EE = EE_init;
   p=get_pose(q_init);

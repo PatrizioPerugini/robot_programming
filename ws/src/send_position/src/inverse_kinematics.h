@@ -149,38 +149,14 @@ Jacobian_m get_jacobian(Joint_v &q)
     float d_5 = 3.3;
 
     // closed form solution from MATLAB script for geometric jacobian
-    float M[6][5] = {
-        {-sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)),
-         -cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                        -cos(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                                             -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                                                                                                         0}, 
-        { cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4)),
-         -sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                        -sin(q_1)*(a_3*sin(q_2 + q_3) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                                             -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)),
-                                                                                                         0}, 
-        {                                                                                                  0,
-                     a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
-                                     a_3*cos(q_2 + q_3) + a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
-                                                         a_4*cos(q_2 + q_3 + q_4) - d_5*sin(q_2 + q_3 + q_4),
-                                                                                                          0}, 
-        {                                                                                                  0,
-                                                                                                    sin(q_1),
-                                                                                                    sin(q_1),
-                                                                                                    sin(q_1),
-          - cos(q_4)*(cos(q_1)*cos(q_2)*sin(q_3) + cos(q_1)*cos(q_3)*sin(q_2)) - sin(q_4)*(cos(q_1)*cos(q_2)*cos(q_3) - cos(q_1)*sin(q_2)*sin(q_3))}, 
-        {                                                                                                  0,
-                                                                                                   -cos(q_1),
-                                                                                                  -cos(q_1),
-                                                                                                  -cos(q_1),
-             sin(q_4)*(sin(q_1)*sin(q_2)*sin(q_3) - cos(q_2)*cos(q_3)*sin(q_1)) - cos(q_4)*(cos(q_2)*sin(q_1)*sin(q_3) + cos(q_3)*sin(q_1)*sin(q_2))},
-        {                                                                                                  1,
-                                                                                                           0,
-                                                                                                            0,
-                                                                                                           0,
-          cos(q_4)*(cos(q_2)*cos(q_3) - sin(q_2)*sin(q_3)) - sin(q_4)*(cos(q_2)*sin(q_3) + cos(q_3)*sin(q_2))}
-        };
+    float M[6][5] = {{-sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2)), -cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2)), -a_3*sin(q_2 + q_3)*cos(q_1), 0, 0},  
+{ cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2)), -sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2)), -a_3*sin(q_2 + q_3)*sin(q_1), 0, 0},  
+{                                            0,             a_3*cos(q_2 + q_3) + a_2*cos(q_2),           a_3*cos(q_2 + q_3), 0, 0},  
+{                                            0,                                             0,                            0, 0, 1},  
+{                                            0,                                             1,                            1, 1, 0},  
+{                                            1,                                             0,                            0, 0, 0}};
+
+
     
     for(int i = 0; i<6; i++){
         for(int j = 0; j<5; j++){
@@ -197,7 +173,7 @@ Jacobian_m get_jacobian(Joint_v &q)
 }
 
 //this works
-Angle_v get_RPY(Rotation_m& R, Pose_v p){
+Angle_v get_RPY(Rotation_m& R){
     Angle_v RPY;
     float R11=R.at(0,0);
     float R12=R.at(0,1);
@@ -224,38 +200,13 @@ Angle_v get_RPY(Rotation_m& R, Pose_v p){
         float yaw_1 = atan2( R21 / cos(pitch_1) , R11 / cos(pitch_1));
         float yaw_2 = atan2( R21 / cos(pitch_2) , R11 / cos(pitch_2));
         //MORE THEN ONE SOLUTION, CHOOSE THE MORE SUITABLE ONE
-        /*
-        if(pitch_1 + roll_1 + yaw_1 > pitch_2 + roll_2 + yaw_2){
-            pitch = pitch_2;
-            roll = roll_2;
-            yaw = yaw_2 ;
-        }
-        else{
-            pitch = pitch_1;
-            roll = roll_1;
-             yaw = yaw_1 ;
-        }
-       */
-        Angle_v dRPY_1;
-        dRPY_1.at(0) = abs(p.at(3)*180/M_PI - roll_1);
-        dRPY_1.at(1) = abs(p.at(4)*180/M_PI - pitch_1);
-        dRPY_1.at(2) = abs(p.at(5)*180/M_PI - yaw_1);
-        Angle_v dRPY_2;
-        dRPY_2.at(0) = abs(p.at(3)*180/M_PI - roll_2);
-        dRPY_2.at(1) = abs(p.at(4)*180/M_PI - pitch_2);
-        dRPY_2.at(2) = abs(p.at(5)*180/M_PI - yaw_2);
-
-        if(dRPY_1.at(0) + dRPY_1.at(1) + dRPY_1.at(2) > dRPY_1.at(0) + dRPY_1.at(1) + dRPY_1.at(2)){
-            pitch = pitch_2;
-            roll = roll_2;
-            yaw = yaw_2 ;
-        }
-        else{
-            pitch = pitch_1;
-            roll = roll_1;
-             yaw = yaw_1 ;
-        }
-
+       //pitch = pitch_1;
+       //roll = roll_1;
+       // yaw = yaw_1 ;
+        pitch = pitch_2;
+        roll = roll_2;
+        yaw = yaw_2 ;
+       
     }
     else{ 
    
