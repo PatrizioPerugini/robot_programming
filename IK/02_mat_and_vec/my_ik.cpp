@@ -285,7 +285,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     }
     
     cout << error <<endl;
-    float alpha=0.0000001;
+    float alpha=0.0001;
     i = 0;
     float norm_cm=sqrt((error.at(0)*error.at(0))+(error.at(1)*error.at(1))+(error.at(2)*error.at(2)));
     float norm_rad=sqrt((error.at(3)*error.at(3)) +(error.at(4)*error.at(4))+(error.at(5)*error.at(5)));
@@ -299,8 +299,8 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     abs(error.at(4))>=3*(M_PI/180) ||
     abs(error.at(5))>=3*(M_PI/180))*/
     (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
-    i < 100000){
-       cout<< "Entered inside while because value of error is: "<< error << "\n" << endl;
+    i < 3000){
+       //cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
         //compute new error 
         for(int p=0;p<6;p++){ 
             //f_r(q_k) returns a 6 x 1 vector
@@ -308,15 +308,22 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
             error.at(p)=r_d.at(p)-get_pose(q_k).at(p);
        
         }
-        cout<< "iteration " << i << " values for previous error :"<< endl;
-        cout << error << endl;
-        //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
-        cout<< "and the value of q_k is:" << endl;
-       
+       // cout<< "iteration " << i << " values for previous error :"<< endl;
+       // cout << error << endl;
+       // //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
         
-        q_k= q_k + (get_jacobian(q_k).transpose())*error*alpha;
+        cout<< "and the value of q_k is:"<<q_k << endl;
+        //cout << q_k <<""<< endl;
+        cout << "error is "<<error<<endl;
+        cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
 
-        cout << q_k <<"\n"<< endl;
+        Joint_v delta= (get_jacobian(q_k).transpose())*error;//*alpha;
+
+        cout<<"delta is: "<<delta<<endl;
+        
+        q_k= q_k + delta*alpha;
+
+       
         //just printing some stuff
 
        // cout<< "iteration " << i << " values for previous : "<< endl;
