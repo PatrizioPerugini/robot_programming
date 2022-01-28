@@ -7,12 +7,16 @@ project(send_position)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
+find_package(catkin REQUIRED COMPONENTS cmake_modules
   roscpp
   rospy
   std_msgs
   geometry_msgs
+  
 )
+
+find_package(Eigen REQUIRED)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -108,6 +112,7 @@ catkin_package(
 #  LIBRARIES send_position
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+DEPENDS Eigen
 )
 
 ###########
@@ -119,6 +124,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${Eigen_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library

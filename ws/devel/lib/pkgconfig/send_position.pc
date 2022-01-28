@@ -3,6 +3,6 @@ prefix=/home/patrizio/Desktop/robot_programming/ws/devel
 Name: send_position
 Description: Description of send_position
 Version: 0.0.0
-Cflags: 
+Cflags: -I/usr/include/eigen3
 Libs: -L${prefix}/lib 
 Requires: 

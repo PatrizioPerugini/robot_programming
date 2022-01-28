@@ -2,23 +2,24 @@
 #include "static_vec.h"
 #include "static_mat.h"
 #include <Eigen/Core>
-#include <Eigen/StdVector>
-#include <Eigen/Eigenvalues>
+//#include <Eigen/StdVector>
+//#include <Eigen/Eigenvalues>
 #include <cmath>
 using namespace rp;
 using namespace std;
+using namespace Eigen;
+
 
 #define _USE_MATH_DEFINES
 
-
-using Angle_v = Eigen:Matrix<float, 3,1>;
-using Error_v =Eigen:Matrix<float,6,1>;
-using Joint_v=Eigen:Matrix<float, 5,1>;
-using Joint_v_error=Eigen:Matrix<float, 5,1>;
-using Pose_v=Eigen:Matrix<float, 6,1>;
-using Rotation_m = Eigen:Matrix<float, 3, 3>;
-using Homogeneous_m = Eigen:Matrix<float, 4, 4>;
-using Jacobian_m = Eigen:Matrix<float, 6, 5>;
+using Angle_v = Eigen::Matrix<float, 3,1>;
+using Error_v =Eigen::Matrix<float,6,1>;
+using Joint_v=Eigen::Matrix<float, 5,1>;
+using Joint_v_error=Eigen::Matrix<float, 5,1>;
+using Pose_v=Eigen::Matrix<float, 6,1>;
+using Rotation_m = Eigen::Matrix<float, 3, 3>;
+using Homogeneous_m = Eigen::Matrix<float, 4, 4>;
+using Jacobian_m = Eigen::Matrix<float, 6, 5>;
 
 using DH_row = float[4];
 using DH_table = float[5][4];
@@ -55,9 +56,9 @@ Homogeneous_m DH_matrix(DH_row& T){
     DH.at(3,0) = 0;
     DH.at(3,1) = 0;
     DH.at(3,2) = 0;
-    DH.at(3,3) = 1;
+    DH.at(3,3) = 1;    */
+
     return DH;
-    */
 }
 
 Homogeneous_m get_DH(Joint_v &q){
@@ -279,22 +280,22 @@ Pose_v get_pose(Joint_v &q)
     Homogeneous_m DH = get_DH(q);
 
     // p (x,y,z) = f(q) got from the DHmatrix
-    p.at(0) = DH(0, 3);
-    p.at(1) = DH(1, 3);
-    p.at(2) = DH(2, 3);
+    p(0) = DH(0, 3);
+    p(1) = DH(1, 3);
+    p(2) = DH(2, 3);
 
     // fi(a,g,c) = inverse rpy_rotation 'xyz'
     Rotation_m R = get_orientation(q);
     Angle_v RPY = get_RPY(R);
-    p.at(3) = RPY(0);
-    p.at(4) = RPY(1);
-    p.at(5) = RPY(2);
+    p(3) = RPY(0);
+    p(4) = RPY(1);
+    p(5) = RPY(2);
 
     for(int i=0; i<6; i++){
      
         for(int j = 0; j<5; j++){
-            if (abs(p.at(i)) < 0.0001){
-                p.at(i)=0;
+            if (abs(p(i)) < 0.0001){
+                p(i)=0;
             }
         }
     
@@ -322,7 +323,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     }
     
     cout << error <<endl;
-    float alpha=0.0001;
+    float alpha=0.001;
     i = 0;
     float norm_cm =sqrt((error(0)*error(0)) + (error(1)*error(1))+(error(2)*error(2)));
     float norm_rad=sqrt((error(3)*error(3)) + (error(4)*error(4))+(error(5)*error(5)));
@@ -336,7 +337,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     abs(error.at(4))>=3*(M_PI/180) ||
     abs(error.at(5))>=3*(M_PI/180))*/
     (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
-    i < 3000){
+    i < 300){
        //cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
         //compute new error 
         for(int p=0;p<6;p++){ 
@@ -349,21 +350,21 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
        // cout << error << endl;
        // //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
         
-        cout<< "and the value of q_k is:"<<q_k << endl;
+        cout<< "and the value of q_k is:\n"<<q_k.transpose() << endl;
         //cout << q_k <<""<< endl;
-        cout << "error is "<<error<<endl;
-        cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
+        cout << "error is "<<error.transpose()<<endl;
+        cout<< "Entered inside while because value of error is: \n"<< error.squaredNorm() << "\n" << endl;
 
         Joint_v delta= (get_jacobian(q_k).transpose())*error;//*alpha;
 
-        cout<<"delta is: "<<delta<<endl;
+        cout<<"delta is: \n"<<delta.transpose()<<endl;
         
         q_k= q_k + delta*alpha;
 
        
         //just printing some stuff
 
-       // cout<< "iteration " << i << " values for previous : "<< endl;
+        cout<< "iteration " << i << " values for previous : "<< endl;
        // cout << q_k << endl;
        // 
        // cout << "the error is " << sqrt(q_k.squaredNorm()) << endl;
@@ -382,39 +383,48 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
 
 
 int main(){
+   
     
     Pose_v r_d;
-    r_d(0)=0.34327;
-    r_d(1)=3.09069;
-    r_d(2)=2.56042;
-    r_d(3)=94.2511*M_PI/180;
-    r_d(4)=153.443*M_PI/180;
-    r_d(5)=175.566*M_PI/180 ;
-   
+    r_d(0)=0.5651;
+    r_d(1)=3.205;
+    r_d(2)=6.765;
+    r_d(3)=-0.1748;
+    r_d(4)=M_PI;
+    r_d(5)=-0.1748;
+
     Joint_v q_k;
-    q_k(0)=83*M_PI/180;
-    q_k(1)=3*M_PI/180;
-    q_k(2)=107*M_PI/180;
-    q_k(3)=72*M_PI/180;
-    q_k(4)=87*M_PI/180;
-    q_k(5)=41*M_PI/180;
-    Joint_v q_desired;
+    q_k(0)=88*M_PI/180;
+    q_k(1)=23*M_PI/180;
+    q_k(2)=87*M_PI/180;
+    q_k(3)=52*M_PI/180;
+    q_k(4)=67*M_PI/180;
+  //  q_k(5)=41*M_PI/180; 
+
+
+
+
+
+    
+    Joint_v q_desired; 
     q_desired(0)= 80*M_PI/180;
     q_desired(1)= 10*M_PI/180;
     q_desired(2)=110*M_PI/180;
     q_desired(3)= 70*M_PI/180;
     q_desired(4)= 90*M_PI/180;
-    q_desired(5)= 40*M_PI/180;
+   // q_desired(5)= 40*M_PI/180;
 
-    //cout<<"jacobiano per q_desired is " << endl;
+    cout<<"jacobiano per q_desired is " << q_k<< endl;
     //cout<<get_jacobian(q_desired)<<endl;
      
-    Joint_v q_ris=inverse_kinematics(r_d,q_k);
-    cout<<"the result is: "<<endl;
-    cout << q_ris << endl;
-    cout<<"the result should have been: "<<endl;
-    Pose_v where =get_pose(q_desired);
-    cout << q_desired <<endl;
+   Joint_v q_ris=inverse_kinematics(r_d,q_k);
+   cout<<"the result is: "<<endl;
+   cout << q_ris << endl;
+   cout<<"the result should have been: \n"<<endl;
+   //Pose_v where =get_pose(q_desired);
+   //cout<<"result of get pose \n" <<where << "\n" <<endl;
+   
+   cout << q_desired <<endl;
 
     return 0;
       

@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/patrizio/Desktop/robot_programming/IK/02_mat_and_vec/. -I/usr/include/eigen3 
 
