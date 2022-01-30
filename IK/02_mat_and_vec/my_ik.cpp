@@ -66,7 +66,10 @@ Homogeneous_m get_DH(Joint_v &q){
     Homogeneous_m DH;
     
     Homogeneous_m DH_i;
+    
+    
     int n = 5;
+    
     float q_1 = q(0);
     float q_2 = q(1);
     float q_3 = q(2);
@@ -76,11 +79,14 @@ Homogeneous_m get_DH(Joint_v &q){
     float a_3= 10;  
     float a_4 = 2.7;  
     float d_5 = 3.3;
-
+    /*
     DH << cos(q_2 + q_3 + q_4)*cos(q_1)*cos(q_5) - sin(q_1)*sin(q_5), - cos(q_5)*sin(q_1) - cos(q_2 + q_3 + q_4)*cos(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*cos(q_1), cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1),
     cos(q_1)*sin(q_5) + cos(q_2 + q_3 + q_4)*cos(q_5)*sin(q_1),   cos(q_1)*cos(q_5) - cos(q_2 + q_3 + q_4)*sin(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*sin(q_1), sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*sin(q_1),
                                  sin(q_2 + q_3 + q_4)*cos(q_5),                               -sin(q_2 + q_3 + q_4)*sin(q_5),           cos(q_2 + q_3 + q_4),                     a_3*sin(q_2 + q_3) + a_2*sin(q_2) + d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4),
                                                              0,                                                            0,                              0,                                                                                                           1;
+   
+    */
+    //uncommenting here
     /*
     float M[4][4] = {
     {cos(q_2 + q_3 + q_4)*cos(q_1)*cos(q_5) - sin(q_1)*sin(q_5), - cos(q_5)*sin(q_1) - cos(q_2 + q_3 + q_4)*cos(q_1)*sin(q_5), -sin(q_2 + q_3 + q_4)*cos(q_1), cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1)},
@@ -89,17 +95,17 @@ Homogeneous_m get_DH(Joint_v &q){
     {                                                         0,                                                            0,                              0,                                                                                                           1}
     };
     
-
+*/
     
     DH_table DHTABLE ={
-    { M_PI/2,     0,     0, q_1},
+    { -M_PI/2,     0,     0, q_1},
     {    0,  10.5,     0, q_2},
     {    0,    10.0,     0, q_3},
-    {-M_PI/2, 2.7,     0, q_4},
+    { -M_PI/2, 2.7,     0, q_4},
     {    0,     0, 3.3, q_5}
     };
     
-    Homogeneous_m DH = DH_matrix(DHTABLE[0]);
+    DH = DH_matrix(DHTABLE[0]);
 
     for(int i = 1; i<n; i++){
        DH_i = DH_matrix(DHTABLE[i]);
@@ -107,20 +113,20 @@ Homogeneous_m get_DH(Joint_v &q){
     };
     return DH;
 
-    
+    /*
     for(int i = 0; i<4; i++){
         for(int j = 0; j<4; j++){
             if (abs(M[i][j]) < 0.0001){
-                DH.at(i,j)=0;
+                DH(i,j)=0;
             }
             else{ 
-            DH.at(i,j) = M[i][j] ;
+            DH(i,j) = M[i][j] ;
             }
         }
-    }
-    */
+    }*/
+    
 
-    return DH;
+    //return DH;
 }
 
 /*
@@ -182,7 +188,7 @@ Jacobian_m get_jacobian(Joint_v &q)
     float a_4 = 2.7;  
     float d_5 = 3.3;
 
-    // closed form solution from MATLAB script for geometric jacobian*(M_PI/180)
+    // closed form solution from MATLAB script for analitic jacobian*(M_PI/180)
 
     J << d_5*sin(q_2 + q_3 + q_4)*sin(q_1) - sin(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)), - cos(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*cos(q_1), - cos(q_1)*(a_3*sin(q_2 + q_3) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*cos(q_1), -cos(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), 0, 
     cos(q_1)*(a_3*cos(q_2 + q_3) + a_2*cos(q_2) + a_4*cos(q_2 + q_3 + q_4)) - d_5*sin(q_2 + q_3 + q_4)*cos(q_1), - sin(q_1)*(a_3*sin(q_2 + q_3) + a_2*sin(q_2) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*sin(q_1), - sin(q_1)*(a_3*sin(q_2 + q_3) + a_4*sin(q_2 + q_3 + q_4)) - d_5*cos(q_2 + q_3 + q_4)*sin(q_1), -sin(q_1)*(d_5*cos(q_2 + q_3 + q_4) + a_4*sin(q_2 + q_3 + q_4)), 0, 
@@ -386,12 +392,19 @@ int main(){
    
     
     Pose_v r_d;
-    r_d(0)=0.5651;
-    r_d(1)=3.205;
-    r_d(2)=6.765;
+    r_d(0)=5.5651;
+    r_d(1)=6.205;
+    r_d(2)=4.765;
     r_d(3)=-0.1748;
     r_d(4)=M_PI;
     r_d(5)=-0.1748;
+
+    //r_d(0)=0.5651;
+    //r_d(1)=3.205;
+    //r_d(2)=6.765;
+    //r_d(3)=-0.1748;
+    //r_d(4)=M_PI;
+    //r_d(5)=-0.1748;
 
     Joint_v q_k;
     q_k(0)=88*M_PI/180;
@@ -401,9 +414,16 @@ int main(){
     q_k(4)=67*M_PI/180;
   //  q_k(5)=41*M_PI/180; 
 
+    Joint_v q_act;
+    q_act(0) = 90.0 * (M_PI/180);
+    q_act(1) = 75.0 * (M_PI/180);
+    q_act(2) = 172.0 * (M_PI/180);
+    q_act(3) = 50.0 * (M_PI/180);
+    q_act(4) = 90.0 * (M_PI/180); 
+    
 
-
-
+   // cout<<"q_act pose: " << q_k<< endl;
+   // cout<<get_pose(q_act)<<endl;
 
     
     Joint_v q_desired; 
@@ -414,18 +434,20 @@ int main(){
     q_desired(4)= 90*M_PI/180;
    // q_desired(5)= 40*M_PI/180;
 
-    cout<<"jacobiano per q_desired is " << q_k<< endl;
+    //cout<<"jacobiano per q_desired is " << q_k<< endl;
     //cout<<get_jacobian(q_desired)<<endl;
      
-   Joint_v q_ris=inverse_kinematics(r_d,q_k);
-   cout<<"the result is: "<<endl;
-   cout << q_ris << endl;
-   cout<<"the result should have been: \n"<<endl;
+   //Joint_v q_ris=inverse_kinematics(r_d,q_k);
+   //cout<<"the result is: "<<endl;
+   //cout << q_ris << endl;
+   //cout<<"the result should have been: \n"<<endl;
+
    //Pose_v where =get_pose(q_desired);
    //cout<<"result of get pose \n" <<where << "\n" <<endl;
+   cout<< get_DH(q_desired)<<endl;
    
-   cout << q_desired <<endl;
-
+  // cout << q_desired <<endl;
+    
     return 0;
       
 }

@@ -41,8 +41,8 @@ int main(int argc, char** argv)
   down    274     -z
   right   275     +x
   left    276     -x
-  pagup   280     +y
-  pagdow  281     -y
+  pagup   280     +y (-)
+  pagdow  281     -y (+)
   p       112     +w
   o       111     -w
   w       119     +a
@@ -61,6 +61,7 @@ int main(int argc, char** argv)
     if (new_event && significant(k.code)) {
       //cout<<k.code<<endl;
       //switch case for the message that needs to be send
+    
       if (pressed){
         int pressed_code = k.code;
         geometry_msgs::Pose msg;
@@ -74,59 +75,88 @@ int main(int argc, char** argv)
 
         switch (pressed_code){
           case(273):
-              msg.position.z=0.3;
+              msg.position.z=0.5;
           break;
           case(274):
-              msg.position.z=-1;
+              msg.position.z=-0.5;
           break;
           case(275):
-              msg.position.x=1;
+              msg.position.x=0.5;
           break;
           case(276):
-              msg.position.x=-1;
-          break;
-          case(280):
-              msg.position.y=1;
+              msg.position.x=-0.5;
           break;
           case(281):
-              msg.position.y=-1;
+              msg.position.y=0.5;
+          break;
+          case(280):
+              msg.position.y=-0.5;
           break;
           case(112):
-              msg.orientation.w=0.3;
+              msg.orientation.w=3;
+              //msg.position.x   =1.5; 
+              //msg.position.y   =1.76; 
+              //msg.position.z   =0.56789;
+              //msg.orientation.x=7; 
+              //msg.orientation.y=13; 
+              //msg.orientation.z=5; 
+
           break;
           case(111):
-              msg.orientation.w=-0.3;
+              msg.orientation.w=-3;
+              //msg.position.x   =-1.5; 
+              //msg.position.y   =-1.76; 
+              //msg.position.z   =-0.56789;
+              //msg.orientation.x=-7; 
+              //msg.orientation.y=-13; 
+              //msg.orientation.z=-5; 
           break;
           case(119):
-              msg.orientation.x=0.3;
+              msg.orientation.x=3;
           break;
           case(97):
-              msg.orientation.x=-0.3;
+              msg.orientation.x=-3;
           break;
           case(101):
-              msg.orientation.y=0.3;
+              msg.orientation.y=3;
           break;
           case(115):
-              msg.orientation.y=-0.3;
+              msg.orientation.y=-3;
           break;
           case(114):
-              msg.orientation.z=0.3;
+              msg.orientation.z=3;
           break;
           case(100):
-              msg.orientation.z=-0.3;
+              msg.orientation.z=-3;
           break;
+          
         }
+       
         pub_new_pose.publish(msg);
-
+        
 
 
         pub_down.publish(k);
       }
       else pub_up.publish(k);
     }
+
+    
+
     ros::spinOnce();
     r.sleep();
   }
   
   ros::waitForShutdown();
 }
+
+/*
+x: 0.0
+  y: 2.97638
+  z: 0.0296235
+orientation:
+  x: -2.04203
+  y: 3.14159
+  z: 3.14159
+  w: 0.0"  
+  */

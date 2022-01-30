@@ -30,9 +30,9 @@ float q_constraints[5][2] = {{10*(M_PI/180),170*(M_PI/180)},{0,90*(M_PI/180)},{0
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
-const float max_velocity = 357.7;
+const float max_velocity = 200.7;
 const float velocity = 200.7;
-const float delay = 0.1;    // frequence of the messages to arduino 
+const float delay = 0.05;    // frequence of the messages to arduino 
 float duration;
 int pose_achieved;
 ros::Publisher pub;
@@ -69,18 +69,19 @@ void move_joints(){
         cout<<ddq_i<< "ddq issss" << endl;
         q(i) += ddq_i;
         dq(i)-=ddq_i; 
+
        // cout << "variazione joint " << i << "is " << dq.at(i) << endl;
       }
       
     }
     if(abs(dEE)>=0.3){
       if(dEE>0){
-        EE += 1;
-        dEE -= 1;
+        EE += 0.3;
+        dEE -= 0.3;
       }
       else{
-        EE -=1;
-        dEE += 1;
+        EE -=0.3;
+        dEE += 0.3;
       }
     }
     cout << "I'm going to go to these values: dq is " << endl;
@@ -222,6 +223,7 @@ int main(int argc, char **argv){
   q_init(3) = 160.0 * (M_PI/180);
   q_init(4) = 180.0 * (M_PI/180);
   float EE_init = 120.0 ;
+
 
 
   q = q_init;
