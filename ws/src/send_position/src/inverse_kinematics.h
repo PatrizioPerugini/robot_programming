@@ -336,7 +336,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     abs(error.at(3))>=3*(M_PI/180) ||
     abs(error.at(4))>=3*(M_PI/180) ||
     abs(error.at(5))>=3*(M_PI/180))*/
-    (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
+   // (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
     i < 300){
        //cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
         //compute new error 
@@ -349,34 +349,28 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
        // cout<< "iteration " << i << " values for previous error :"<< endl;
        // cout << error << endl;
        // //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
-        
+        if(i%50==0){ 
         cout<< "and the value of q_k is:\n"<<q_k.transpose() << endl;
         //cout << q_k <<""<< endl;
-        cout << "error is "<<error.transpose()<<endl;
+       
         cout<< "Entered inside while because value of error is: \n"<< error.squaredNorm() << "\n" << endl;
-
+        }
         Joint_v delta= (get_jacobian(q_k).transpose())*error;//*alpha;
 
-        cout<<"delta is: \n"<<delta.transpose()<<endl;
         
+       
         q_k= q_k + delta*alpha;
 
        
         //just printing some stuff
 
-        cout<< "iteration " << i << " values for previous : "<< endl;
-       // cout << q_k << endl;
-       // 
-       // cout << "the error is " << sqrt(q_k.squaredNorm()) << endl;
-//
-       // cout<< "iteration " << i << " values for actual : "<< endl;
-       // cout << q_k1 << endl;
-
-        //q_k=q_k1;
+       
+    
 
         i++;
          
     }
+    
     return q_k;
 }
 

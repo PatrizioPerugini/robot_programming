@@ -18,6 +18,7 @@ Joint_v_error dq;  //error: qd - q
 float EE_d;
 float EE;
 float dEE;
+float EE_act;
 float EE_constaints[2] ={80,130};
 
 Pose_v p; //pose of ee, initially with initial conf 
@@ -25,13 +26,13 @@ Pose_v p_init; //initial pose, calculated the first time with matlab
 Joint_v q; //joint conf, initially with initial conf 
 Joint_v q_init;
 Joint_v q_act;
-float q_constraints[5][2] = {{10,170},{0,90},{0,180},{0,160},{0,180}} ;
+float q_constraints[5][2] = {{10*(M_PI/180),170*(M_PI/180)},{0,90*(M_PI/180)},{0,180*(M_PI/180)},{0,160*(M_PI/180)},{0,180*(M_PI/180)}} ;
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
 const float max_velocity = 357.7;
 const float velocity = 200.7;
-const float delay = 0.05;    // frequence of the messages to arduino 
+const float delay = 0.1;    // frequence of the messages to arduino 
 float duration;
 int pose_achieved;
 ros::Publisher pub;
@@ -65,6 +66,7 @@ void move_joints(){
     for(int i = 0; i<5; i++){
       if(abs(dq(i))>0.3){
         float ddq_i =(dq(i)*delay)/duration;
+        cout<<ddq_i<< "ddq issss" << endl;
         q(i) += ddq_i;
         dq(i)-=ddq_i; 
        // cout << "variazione joint " << i << "is " << dq.at(i) << endl;
@@ -101,6 +103,7 @@ void move_joints(){
     pose_achieved = check_for_pose(dq,dEE);
   }
   cout << "number of messages: "<< cnt << endl;
+  cout << "finished movement , pose_achieved : "<< pose_achieved << endl;
    
 }
 
@@ -121,12 +124,12 @@ void plan_motion(){
   cout << "I found some inverse solution, values: \n" << endl;
   cout << q_d << endl;
 
-  for(int i=0; i<6;i++){
-      if(q(0)<q_constraints[i][0]){      //CHECK low constraint
-          q(0)=q_constraints[i][0];
+  for(int i=0; i<5;i++){
+      if(q(i)<q_constraints[i][0]){      //CHECK low constraint
+          q(i)=q_constraints[i][0];
       }
-      if(q(0)>q_constraints[i][1]){  //CHECK high constarint
-          q(0)=q_constraints[i][1];
+      if(q(i)>q_constraints[i][1]){  //CHECK high constarint
+          q(i)=q_constraints[i][1];
       }
   }
   
@@ -135,29 +138,36 @@ void plan_motion(){
 
   dEE = EE_d - EE;
 
+  //cout<<"dq in plan motion is " << dq<<endl;
+  //cout<<"\n"<<endl;
+  //cout<<"q_d in plan motion is " << q_d<<endl;
+  //cout<<"\n"<<endl;
+  //cout<<"q in plan motion is " << q<<endl;
 
   float dq_max = abs(maxx(dq));
   
-  duration = dq_max/velocity; //the duration for each complete movement is give by the highest angle at the max speed
+  duration = (dq_max*180/M_PI)/velocity; //the duration for each complete movement is give by the highest angle at the max speed
   cout << "the duration of the motion is "<<duration <<endl;
   
   move_joints();
 }
 
-/*
+
 void activation(){
   q_d = q_act;
   dq = q_d - q;
   EE_d = EE_act;
   dEE = EE_d - EE;
+ 
+  float q_max = abs(maxx(dq));
+  cout<<"the duration is qmax: "<< q_max<<endl;  
 
-  float q_max = maxx(dq);
-
-  duration = q_max/max_velocity; //the duration for each complete movement is give by the highest angle at the max speed
+  duration = (q_max*180/M_PI)/max_velocity; //the duration for each complete movement is give by the highest angle at the max speed
+  cout<<"the duration is: "<< duration<<endl;
   move_joints();
 }
 
-
+/*
 void deactivation(){
   // command from keyboard to define
   activation();
@@ -204,18 +214,19 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
 int main(int argc, char **argv){
   
   //Initial Setup
-  pose_achieved = 1;
+  pose_achieved = 0;
   
-  q_init(0) = 90.0 * (180/M_PI);
-  q_init(1) = 0.0* (180/M_PI);
-  q_init(2) = 0.0 * (180/M_PI);
-  q_init(3) = 160.0 * (180/M_PI);
-  q_init(4) = 180.0 * (180/M_PI);
-  float EE_init = 120.0 * (180/M_PI);
+  q_init(0) = 90.0 * (M_PI/180);
+  q_init(1) = 0.0* (M_PI/180);
+  q_init(2) = 0.0 * (M_PI/180);
+  q_init(3) = 160.0 * (M_PI/180);
+  q_init(4) = 180.0 * (M_PI/180);
+  float EE_init = 120.0 ;
 
 
   q = q_init;
   EE = EE_init;
+  cout<<"la qu dal mainnn \n" << q << "\n"<< endl;
   p=get_pose(q_init);
   
   //init nodes and topics
@@ -228,16 +239,16 @@ int main(int argc, char **argv){
 
   
   //get to the best position to start the motion ==> activation
-  q_act(0) = 90.0 * (180/M_PI);
-  q_act(1) = 75.0 * (180/M_PI);
-  q_act(2) = 172.0 * (180/M_PI);
-  q_act(3) = 50.0 * (180/M_PI);
-  q_act(4) = 90.0 * (180/M_PI); 
-  float EE_act = 90 * (180/M_PI);
-  /*
+  q_act(0) = 90.0 * (M_PI/180);
+  q_act(1) = 75.0 * (M_PI/180);
+  q_act(2) = 172.0 * (M_PI/180);
+  q_act(3) = 50.0 * (M_PI/180);
+  q_act(4) = 90.0 * (M_PI/180); 
+  EE_act = 90 ;
+  
   //activation procedure
   activation();
-  */
+  
   
 
   while (ros::ok()){
