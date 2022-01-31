@@ -27,6 +27,8 @@ static_mat.h
 /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/static_mat.h
 static_vec.h
 /home/patrizio/Desktop/robot_programming/ws/src/send_position/src/static_vec.h
+std_msgs/String.h
+/home/patrizio/Desktop/robot_programming/ws/src/send_position/src/std_msgs/String.h
 geometry_msgs/Pose.h
 -
 

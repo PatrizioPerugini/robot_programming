@@ -8,6 +8,7 @@
 #include "inverse_kinematics.h"
 #include "static_mat.h"
 #include "static_vec.h"
+#include "std_msgs/String.h"
 #include <geometry_msgs/Pose.h>
 
 
@@ -19,6 +20,7 @@ float EE_d;
 float EE;
 float dEE;
 float EE_act;
+float EE_init;
 float EE_constaints[2] ={80,130};
 
 Pose_v p; //pose of ee, initially with initial conf 
@@ -159,6 +161,7 @@ void activation(){
   dq = q_d - q;
   EE_d = EE_act;
   dEE = EE_d - EE;
+  pose_achieved=0;
  
   float q_max = abs(maxx(dq));
   cout<<"the duration is qmax: "<< q_max<<endl;  
@@ -168,22 +171,41 @@ void activation(){
   move_joints();
 }
 
-/*
+
 void deactivation(){
-  // command from keyboard to define
+  cout<<"starting deactivation " <<endl;
+  
   activation();
+  
+
+  cout<<"in position for deactivation " <<endl;
+
   q_d = q_init;
   dq = q_d - q;
   EE_d = EE_init;
   dEE = EE_d - EE;
+  pose_achieved=0;
 
-  float q_max = maxx(dq);
+  float q_max = abs(maxx(dq));
 
-  duration = q_max/max_velocity; //the duration for each complete movement is give by the highest angle at the max speed
+  duration = (q_max*180/M_PI)/max_velocity; //the duration for each complete movement is give by the highest angle at the max speed
   move_joints();
 
+   cout<<"end OF DISCUSSION " <<endl;
+
+
 }
-*/
+
+void trajectory_Callback(const std_msgs::String& msg ){
+    cout << "deactivation sequence initiated" << endl;
+    if(msg.data=="h"){
+        deactivation();
+    }
+    else{
+        activation();
+    }
+    
+}
 
 void desired_positionCallback(const geometry_msgs::Pose& msg){
 
@@ -222,7 +244,7 @@ int main(int argc, char **argv){
   q_init(2) = 0.0 * (M_PI/180);
   q_init(3) = 160.0 * (M_PI/180);
   q_init(4) = 180.0 * (M_PI/180);
-  float EE_init = 120.0 ;
+  EE_init = 120.0 ;
 
 
 
@@ -236,6 +258,7 @@ int main(int argc, char **argv){
   ros::NodeHandle n;
   pub=n.advertise<sensor_msgs::JointState>("joint_states",1000);
   ros::Subscriber sub= n.subscribe("/keyboard/desired_pose",1000,desired_positionCallback);
+  ros::Subscriber subb=n.subscribe("/keyboard/trajectory",1000,trajectory_Callback);
   ros::Rate loop_rate(10);
 
 

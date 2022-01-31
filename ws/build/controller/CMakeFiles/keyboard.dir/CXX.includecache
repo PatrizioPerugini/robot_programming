@@ -33,6 +33,8 @@ keyboard.h
 /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
 geometry_msgs/Pose.h
 -
+std_msgs/String.h
+/home/patrizio/Desktop/robot_programming/ws/src/controller/src/std_msgs/String.h
 
 /home/patrizio/Desktop/robot_programming/ws/src/controller/src/keyboard.h
 controller/Key.h
@@ -741,6 +743,22 @@ ros/forwards.h
 /opt/ros/noetic/include/rosconsole/macros_generated.h
 
 /opt/ros/noetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/noetic/include/std_msgs/String.h
 string
 -
 vector

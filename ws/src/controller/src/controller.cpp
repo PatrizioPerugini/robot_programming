@@ -2,6 +2,7 @@
 #include <iostream>
 #include "keyboard.h"
 #include <geometry_msgs/Pose.h>
+#include "std_msgs/String.h"
 using namespace std;
 
 
@@ -9,7 +10,7 @@ using namespace std;
 
 bool significant(int k){
   return (k==273 || k==274 || k==275 || k==276 || k==280 || k==281 || k==112 || 
-          k==111 ||k==119 || k== 97 || k==101 || k==115 || k==114 || k==100);
+          k==111 ||k==119 || k== 97 || k==101 || k==115 || k==114 || k==100 || k==104 || k==106);
           
 }
 
@@ -23,13 +24,15 @@ int main(int argc, char** argv)
   ros::Publisher pub_down = n.advertise<controller::Key>("keydown", 10);
   ros::Publisher pub_up = n.advertise<controller::Key>("keyup", 10);
   ros::Publisher pub_new_pose= n.advertise<geometry_msgs::Pose>("desired_pose",1000);
-
+  ros::Publisher trajectory = n.advertise<std_msgs::String>("trajectory", 1000);
   bool allow_repeat=false;
   int repeat_delay, repeat_interval;
   
   n.param<bool>( "allow_repeat", allow_repeat, false ); // disable by default
   n.param<int>( "repeat_delay", repeat_delay, SDL_DEFAULT_REPEAT_DELAY );
   n.param<int>( "repeat_interval", repeat_interval, SDL_DEFAULT_REPEAT_INTERVAL );
+
+  float delta = 1;
   
   if ( !allow_repeat ) repeat_delay=0; // disable 
   keyboard::Keyboard kbd( repeat_delay, repeat_interval );
@@ -51,7 +54,8 @@ int main(int argc, char** argv)
   s       115     -b
   r       114     +g
   d       100     -g
-
+  h       104      deactivation
+  j       106      activation  
 */
 
 
@@ -72,28 +76,33 @@ int main(int argc, char** argv)
         msg.orientation.y=0; 
         msg.orientation.z=0;
         msg.orientation.w=0; 
+        std_msgs::String msg_trajectory;
+        
+        bool is_deactivated=false;
+
+        
 
         switch (pressed_code){
           case(273):
-              msg.position.z=0.5;
-          break;
+              msg.position.z=0.5*delta;
+              break;
           case(274):
-              msg.position.z=-0.5;
-          break;
+              msg.position.z=-0.5*delta;
+              break;
           case(275):
-              msg.position.x=0.5;
-          break;
+              msg.position.x=0.5*delta;
+              break;
           case(276):
-              msg.position.x=-0.5;
-          break;
+              msg.position.x=-0.5*delta;
+              break;
           case(281):
-              msg.position.y=0.5;
-          break;
+              msg.position.y=0.5*delta;
+              break;
           case(280):
-              msg.position.y=-0.5;
-          break;
+              msg.position.y=-0.5*delta;
+              break;
           case(112):
-              msg.orientation.w=3;
+              msg.orientation.w=3*delta;
               //msg.position.x   =1.5; 
               //msg.position.y   =1.76; 
               //msg.position.z   =0.56789;
@@ -101,42 +110,54 @@ int main(int argc, char** argv)
               //msg.orientation.y=13; 
               //msg.orientation.z=5; 
 
-          break;
+              break;
           case(111):
-              msg.orientation.w=-3;
+              msg.orientation.w=-3*delta;
               //msg.position.x   =-1.5; 
               //msg.position.y   =-1.76; 
               //msg.position.z   =-0.56789;
               //msg.orientation.x=-7; 
               //msg.orientation.y=-13; 
               //msg.orientation.z=-5; 
-          break;
+              break;
           case(119):
-              msg.orientation.x=3;
-          break;
+              msg.orientation.x=3*delta;
+              break;
           case(97):
-              msg.orientation.x=-3;
-          break;
+              msg.orientation.x=-3*delta;
+              break;
           case(101):
-              msg.orientation.y=3;
-          break;
+              msg.orientation.y=3*delta;
+              break;
           case(115):
-              msg.orientation.y=-3;
-          break;
+              msg.orientation.y=-3*delta;
+              break;
           case(114):
-              msg.orientation.z=3;
-          break;
+              msg.orientation.z=3*delta;
+              break;
           case(100):
-              msg.orientation.z=-3;
-          break;
-          
-        }
-       
-        pub_new_pose.publish(msg);
+              msg.orientation.z=-3*delta;
+              break;
+          case(104):
+              is_deactivated=true;
+              msg_trajectory.data="h";
+              break;
+          case(106):
+              is_deactivated=true;
+              msg_trajectory.data="j";
+              break;
         
-
-
-        pub_down.publish(k);
+        }
+        if(is_deactivated){
+            cout<<"planning trajectory"<<endl;
+            trajectory.publish(msg_trajectory);
+        }
+        else{
+            pub_new_pose.publish(msg);
+        }
+            pub_down.publish(k);
+        cout<<"is_deactivated is : "<< is_deactivated <<endl;
+      
       }
       else pub_up.publish(k);
     }
