@@ -112,12 +112,15 @@ void move_joints(){
 
 
 float maxx(Joint_v_error& e){
+
+ // cout << "dq in MAXXXX IS " << e <<endl;
   float ris = -10000;
   for(int i=0;i<5;i++){
     if (ris < abs(e(i))){
       ris=e(i);
     }
   }
+  
   return ris;
 }
 
@@ -127,6 +130,7 @@ void plan_motion(){
   cout << "I found some inverse solution, values: \n" << endl;
   cout << q_d << endl;
 
+  
   for(int i=0; i<5;i++){
       if(q(i)<q_constraints[i][0]){      //CHECK low constraint
           q(i)=q_constraints[i][0];
@@ -141,16 +145,17 @@ void plan_motion(){
 
   dEE = EE_d - EE;
 
-  //cout<<"dq in plan motion is " << dq<<endl;
-  //cout<<"\n"<<endl;
-  //cout<<"q_d in plan motion is " << q_d<<endl;
-  //cout<<"\n"<<endl;
-  //cout<<"q in plan motion is " << q<<endl;
+  cout<<"dq in plan motion is " << dq<<endl;
+  cout<<"\n"<<endl;
+  cout<<"q_d in plan motion is " << q_d<<endl;
+  cout<<"\n"<<endl;
+  cout<<"q in plan motion is " << q<<endl;
 
   float dq_max = abs(maxx(dq));
   
   duration = (dq_max*180/M_PI)/velocity; //the duration for each complete movement is give by the highest angle at the max speed
-  cout << "the duration of the motion is "<<duration <<endl;
+  
+  cout << "DURATION OF DDIO MOTION "<<(dq_max) <<endl;
   
   move_joints();
 }
@@ -265,11 +270,11 @@ int main(int argc, char **argv){
   
   //get to the best position to start the motion ==> activation
   q_act(0) = 90.0 * (M_PI/180);
-  q_act(1) = 75.0 * (M_PI/180);
-  q_act(2) = 172.0 * (M_PI/180);
-  q_act(3) = 50.0 * (M_PI/180);
+  q_act(1) = 90.0 * (M_PI/180);
+  q_act(2) = 200 * (M_PI/180);
+  q_act(3) = 60.0 * (M_PI/180);
   q_act(4) = 90.0 * (M_PI/180); 
-  EE_act = 90 ;
+  EE_act = 100 ;
   
   //activation procedure
   activation();

@@ -90,10 +90,10 @@ int main(int argc, char** argv)
               msg.position.z=-0.5*delta;
               break;
           case(275):
-              msg.position.x=0.5*delta;
+              msg.position.x=0.25*delta;
               break;
           case(276):
-              msg.position.x=-0.5*delta;
+              msg.position.x=-0.25*delta;
               break;
           case(281):
               msg.position.y=0.5*delta;
