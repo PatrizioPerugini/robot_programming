@@ -330,12 +330,7 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
     cout << "norm cm " << norm_cm <<endl;
     cout << "norm rad " << norm_rad <<endl;
     while (
-   /* (abs(error.at(0))>=0.3 ||
-    abs(error.at(1))>=0.3  ||
-    abs(error.at(2))>=0.3  ||
-    abs(error.at(3))>=3*(M_PI/180) ||
-    abs(error.at(4))>=3*(M_PI/180) ||
-    abs(error.at(5))>=3*(M_PI/180))*/
+   
    // (norm_cm > 0.01 || norm_rad > 0.7*(M_PI/180)) &&
     i < 300){
        //cout<< "Entered inside while because value of error is: "<< error.squaredNorm() << "\n" << endl;
@@ -346,9 +341,9 @@ Joint_v inverse_kinematics(Pose_v& r_d, Joint_v& q_k){
             error(p)=r_d(p)-get_pose(q_k)[p];
        
         }
-       // cout<< "iteration " << i << " values for previous error :"<< endl;
-       // cout << error << endl;
-       // //cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
+        cout<< "iteration " << i << " values for previous error :"<< endl;
+        cout << error << endl;
+        cout<< "and the norm of e is " << sqrt(error.squaredNorm()) << endl;
         if(i%50==0){ 
         cout<< "and the value of q_k is:\n"<<q_k.transpose() << endl;
         //cout << q_k <<""<< endl;

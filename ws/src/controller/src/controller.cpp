@@ -103,22 +103,11 @@ int main(int argc, char** argv)
               break;
           case(112):
               msg.orientation.w=3*delta;
-              //msg.position.x   =1.5; 
-              //msg.position.y   =1.76; 
-              //msg.position.z   =0.56789;
-              //msg.orientation.x=7; 
-              //msg.orientation.y=13; 
-              //msg.orientation.z=5; 
-
+             
               break;
           case(111):
               msg.orientation.w=-3*delta;
-              //msg.position.x   =-1.5; 
-              //msg.position.y   =-1.76; 
-              //msg.position.z   =-0.56789;
-              //msg.orientation.x=-7; 
-              //msg.orientation.y=-13; 
-              //msg.orientation.z=-5; 
+              
               break;
           case(119):
               msg.orientation.x=3*delta;
@@ -156,7 +145,7 @@ int main(int argc, char** argv)
             pub_new_pose.publish(msg);
         }
             pub_down.publish(k);
-        cout<<"is_deactivated is : "<< is_deactivated <<endl;
+        
       
       }
       else pub_up.publish(k);

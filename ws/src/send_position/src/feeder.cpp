@@ -28,7 +28,11 @@ Pose_v p_init; //initial pose, calculated the first time with matlab
 Joint_v q; //joint conf, initially with initial conf 
 Joint_v q_init;
 Joint_v q_act;
-float q_constraints[5][2] = {{10*(M_PI/180),170*(M_PI/180)},{0,90*(M_PI/180)},{0,180*(M_PI/180)},{0,160*(M_PI/180)},{0,180*(M_PI/180)}} ;
+float q_constraints[5][2] = {{10*(M_PI/180),170*(M_PI/180)},
+{0,130*(M_PI/180)},
+{0,270*(M_PI/180)},
+{0,180*(M_PI/180)},
+{0,180*(M_PI/180)}} ;
 
 // From the spreadshit of the motor I know that the motors can do 0.17 s/60°
 // Consequently I will work considering a speed of: 357°/s as max speed
@@ -68,7 +72,7 @@ void move_joints(){
     for(int i = 0; i<5; i++){
       if(abs(dq(i))>0.3){
         float ddq_i =(dq(i)*delay)/duration;
-        cout<<ddq_i<< "ddq issss" << endl;
+       
         q(i) += ddq_i;
         dq(i)-=ddq_i; 
 
@@ -86,8 +90,7 @@ void move_joints(){
         dEE += 0.3;
       }
     }
-    cout << "I'm going to go to these values: dq is " << endl;
-    cout << dq << endl;
+    
     cout << "I'm going to go to these values: q is " << endl;
     cout << q << endl;
     cout << "I'm going to go to these values: EE is " << endl;
@@ -105,7 +108,7 @@ void move_joints(){
 
     pose_achieved = check_for_pose(dq,dEE);
   }
-  cout << "number of messages: "<< cnt << endl;
+  
   cout << "finished movement , pose_achieved : "<< pose_achieved << endl;
    
 }
@@ -145,17 +148,13 @@ void plan_motion(){
 
   dEE = EE_d - EE;
 
-  cout<<"dq in plan motion is " << dq<<endl;
-  cout<<"\n"<<endl;
-  cout<<"q_d in plan motion is " << q_d<<endl;
-  cout<<"\n"<<endl;
-  cout<<"q in plan motion is " << q<<endl;
+ 
 
   float dq_max = abs(maxx(dq));
   
   duration = (dq_max*180/M_PI)/velocity; //the duration for each complete movement is give by the highest angle at the max speed
   
-  cout << "DURATION OF DDIO MOTION "<<(dq_max) <<endl;
+  
   
   move_joints();
 }
@@ -169,10 +168,10 @@ void activation(){
   pose_achieved=0;
  
   float q_max = abs(maxx(dq));
-  cout<<"the duration is qmax: "<< q_max<<endl;  
+  
 
   duration = (q_max*180/M_PI)/max_velocity; //the duration for each complete movement is give by the highest angle at the max speed
-  cout<<"the duration is: "<< duration<<endl;
+  
   move_joints();
 }
 
@@ -216,7 +215,7 @@ void desired_positionCallback(const geometry_msgs::Pose& msg){
 
   cout << pose_achieved << endl;
   if(pose_achieved == 1){
-    cout << "hey I heard something" << endl;    
+     
     r_d(0) = msg.position.x    + p(0);
     r_d(1) = msg.position.y    + p(1);
     r_d(2) = msg.position.z    + p(2);
